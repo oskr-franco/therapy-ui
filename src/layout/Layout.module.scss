@@ -1,0 +1,11 @@
+@import 'mixins';
+
+.layout {
+  position: relative;
+  height: 100vh;
+}
+
+.main {
+  min-height: 90%;
+  @include padding();
+}

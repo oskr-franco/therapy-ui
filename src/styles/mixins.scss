@@ -1,0 +1,53 @@
+@import './variables.scss';
+
+@mixin viewport($media) {
+  @if $media == big-mobile {
+    @media screen and (min-width: $small) {
+      @content;
+    }
+  }
+  @if $media == tablet {
+    @media screen and (min-width: $medium) {
+      @content;
+    }
+  } @else if $media == desktop {
+    @media screen and (min-width: $large) {
+      @content;
+    }
+  } @else if $media == desktop-large {
+    @media screen and (min-width: $extra-large) {
+      @content;
+    }
+  } @else if $media == desktop-extra-large {
+    @media screen and (min-width: $extra-extra-large) {
+      @content;
+    }
+  }
+}
+
+@mixin padding() {
+  padding: $spacing;
+
+  @include viewport(tablet) {
+    padding: $desktop-spacing;
+  }
+}
+
+@mixin gap() {
+  gap: $spacing;
+
+  @include viewport(tablet) {
+    gap: $desktop-spacing;
+  }
+}
+
+@mixin card($includeSpacing: true, $shadowColor: $shadow-color) {
+  border-radius: 10px;
+  box-shadow:  4px 4px 8px 0 $shadowColor;
+  width: 100%;
+
+  @if $includeSpacing {
+    @include padding();
+    @include gap();
+  }
+}

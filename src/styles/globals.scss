@@ -1,0 +1,23 @@
+@import './variables.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+/*
+  Note that we didn't add :host here, because this
+  would affect the layout of the web component
+*/
+html,
+body {
+  height: 100%;
+}
+
+
+body {
+  background-color: $backgound-color;
+}
