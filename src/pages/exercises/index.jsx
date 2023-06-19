@@ -1,17 +1,11 @@
 import React from 'react';
 
+import Exercises from '@/components/templates/Exercises'
+
 import { getExercises } from './utils/getExercises';
 
-import ExerciseCard from '../../components/ExerciseCard'
-
-function Exercises({exercises}) {
-  return (
-    <div>
-      {exercises.map((exercise) => (
-        <ExerciseCard key={exercise.id} {...exercise} />
-      ))}
-    </div>
-  )
+function ExercisesPage({exercises}) {
+  return (<Exercises exercises={exercises} />)
 }
 
 export async function getServerSideProps() {
@@ -21,4 +15,4 @@ export async function getServerSideProps() {
   return { props: { exercises: data } }
 }
 
-export default Exercises;
+export default ExercisesPage;
