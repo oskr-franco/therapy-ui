@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
-import cx from 'classnames';
 import { useForm, useFieldArray } from 'react-hook-form';
+import { CgGym } from "react-icons/cg";
+import { TbFileDescription } from "react-icons/tb";
+import { FaListUl, FaLink } from "react-icons/fa";
+
+import { getUrlType } from "@/utils/getUrlType";
+
+import TextInput from "../FormFields/TextInput";
+import TextArea from "../FormFields/TextArea";
 import styles from './ExerciseForm.module.scss';
 
 function ExerciseForm({ initialData = {} }) {
 
-   const { register, handleSubmit, control, setValue, formState: { errors } } = useForm({
+   const { register, handleSubmit, control, setValue, trigger, formState: { errors } } = useForm({
      defaultValues: {
       id: null,
       name: "",
@@ -21,22 +28,6 @@ function ExerciseForm({ initialData = {} }) {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   if (initialData.media) {
-  //     initialData.media.forEach((_, index) => {
-  //       append({ value: "" });
-  //     });
-  //   }
-  // }, [initialData.media, append]);
-
-  // useEffect(() => {
-  //   if (initialData.media) {
-  //     initialData.media.forEach((item, index) => {
-  //       setValue(`media.${index}.value`, item.value);
-  //     });
-  //   }
-  // }, [initialData.media, setValue]);
 
   useEffect(() => {
     if (initialData.media) {
@@ -69,29 +60,53 @@ function ExerciseForm({ initialData = {} }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-
-      <input
-        {...register('name', { required: "Name is required", maxLength: { value: 200, message: "Name cannot exceed 200 characters" } })}
-        className={styles.input}
-        type="text"
+      <TextInput
+        register={register}
+        name="name"
+        icon={CgGym}
+        validations={
+          {
+            required: "Name is required",
+            maxLength:
+            {
+              value: 200, message: "Name cannot exceed 200 characters",
+            }
+          }}
         placeholder="Name"
       />
       {errors.name && <p className={styles.error}>{errors.name.message}</p>}
 
-      <textarea
-        {...register('description', { required: "Description is required", maxLength: { value: 2000, message: "Description cannot exceed 2000 characters" } })}
-        className={styles.input}
+      <TextArea 
+        register={register}
+        name="description"
+        icon={TbFileDescription}
+        validations={
+          {
+            required: "Description is required",
+            maxLength:
+              {
+              value: 2000, message: "Description cannot exceed 2000 characters",
+            }
+          }}
         placeholder="Description"
       />
       {errors.description && <p className={styles.error}>{errors.description.message}</p>}
 
-      <textarea
-        {...register('instructions', { required: "Instructions are required", maxLength: { value: 8000, message: "Instructions cannot exceed 8000 characters" } })}
-        className={styles.input}
+      <TextArea
+        register={register}
+        name="instructions"
+        icon={FaListUl}
+        validations={
+          {
+            required: "Instructions are required",
+            maxLength:
+              {
+              value: 8000, message: "Instructions cannot exceed 8000 characters",
+            }
+          }}
         placeholder="Instructions"
       />
       {errors.instructions && <p className={styles.error}>{errors.instructions.message}</p>}
-
 
       {fields.map((field, index) => (
         <div key={field.id} className={styles.inputField}>
@@ -101,27 +116,35 @@ function ExerciseForm({ initialData = {} }) {
             defaultValue={field.id}
             hidden
           />
-  
-          <input
-            {...register(`media.${index}.url`, index === 0 ? { required: "At least one media item is required" } : {})} defaultValue={field.url}
-            className={styles.input}
-            type="text"
-            placeholder="Enter media URL"
-            onChange={(e) => {
-              const url = e.target.value;
-              const type = url.match(/\.(jpeg|jpg|gif|png)$/) !== null ? "Image" : "Video";
-              setValue(`media.${index}.type`, type);
+
+          <TextInput
+            register={register}
+            name={`media.${index}.url`}
+            icon={FaLink}
+            validations={{
+              required: index === 0 ? "At least one media item is required" : undefined,
+              validate: {
+                validType: value => {
+                  const type = getUrlType(value);
+                  setValue(`media.${index}.type`, type);
+                  return type!==undefined || "URL must be an image or video";
+                }
+              }
             }}
+          
+            placeholder="Enter URL"
+            defaultValue={field.url}
           />
-  
+          
           <input
             {...register(`media.${index}.type`)}
             defaultValue={field.type}
             disabled
+            hidden
           />
         
           {index !== 0 && <button type="button" className={styles.removeBtn} onClick={() => remove(index)}>Remove</button>}
-          {errors.media?.[index]?.value && <p className={styles.error}>{errors.media[index].value.message}</p>}
+          {errors.media?.[index]?.url && <p className={styles.error}>{errors.media[index].url.message}</p>}
         </div>
       ))}
       {fields.length < 4 && <button className={styles.addBtn}  type="button" onClick={() => append({ id: null, type: "", url: "" })}>Add</button>}
