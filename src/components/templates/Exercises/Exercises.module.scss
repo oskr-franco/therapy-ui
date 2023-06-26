@@ -1,8 +1,6 @@
-.addBtn {
-  cursor: pointer;
+@import 'mixins';
+
+button.addBtn {
   margin: auto 0 10px auto;
-  display: block;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
+  @include iconBtn($blue-color);
 }

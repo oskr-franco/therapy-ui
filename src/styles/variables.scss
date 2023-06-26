@@ -14,7 +14,9 @@ $xxl: $extra-extra-large;
 $black-color: #333333;
 $black-light-color: #CCCCCC;
 $white-color: #F2F2F2;
-$red-color: #DC143C;
+$red-color: #DC3545;
+$green-color: #28A745;
+$blue-color: #007BFF;
 
 //Spacing
 $spacing: 8px;
@@ -23,5 +25,7 @@ $desktop-spacing: 12px;
 
 //Pallet
 $alert-color: #950000;
-$backgound-color: #f5f5f5;
+$backgound-color: #F5F5F5;
 $shadow-color: $black-light-color;
+$disable-color: $black-light-color;
+$textfield-background-color: $white-color

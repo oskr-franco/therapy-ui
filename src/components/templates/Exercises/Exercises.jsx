@@ -4,8 +4,9 @@
 import React, { useCallback } from 'react';
 import { FaPlusCircle } from "react-icons/fa";
 
-import ExerciseCard from '@/components/ExerciseCard'
-import ExerciseForm from '@/components/ExerciseForm'
+import ExerciseCard from '@/components/ExerciseCard';
+import ExerciseForm from '@/components/ExerciseForm';
+import { IconButton } from '@/components/Button';
 import { withOpenModal } from '@/hocs/withOpenModal';
 
 import styles from './Exercises.module.scss';
@@ -18,7 +19,7 @@ function Exercises({ exercises, openModal }) {
   }, [openModal]);
   return (
     <>
-      <FaPlusCircle alt="Agregar" onClick={onCreateExerciseHandler} className={styles.addBtn} />
+      <IconButton icon={FaPlusCircle} onClick={onCreateExerciseHandler} className={styles.addBtn} />
       <div>
         {exercises.map((exercise) => (
           <ExerciseCard key={exercise.id} {...exercise} />

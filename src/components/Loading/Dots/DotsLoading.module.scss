@@ -1,0 +1,37 @@
+@import 'mixins';
+
+.spinner {
+  width: 70px;
+  aspect-ratio: 3/1;
+  text-align: center;
+}
+
+.bounce1,
+.bounce2,
+.bounce3 {
+  width: 30%;
+  height: 80%;
+  background-color: $white-color;
+
+  border-radius: 100%;
+  display: inline-block;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.bounce2 {
+  animation-delay: -1.0s;
+}
+
+.bounce3 {
+  animation-delay: -0.5s;
+}
+
+@keyframes sk-bounce {
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,41 @@
+@import 'mixins';
+
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: $blue-color;
+
+  &:disabled {
+    background-color: $disable-color;
+  }
+
+  &.loading {
+    background-color: $disable-color;
+  }
+}
+
+.loading {
+  background: $disable-color;
+  cursor: not-allowed;
+  animation: pulse 2s infinite;
+}
+
+.dotsLoading {
+  width: 30px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
