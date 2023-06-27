@@ -12,8 +12,8 @@ const getById = async (id) => {
   return await fetchWrapper.get(`${baseUrl}/${id}`);
 }
 
-const create = async (params, shouldHandleResponse = true) => {
-  return await fetchWrapper.post(baseUrl, params, shouldHandleResponse);
+const create = async (params) => {
+  return await fetchWrapper.post(baseUrl, params);
 }
 
 
