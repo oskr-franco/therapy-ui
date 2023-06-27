@@ -4,16 +4,21 @@ import { fetchWrapper } from '@/helpers/fetchWrapper';
 const { apiService } = appConfig;
 const baseUrl = `${apiService}/api/exercise`;
 
-const getExercises = async () => {
+const getAll = async () => {
   return await fetchWrapper.get(baseUrl);
 }
 
-const getExerciseById = async (id) => {
+const getById = async (id) => {
   return await fetchWrapper.get(`${baseUrl}/${id}`);
+}
+
+const create = async (params, shouldHandleResponse = true) => {
+  return await fetchWrapper.post(baseUrl, params, shouldHandleResponse);
 }
 
 
 export const exercisesService = {
-  getExercises,
-  getExerciseById,
+  getAll,
+  getById,
+  create,
 };

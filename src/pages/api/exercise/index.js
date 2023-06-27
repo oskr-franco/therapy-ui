@@ -1,15 +1,8 @@
-import appConfig from '@/app.config';
+import { exercisesService } from '@/services/exerciseService';
 
 export default async function handler(req, res) {
-  const { apiService } = appConfig;
   try {
-    const result = await fetch(`${apiService}/api/Exercise`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(req.body),
-    });   
+    const result = await exercisesService.create(req.body, false);
     const data = await result.json();
     res.status(result.status).send(data)
   } catch (err) {

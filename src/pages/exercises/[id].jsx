@@ -11,7 +11,7 @@ function ExercisePage({exercise}) {
 }
 
 export async function getServerSideProps({params}) {
-  const data = await exercisesService.getExerciseById(params.id);
+  const data = await exercisesService.getById(params.id);
  
   return { props: { exercise: data } }
 }

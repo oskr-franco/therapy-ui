@@ -13,7 +13,7 @@ function ExercisesPage({ exercises }) {
 }
 
 export async function getServerSideProps() {
-  const data = await exercisesService.getExercises();
+  const data = await exercisesService.getAll();
  
   // Pass data to the page via props
   return { props: { exercises: data } }

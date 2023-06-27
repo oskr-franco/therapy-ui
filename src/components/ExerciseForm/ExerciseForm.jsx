@@ -62,7 +62,6 @@ function ExerciseForm({ initialData = {}, closeModal }) {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    console.log(data);
     if (data.id) {
       // We have an ID, so we're updating an existing item
       console.log("Updating item:", data);
@@ -76,8 +75,8 @@ function ExerciseForm({ initialData = {}, closeModal }) {
         },
         body: JSON.stringify(data),
       });
+
       const newExercise = await response.json();
-      // addExercise(newExercise)
       router.push(`/exercises/${newExercise.id}`);
       closeModal();
     }
