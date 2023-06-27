@@ -18,8 +18,8 @@ function ExerciseCard({ name, description, media }) {
         />
       </div>
       <div className={styles.body}>
-        <h2>{name}</h2>
-        <p>{description}</p>
+        <h2 className={styles.name}>{name}</h2>
+        <p className={styles.description}>{description}</p>
       </div>
     </div>
   );

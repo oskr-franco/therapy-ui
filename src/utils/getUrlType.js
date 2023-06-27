@@ -1,6 +1,6 @@
 export const getUrlType = (url) => {
-  const imageRegex = /^https?:\/\/.*\.(jpeg|jpg|gif|png)$/;
-  const videoRegex = /^https?:\/\/.*\.(mp4|mov|avi|wmv)$/;
+  const imageRegex = /^https?:\/\/.*\.(jpeg|jpg|gif|png)(\?.*)?$/;
+  const videoRegex = /^https?:\/\/.*\.(mp4|mov|avi|wmv)(\?.*)?$/;
   const youtubeUrlRegex = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
   if (url.match(imageRegex)) return 'Image';
 

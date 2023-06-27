@@ -6,13 +6,15 @@ import { TbFileDescription } from "react-icons/tb";
 import { FaListUl, FaLink, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 
 import { getUrlType } from "@/utils/getUrlType";
+import { withOpenModal } from '@/hocs/withOpenModal';
+import { withExerciseActions } from '@/hocs/withExercises';
 
 import { TextInput, TextArea} from "../FormFields";
 import { LoadingButton, IconButton } from "../Button";
 
 import styles from './ExerciseForm.module.scss';
 
-function ExerciseForm({ initialData = {} }) {
+function ExerciseForm({ initialData = {}, closeModal, addExercise}) {
   const titleText = "Agregar Ejercicio";
   const namePlaceholder = "Name";
   const nameRequiredError = "Name is required";
@@ -59,20 +61,26 @@ function ExerciseForm({ initialData = {} }) {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
+    console.log(data);
     if (data.id) {
       // We have an ID, so we're updating an existing item
       console.log("Updating item:", data);
       // Call your API update function here...
     } else {
       // No ID, so we're creating a new item
-      console.log("Creating new item:", data);
-      // Call your API create function here...
+      const response = await fetch("/api/exercise", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      });
+      const newExercise = await response.json()
+      addExercise(newExercise)
+      closeModal();
     }
 
-    // Simulate network request delay
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    setIsLoading(false);
   };
 
   const onAddMediaItem = useCallback(() => {
@@ -211,4 +219,4 @@ function ExerciseForm({ initialData = {} }) {
   );
 }
 
-export default ExerciseForm;
+export default withExerciseActions(withOpenModal(ExerciseForm));

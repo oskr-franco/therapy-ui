@@ -19,3 +19,14 @@
   height: 100%;
   border-radius: 10px;
 }
+
+.description {
+  @include truncate-lines(3);
+
+  @include viewport(big-mobile) {
+    @include truncate-lines(4);
+  }
+  @include viewport(desktop-large) {
+    @include truncate-lines(10);
+  }
+}

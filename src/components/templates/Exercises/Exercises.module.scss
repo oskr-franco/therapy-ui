@@ -1,5 +1,16 @@
 @import 'mixins';
 
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include gap();
+  @include viewport(desktop){
+    grid-template-columns: 1fr 1fr;
+  }
+  
+}
+
 button.addBtn {
   margin: auto 0 10px auto;
   @include iconBtn($blue-color);
