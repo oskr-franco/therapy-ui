@@ -12,7 +12,6 @@ const modalInitial = {
 
 const initialState = {
   modal: modalInitial,
-  exercises: [],
 }
 
 export const Context = createContext(initialState);

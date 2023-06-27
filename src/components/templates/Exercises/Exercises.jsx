@@ -8,11 +8,10 @@ import ExerciseCard from '@/components/ExerciseCard';
 import ExerciseForm from '@/components/ExerciseForm';
 import { IconButton } from '@/components/Button';
 import { withOpenModal } from '@/hocs/withOpenModal';
-import { withExercises } from '@/hocs/withExercises';
 
 import styles from './Exercises.module.scss';
 
-function Exercises({ openModal, exercises }) {
+function Exercises({exercises, openModal }) {
   const onCreateExerciseHandler = useCallback(() => {
     openModal({
       component: ExerciseForm,
@@ -35,4 +34,4 @@ function Exercises({ openModal, exercises }) {
   );
 }
 
-export default withExercises(withOpenModal(Exercises));
+export default withOpenModal(Exercises);

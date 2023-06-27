@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Exercises from '@/components/templates/Exercises'
-import { withExerciseActions } from '@/hocs/withExercises';
 
-import { getExercises } from './utils/getExercises';
+import { exercisesService } from '../../services/exerciseService';
 
-function ExercisesPage({ data, loadExercises }) {
-  useEffect(() => {
-    loadExercises(data);
-  }, [loadExercises, data]);
+function ExercisesPage({ exercises }) {
 
-  if (!data) {
+  if (!exercises) {
     return null;
   }
-  return (<Exercises/>)
+  return (<Exercises exercises={exercises} />)
 }
 
 export async function getServerSideProps() {
-  const data = await getExercises();
+  const data = await exercisesService.getExercises();
  
   // Pass data to the page via props
-  return { props: { data: data } }
+  return { props: { exercises: data } }
 }
 
-export default withExerciseActions(ExercisesPage);
+export default ExercisesPage;

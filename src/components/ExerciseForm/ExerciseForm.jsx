@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useForm, useFieldArray } from 'react-hook-form';
+import { useRouter } from "next/router";
 import cx from 'classnames';
 import { CgGym } from "react-icons/cg";
 import { TbFileDescription } from "react-icons/tb";
@@ -7,14 +8,14 @@ import { FaListUl, FaLink, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 
 import { getUrlType } from "@/utils/getUrlType";
 import { withOpenModal } from '@/hocs/withOpenModal';
-import { withExerciseActions } from '@/hocs/withExercises';
 
 import { TextInput, TextArea} from "../FormFields";
 import { LoadingButton, IconButton } from "../Button";
 
 import styles from './ExerciseForm.module.scss';
 
-function ExerciseForm({ initialData = {}, closeModal, addExercise}) {
+function ExerciseForm({ initialData = {}, closeModal }) {
+  const router = useRouter();
   const titleText = "Agregar Ejercicio";
   const namePlaceholder = "Name";
   const nameRequiredError = "Name is required";
@@ -75,8 +76,9 @@ function ExerciseForm({ initialData = {}, closeModal, addExercise}) {
         },
         body: JSON.stringify(data),
       });
-      const newExercise = await response.json()
-      addExercise(newExercise)
+      const newExercise = await response.json();
+      // addExercise(newExercise)
+      router.push(`/exercises/${newExercise.id}`);
       closeModal();
     }
 
@@ -219,4 +221,4 @@ function ExerciseForm({ initialData = {}, closeModal, addExercise}) {
   );
 }
 
-export default withExerciseActions(withOpenModal(ExerciseForm));
+export default withOpenModal(ExerciseForm);

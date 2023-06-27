@@ -23,30 +23,11 @@ const closeModal = (state) => {
   }
 }
 
-const loadExercises = (state, exercises) => {
-  return {
-    ...state,
-    exercises,
-  }
-}
-
-const addExercise = (state, exercise) => {
-  const exercises = [...state.exercises, exercise];
-  return {
-    ...state,
-    exercises,
-  }
-}
-
 const reducersMap = {
   modal: {
     openModal: openModal,
     closeModal: closeModal,
   },
-  exercises: {
-    loadExercises: loadExercises,
-    addExercise: addExercise,
-  }
 };
 
 function reducer(state, action) {
