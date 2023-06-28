@@ -10,11 +10,11 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <Layout className={inter.className}>
-      <Store>
+    <Store>
+      <Layout className={inter.className}>
         <Component {...pageProps} />
-        <Modal />
-      </Store>
-    </Layout>
+      </Layout>
+      <Modal />
+    </Store>
   )
 }

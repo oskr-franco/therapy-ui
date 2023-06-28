@@ -2,10 +2,10 @@
 
 .layout {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .main {
-  min-height: 90%;
   @include padding();
+  min-height: 90%;
 }
