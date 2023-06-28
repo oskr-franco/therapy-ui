@@ -1,8 +1,8 @@
 import React from 'react';
+import Image from 'next/image';
 
-import emptyImg from '/src/assets/img/empty-img.jpg'
+import emptyImg from '/src/assets/img/empty-img.jpg';
 
-import Image from 'next/image'
 
 function ImageFallback(props) {
   const { 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useRouter } from "next/router";
 import cx from 'classnames';
@@ -16,6 +16,7 @@ import styles from './ExerciseForm.module.scss';
 
 function ExerciseForm({ initialData = {}, closeModal }) {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const titleText = "Agregar Ejercicio";
   const namePlaceholder = "Name";
   const nameRequiredError = "Name is required";
@@ -32,7 +33,7 @@ function ExerciseForm({ initialData = {}, closeModal }) {
   const urlValidTypeError = "URL must be an image or video";
   const createText = "Crear";
   
-  const { register, handleSubmit, control, setValue, formState: { errors } } = useForm({
+  const { register, handleSubmit, control, setValue, watch, formState: { errors } } = useForm({
     defaultValues: {
       id: null,
       name: "",
@@ -42,13 +43,13 @@ function ExerciseForm({ initialData = {}, closeModal }) {
       ...initialData,
     }
   });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "media"
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-
+  // Set initial data for media items when editing an existing exercise
   useEffect(() => {
     if (initialData.media) {
       initialData.media.forEach((item, index) => {
@@ -59,6 +60,15 @@ function ExerciseForm({ initialData = {}, closeModal }) {
       });
     }
   }, [initialData.media, append, setValue]);
+
+  // Set media item type based on URL
+  const mediaUrls = fields.map((_, index) => watch(`media.${index}.url`));
+  useEffect(() => {
+    mediaUrls.forEach((url, index) => {
+      const type = getUrlType(url);
+      setValue(`media.${index}.type`, type);
+    });
+  }, [mediaUrls, setValue]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -189,9 +199,8 @@ function ExerciseForm({ initialData = {}, closeModal }) {
                   validations={{
                     required: index === 0 ? urlRequiredError : undefined,
                     validate: {
-                      validType: value => {
+                      validType: async (value) => {
                         const type = getUrlType(value);
-                        setValue(`media.${index}.type`, type);
                         return type!==undefined || urlValidTypeError;
                       }
                     }
