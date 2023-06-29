@@ -14,8 +14,8 @@
 .tooltip {
   visibility: hidden;
   opacity: 0;
-  background-color: rgba(0,0,0,0.6);
-  color: #fff;
+  background-color: $backgound-tooltip-color;
+  color: $white-color;
   text-align: center;
   border-radius: 6px;
   padding: 4px 10px;
