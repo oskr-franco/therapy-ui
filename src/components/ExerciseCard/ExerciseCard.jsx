@@ -1,14 +1,36 @@
 import React from 'react';
-import ImageFallback from '../ImageFallback';
+import { useRouter } from "next/router";
 import { FaEdit } from "react-icons/fa";
 import { SiCodereview } from "react-icons/si";
+
+import { withOpenModal } from '@/hocs/withOpenModal';
+
+import ExerciseForm from '../ExerciseForm';
+import ImageFallback from '../ImageFallback';
 import { IconButton } from "../Button";
 
 import styles from './ExerciseCard.module.scss';
 
-function ExerciseCard({ name, description, media }) {
+function ExerciseCard({ openModal, ...props }) {
+  const { id, name, description, instructions, media } = props;
+  const router = useRouter();
   const mediaItem = media.find((media) => media.type==="Image")
   const { url } = mediaItem || {};
+
+  const handleEdit = () => {
+    openModal({
+      component: ExerciseForm,
+      componentProps: {
+        initialData : props,
+      },
+    });
+    
+  }
+
+  const handleView = () => {
+    router.push(`/exercises/${id}`);
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.head}>
@@ -22,8 +44,18 @@ function ExerciseCard({ name, description, media }) {
       </div>
       <div className={styles.body}>
         <div className={styles.actions}>
-          <IconButton className={styles.edit} icon={FaEdit} tooltip="Editar" />
-          <IconButton className={styles.view} icon={SiCodereview} tooltip="Ver"/>
+          <IconButton
+            className={styles.edit}
+            icon={FaEdit}
+            tooltip="Editar"
+            onClick={handleEdit}
+          />
+          <IconButton
+            className={styles.view}
+            icon={SiCodereview}
+            tooltip="Ver"
+            onClick={handleView}
+          />
         </div>
         <h3>{name}</h3>
         <p className={styles.description}>{description}</p>
@@ -32,4 +64,4 @@ function ExerciseCard({ name, description, media }) {
   );
 }
 
-export default ExerciseCard;
+export default withOpenModal(ExerciseCard);
