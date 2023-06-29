@@ -2,4 +2,47 @@
 
 .button {
   @include iconBtn();
+
+  &:hover {
+    .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 4px 10px;
+  position: absolute;
+  z-index: 1;
+  transition: opacity 0.3s;
+  font-size: 12px;
+}
+
+.top{
+  bottom: 110%;
+  left: auto;
+}
+
+.left {
+  bottom: auto;
+  top: auto;
+  left: auto;
+  right: 110%;
+}
+
+.right {
+  bottom: 0;
+  left: 100%;
+}
+
+.bottom {
+  top: 110%;
+  left: auto;
 }
