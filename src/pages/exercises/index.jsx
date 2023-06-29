@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Exercises from '@/components/templates/Exercises'
+import Exercises from '@/components/Container/Exercises'
 
 import { exercisesService } from '../../services/exerciseService';
 
