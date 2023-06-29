@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from "next/router";
+import Link from 'next/link'
 import { FaEdit } from "react-icons/fa";
 import { SiCodereview } from "react-icons/si";
 
@@ -27,14 +28,14 @@ function ExerciseCard({ openModal, ...props }) {
   }
 
   const handleView = (e) => {
-    e.stopPropagation();
     router.push(`/exercises/${id}`);
   }
 
   return (
     <div className={styles.card}>
-      <div className={styles.head} onClick={handleView}>
-        <Media className={styles.media} {...mediaItem} />
+      <div className={styles.head}>
+        <Link href={`/exercises/${id}`} className={styles.link} />
+        <Media className={styles.media} {...mediaItem} playing={false} />
       </div>
       <div className={styles.body}>
         <div className={styles.actions}>
