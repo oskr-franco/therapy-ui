@@ -24,7 +24,7 @@ function Exercises({exercises, openModal }) {
 
   return (
     <>
-      <IconButton icon={FaPlusCircle} onClick={onCreateExerciseHandler} className={styles.addBtn} />
+      <IconButton icon={FaPlusCircle} onClick={onCreateExerciseHandler} className={styles.addBtn} tooltip="Agregar" />
       <div className={styles.cards}>
         {exercises.map((exercise) => (
           <ExerciseCard key={exercise.id} {...exercise} />

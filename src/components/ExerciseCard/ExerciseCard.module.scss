@@ -20,6 +20,18 @@
   justify-content: center;
 }
 
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  .edit {
+    @include iconBtn($color: $black-color);
+  }
+  .view {
+    @include iconBtn($color: $black-color);
+  }
+}
+
 .media {
   width: 100%;
   height: 100%;
