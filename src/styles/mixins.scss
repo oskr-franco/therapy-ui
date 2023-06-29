@@ -98,3 +98,10 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@mixin media() {
+  border-radius: 15px;
+  border: 3px solid $white-color;
+  overflow: hidden; 
+  box-shadow:  4px 4px 8px 0 $shadow-color;
+}

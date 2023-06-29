@@ -1,3 +1,24 @@
+@import './mixins.scss';
+
+.exerciseWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+}
+
+.column {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.divider {
+  background-color: $black-light-color;
+  height: 100%;
+  box-shadow:  4px 10px 15px 1px $black-light-color;
+}
+
 .media {
+  @include media;
   display: block;
 }

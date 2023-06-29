@@ -14,7 +14,7 @@ export default function MyApp({ Component, pageProps }) {
       <Layout className={inter.className}>
         <Component {...pageProps} />
       </Layout>
-      <Modal />
+      <Modal className={inter.className}/>
     </Store>
   )
 }
