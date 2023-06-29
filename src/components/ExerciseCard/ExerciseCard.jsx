@@ -35,6 +35,7 @@ function ExerciseCard({ openModal, ...props }) {
     <div className={styles.card}>
       <div className={styles.head}>
         <ImageFallback
+          alt={name}
           className={styles.media}
           width={50}
           height={50}
