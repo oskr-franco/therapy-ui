@@ -9,7 +9,8 @@ const VideoPlayerLazy = dynamic(
   { ssr: false }
 );
 
-function Media({ id, url, type, className}) {
+function Media({ id, url, type, className, ...props }) {
+  const { layout } = props;
   if (type === "Image" || !url) {
     return (
       <ImageFallback
@@ -18,6 +19,7 @@ function Media({ id, url, type, className}) {
         width={100}
         height={100}
         src={url}
+        layout={layout}
       />
     )
   }
