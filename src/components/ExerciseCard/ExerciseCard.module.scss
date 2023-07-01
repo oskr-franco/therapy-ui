@@ -4,6 +4,22 @@
   @include card();
   display: flex;
   flex-direction: row;
+  max-height: 127px;
+
+  @include viewport(big-mobile) {
+    max-height: 151px;
+  }
+
+  @include viewport(tablet) {
+    max-height: 195px;
+  }
+
+  @include viewport(desktop) {
+    max-height: 155px;
+  }
+  @include viewport(desktop-large) {
+    max-height: 195px;
+  }
 }
 
 .head {
@@ -25,7 +41,7 @@
   width: 68%;
   flex-direction: column;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .actions {
@@ -36,6 +52,9 @@
     @include iconBtn($color: $black-color);
   }
   .view {
+    @include iconBtn($color: $black-color);
+  }
+  .delete {
     @include iconBtn($color: $black-color);
   }
 }

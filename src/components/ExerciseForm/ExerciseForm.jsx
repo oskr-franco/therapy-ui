@@ -8,6 +8,7 @@ import { FaListUl, FaLink, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 
 import { getUrlType } from "@/utils/getUrlType";
 import { withOpenModal } from '@/hocs/withOpenModal';
+import { fetchWrapper } from '@/helpers/fetchWrapper';
 
 import { TextInput, TextArea} from "../FormFields";
 import { LoadingButton, IconButton } from "../Button";
@@ -17,21 +18,25 @@ import styles from './ExerciseForm.module.scss';
 function ExerciseForm({ initialData = {}, closeModal }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const isEditing = !!initialData.id;
   const titleText = "Agregar Ejercicio";
-  const namePlaceholder = "Name";
-  const nameRequiredError = "Name is required";
-  const nameMaxLengthError = "Name cannot exceed 200 characters";
-  const descriptionPlaceholder = "Description";
-  const descriptionRequiredError = "Description is required";
-  const descriptionMaxLengthError = "Description cannot exceed 2000 characters";
-  const instructionsPlaceholder = "Instructions";
-  const instructionsRequiredError = "Instructions are required";
-  const instructionsMaxLengthError = "Instructions cannot exceed 8000 characters";
+  const namePlaceholder = "Nombre";
+  const nameRequiredError = "Nombre es requerido";
+  const nameMaxLengthError = "El nombre no puede exceder los 200 caracteres";
+  const descriptionPlaceholder = "Descripción";
+  const descriptionRequiredError = "Descripción es requerido";
+  const descriptionMaxLengthError = "La descripción no puede exceder los 2000 caracteres";
+  const instructionsPlaceholder = "Instrucciones";
+  const instructionsRequiredError = "Instrucciones son requeridas";
+  const instructionsMaxLengthError = "Las instrucciones no pueden exceder los 8000 caracteres";
   const mediaTitle = "Imagenes y/o Videos";
   const urlPlaceholder = "Agegar Url";
-  const urlRequiredError = "At least one media item is required";
-  const urlValidTypeError = "URL must be an image or video";
+  const urlRequiredError = "Se requiere al menos una Imagen o Video";
+  const urlValidTypeError = "La URL debe ser una imagen o un video.";
   const createText = "Crear";
+  const updateText = "Actualizar";
+  const submitText = isEditing ? updateText : createText;
+  
   
   const { register, handleSubmit, control, setValue, watch, formState: { errors } } = useForm({
     defaultValues: {
@@ -74,21 +79,14 @@ function ExerciseForm({ initialData = {}, closeModal }) {
     setIsLoading(true);
     if (data.id) {
       // We have an ID, so we're updating an existing item
-      console.log("Updating item:", data);
-      // Call your API update function here...
+      const editedExercise = await fetchWrapper.put(`/api/exercise/${data.id}`, data);
+      closeModal();
+      router.push(`/exercises/${data.id}`);
     } else {
       // No ID, so we're creating a new item
-      const response = await fetch("/api/exercise", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-      });
-
-      const newExercise = await response.json();
-      router.push(`/exercises/${newExercise.id}`);
+      const newExercise = await fetchWrapper.post(`/api/exercise`, data);
       closeModal();
+      router.push(`/exercises/${newExercise.id}`);
     }
 
     setIsLoading(false);
@@ -100,7 +98,11 @@ function ExerciseForm({ initialData = {}, closeModal }) {
   
   const onRemoveMediaItem = useCallback((e) => {
     e.stopPropagation();
+    console.log(e)
+    console.log(e.currentTarget)
+    console.log(e.currentTarget.id)
     const [id] = e.currentTarget.id.split('-').slice(-1);
+    console.log(id)
     remove(id);
   }, [remove]);
 
@@ -121,6 +123,7 @@ function ExerciseForm({ initialData = {}, closeModal }) {
     return (
       <IconButton
           key={index}
+          id={`media-${index}`}
           className={styles.removeBtn}
           type="button"
           onClick={onRemoveMediaItem}
@@ -223,7 +226,7 @@ function ExerciseForm({ initialData = {}, closeModal }) {
             </div>
           ))}
         </div>
-        <LoadingButton isLoading={isLoading} className={styles.submitBtn} type="submit">{createText}</LoadingButton>
+        <LoadingButton isLoading={isLoading} className={styles.submitBtn} type="submit">{submitText}</LoadingButton>
       </form>
       </>
   );

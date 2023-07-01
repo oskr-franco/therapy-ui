@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { FaPlusCircle } from "react-icons/fa";
 
 import ExerciseCard from '@/components/ExerciseCard';
@@ -8,15 +8,21 @@ import { withOpenModal } from '@/hocs/withOpenModal';
 
 import styles from './Exercises.module.scss';
 
-function Exercises({exercises, openModal }) {
+function Exercises({ data, openModal }) {
+  const [exercises, setExercises] = useState(data);
+
   const onCreateExerciseHandler = useCallback(() => {
     openModal({
       component: ExerciseForm,
     });
   }, [openModal]);
 
-  if (!exercises) {
+  if (!data) {
     return null;
+  }
+
+  const handleDelete = async (id) => {
+    setExercises(exercises.filter((item) => item.id !== id));
   }
 
   return (
@@ -30,7 +36,7 @@ function Exercises({exercises, openModal }) {
       />
       <div className={styles.cards}>
         {exercises.map((exercise) => (
-          <ExerciseCard key={exercise.id} {...exercise} />
+          <ExerciseCard key={exercise.id} {...exercise} onDelete={handleDelete} />
         ))}
       </div>
     </>
