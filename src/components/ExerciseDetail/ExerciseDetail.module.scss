@@ -2,7 +2,9 @@
 
 .exerciseWrapper {
   display: grid;
-  grid-template-columns: 1fr 1px 1fr;
+  @include viewport(tablet) {
+    grid-template-columns: 1fr 1px 1fr;
+  }
 }
 
 .column {
