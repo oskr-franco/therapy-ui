@@ -4,9 +4,11 @@
   @include iconBtn();
 
   &:hover {
-    .tooltip {
-      opacity: 1;
-      visibility: visible;
+    @include viewport(desktop) {
+      .tooltip {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 }
