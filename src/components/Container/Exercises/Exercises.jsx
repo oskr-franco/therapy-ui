@@ -34,11 +34,13 @@ function Exercises({ data, openModal }) {
         tooltip="Agregar Ejercicio"
         tooltipPosition="left"
       />
-      <div className={styles.cards}>
+      {!exercises.length ?
+        <div>No hay ejercicios para mostrar, puedes empezar a agregar ejercicios en el signo de `+`</div> :
+        <div className={styles.cards}>
         {exercises.map((exercise) => (
           <ExerciseCard key={exercise.id} {...exercise} onDelete={handleDelete} />
         ))}
-      </div>
+      </div>}
     </>
   );
 }
