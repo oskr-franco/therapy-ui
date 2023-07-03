@@ -8,7 +8,7 @@ function Home() {
   const { apiService } = appConfig;
   return (
     <>
-      <input type="text" placeholder="Search..." className={styles.searchBox} />
+      Bienvenido a nuestro demo
     </>
   )
 }
