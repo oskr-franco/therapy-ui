@@ -1,0 +1,39 @@
+@import 'mixins';
+@import 'functions';
+
+.container {
+  align-items: center;
+  background-color: $backgound-color;
+  border: 3px solid $grey-color;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  transition: border-color 0.3s ease-in-out;
+
+  &:hover {
+    border-color: darken($grey-color, 10%);
+    .text {
+      transition: color 0.3s ease-in-out;
+      color: darken($grey-color, 10%);
+    }
+    .icon {
+      transition: background-color 0.3s ease-in-out;
+      background-color: darken($grey-color, 10%);
+    }
+  }
+}
+
+.text {
+  font-size: rem(26px);
+  font-weight: 700;
+  color: $grey-color;
+}
+
+.icon {
+  padding: 3px;
+  border-radius: 50%;
+  background-color: $grey-color;
+  color: $backgound-color;
+}

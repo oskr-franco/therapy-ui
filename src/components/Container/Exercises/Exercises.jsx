@@ -1,9 +1,7 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import { FaPlusCircle } from "react-icons/fa";
+import React, { useCallback, useState } from 'react';
 
-import ExerciseCard from '@/components/ExerciseCard';
+import { ExerciseCard, CreateExerciseCard } from '@/components/ExerciseCard';
 import ExerciseForm from '@/components/ExerciseForm';
-import { IconButton } from '@/components/Button';
 import { withOpenModal } from '@/hocs/withOpenModal';
 
 import styles from './Exercises.module.scss';
@@ -27,20 +25,12 @@ function Exercises({ data, openModal }) {
 
   return (
     <>
-      <IconButton
-        icon={FaPlusCircle}
-        onClick={onCreateExerciseHandler}
-        className={styles.addBtn}
-        tooltip="Agregar Ejercicio"
-        tooltipPosition="left"
-      />
-      {!exercises.length ?
-        <div>No hay ejercicios para mostrar, puedes empezar a agregar ejercicios en el signo de `+`</div> :
-        <div className={styles.cards}>
+      <div className={styles.cards}>
+        <CreateExerciseCard onClick={onCreateExerciseHandler} />
         {exercises.map((exercise) => (
           <ExerciseCard key={exercise.id} {...exercise} onDelete={handleDelete} />
         ))}
-      </div>}
+      </div>
     </>
   );
 }

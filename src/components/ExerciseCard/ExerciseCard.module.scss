@@ -4,21 +4,21 @@
   @include card();
   display: flex;
   flex-direction: row;
-  max-height: 127px;
+  height: 127px;
 
   @include viewport(big-mobile) {
-    max-height: 151px;
+    height: 151px;
   }
 
   @include viewport(tablet) {
-    max-height: 195px;
+    height: 195px;
   }
 
   @include viewport(desktop) {
-    max-height: 155px;
+    height: 155px;
   }
   @include viewport(desktop-large) {
-    max-height: 195px;
+    height: 195px;
   }
 }
 
