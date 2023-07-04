@@ -2,9 +2,11 @@
 
 
 .cards {
+  @include gap();
   display: grid;
   grid-template-columns: 1fr;
-  @include gap();
+  margin-top: 20px; //ToDo: Added because icon toolbars, we need to remove it
+
   @include viewport(desktop){
     grid-template-columns: 1fr 1fr;
   }
@@ -12,6 +14,6 @@
 }
 
 button.addBtn {
-  margin: auto 0 10px auto;
   @include iconBtn($blue-color);
+  margin: auto 0 10px auto;
 }
