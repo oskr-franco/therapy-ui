@@ -10,7 +10,7 @@ function CreateExerciseCard({ onClick }) {
     return (
         <button className={cx(cardStyles.card, styles.container)} onClick={onClick}>
             <div className={styles.text}>{text}</div>
-            <FaPlusCircle size={60} className={styles.icon}/>
+            <FaPlusCircle size={40} className={styles.icon}/>
         </button>
     )
 }
