@@ -10,8 +10,13 @@ function ClipboardButton({ url, alert }) {
   const urlCopiedText = 'Link copiado a portapapeles!';
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(url)
-      alert.success(urlCopiedText);
+    navigator.clipboard.writeText(url).then(() => {
+        alert.success(urlCopiedText);
+      }
+    ).catch(() => {
+        alert.error('Error al copiar el link');
+      }
+    );
   };
 
   return (
