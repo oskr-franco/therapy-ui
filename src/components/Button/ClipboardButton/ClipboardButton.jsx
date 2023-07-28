@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+'use client'
+
+import React from "react";
 import { FaLink } from "react-icons/fa";
 
 import withAlerts from '@/hocs/withAlerts';
