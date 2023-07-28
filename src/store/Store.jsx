@@ -12,6 +12,7 @@ const modalInitial = {
 
 const initialState = {
   modal: modalInitial,
+  alerts: [],
 }
 
 export const Context = createContext(initialState);

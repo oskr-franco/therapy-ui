@@ -1,8 +1,7 @@
 import React from 'react';
 import { useRouter } from "next/router";
-import Link from 'next/link'
-import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
-import { SiCodereview } from "react-icons/si";
+import Link from 'next/link';
+import { BsBoxArrowUpRight, BsPencilSquare, BsTrash } from "react-icons/bs";
 
 import { withOpenModal } from '@/hocs/withOpenModal';
 import { fetchWrapper } from '@/helpers/fetchWrapper';
@@ -47,19 +46,19 @@ function ExerciseCard({ openModal, onDelete, ...props }) {
         <div className={styles.actions}>
           <IconButton
             className={styles.edit}
-            icon={FaEdit}
+            icon={BsPencilSquare}
             tooltip="Editar"
             onClick={handleEdit}
           />
           <IconButton
             className={styles.view}
-            icon={SiCodereview}
+            icon={BsBoxArrowUpRight}
             tooltip="Ver"
             onClick={handleView}
           />
           <IconButton
             className={styles.delete}
-            icon={FaRegTrashAlt}
+            icon={BsTrash}
             tooltip="Eliminar"
             onClick={handleDelete}
           />

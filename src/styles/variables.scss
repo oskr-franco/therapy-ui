@@ -14,10 +14,11 @@ $xxl: $extra-extra-large;
 $black-color: #333333;
 $black-light-color: #CCCCCC;
 $white-color: #F2F2F2;
-$red-color: #DC3545;
+$red-color: #f44336;
 $green-color: #28A745;
 $blue-color: #007BFF;
 $grey-color: #6C757D;
+$orange-color: #ffa726;
 
 //Spacing
 $spacing: 8px;
@@ -25,7 +26,22 @@ $desktop-spacing: 12px;
 
 
 //Pallet
-$alert-color: #950000;
+$error-light-color: #e57373;
+$error-main-color: #f44336;
+$error-dark-color: #d32f2f;
+
+$warning-light-color: #ffb74d;
+$warning-main-color: #ffa726;
+$warning-dark-color: #f57c00;
+
+$info-light-color: #4fc3f7;
+$info-main-color: #29b6f6;
+$info-dark-color: #0288d1;
+
+$success-light-color: #81c784;
+$success-main-color: #66bb6a;
+$success-dark-color: #388e3c;
+
 $backgound-color: #F5F5F5;
 $backgound-tooltip-color: #00000099;
 $shadow-color: $black-light-color;

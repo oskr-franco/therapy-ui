@@ -1,42 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaLink } from "react-icons/fa";
 
+import withAlerts from '@/hocs/withAlerts';
 import { IconButton } from "@/components/Button";
 
 import styles from "./ClipboardButton.module.scss";
 
-function ClipboardButton({ url }) {
+function ClipboardButton({ url, alert }) {
   const urlCopiedText = 'Link copiado a portapapeles!';
-  const [showMessage, setShowMessage] = useState(false);
-  const timerRef = useRef(null);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(url)
-      .then(() => {
-        setShowMessage(true);
-        if (timerRef.current) clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => {
-          setShowMessage(false);
-        }, 2000);
-      })
-      .catch((error) => {
-        console.error("Failed to copy: ", error);
-      });
+      alert.success(urlCopiedText);
   };
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
 
   return (
     <div className={styles.wrapper}>
-      {showMessage && (
-        <div className={styles.message}>
-          {urlCopiedText}
-        </div>
-      )}
       <IconButton
         icon={FaLink}
         tooltip="Copiar link"
@@ -47,4 +26,4 @@ function ClipboardButton({ url }) {
   )
 }
 
-export default ClipboardButton;
+export default withAlerts(ClipboardButton);

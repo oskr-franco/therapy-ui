@@ -7,22 +7,3 @@
   align-items: center;
   padding: 10px;
 }
-
-.message {
-  background-color: $black-light-color;
-  color: $black-color;
-  padding: 4px;
-  border-radius: 4px;
-  opacity: 0;
-  animation: fadeOut 2s ease-in-out;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-

@@ -98,11 +98,7 @@ function ExerciseForm({ initialData = {}, closeModal }) {
   
   const onRemoveMediaItem = useCallback((e) => {
     e.stopPropagation();
-    console.log(e)
-    console.log(e.currentTarget)
-    console.log(e.currentTarget.id)
     const [id] = e.currentTarget.id.split('-').slice(-1);
-    console.log(id)
     remove(id);
   }, [remove]);
 

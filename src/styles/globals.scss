@@ -1,4 +1,6 @@
 @import './variables.scss';
+@import './functions.scss';
+@import './mixins.scss';
 
 *,
 *::before,
@@ -21,3 +23,16 @@ body {
   background-color: $backgound-color;
   position: relative;
 }
+
+textarea, input, button, select { font-family: inherit; font-size: inherit; }
+
+// h2 {
+//   font-size: rem(16px);
+//   font-weight: 700;
+//   @include viewport(tablet) {
+//     font-size: rem(20px);
+//   }
+//   @include viewport(desktop) {
+//     font-size: rem(24px);
+//   }
+// }

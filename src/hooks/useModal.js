@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+
 import useStore from "../store/useStore";
 
 function useModal() {
@@ -7,12 +8,12 @@ function useModal() {
 
   const openModal = useCallback((value) => {
     const func = 'openModal';
-    dispatch({type, func,value })
+    dispatch({type, func, value })
   }, [dispatch]);
 
   const closeModal= useCallback(() => {
     const func = 'closeModal';
-    dispatch({type: type, func })
+    dispatch({type, func })
   },[dispatch]);
 
   return {
