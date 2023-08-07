@@ -1,6 +1,7 @@
+'use client'
 import React, { useState, useEffect, useCallback } from "react";
 import { useForm, useFieldArray } from 'react-hook-form';
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import cx from 'classnames';
 import { CgGym } from "react-icons/cg";
 import { TbFileDescription } from "react-icons/tb";
