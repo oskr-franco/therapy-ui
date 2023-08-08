@@ -30,4 +30,8 @@ VideoPlayer.propTypes = {
   className: PropTypes.string,
 };
 
+VideoPlayer.defaultProps = {
+  className: '',
+};
+
 export default VideoPlayer;

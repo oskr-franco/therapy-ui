@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -32,6 +35,8 @@ IconButton.propTypes = {
 
 IconButton.defaultProps = {
   tooltipPosition: 'top',
+  className: '',
+  tooltip: undefined,
 };
 
 export default React.memo(IconButton);

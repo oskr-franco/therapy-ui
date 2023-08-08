@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React, { useEffect, useRef, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import styles from './PasswordInput.module.scss';

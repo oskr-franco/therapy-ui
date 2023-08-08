@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable react/jsx-no-constructed-context-values */
+
 import React, { createContext, useReducer } from 'react';
 
 import reducer from './reducer';

@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -20,8 +22,13 @@ function LoadingButton({ children, className, isLoading, ...props }) {
 
 LoadingButton.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
   isLoading: PropTypes.bool,
+  className: PropTypes.string,
+};
+
+LoadingButton.defaultProps = {
+  isLoading: false,
+  className: '',
 };
 
 export default LoadingButton;

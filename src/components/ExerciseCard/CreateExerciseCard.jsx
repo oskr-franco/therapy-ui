@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
 import cx from 'classnames';

@@ -1,5 +1,8 @@
 'use client';
 
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -34,6 +37,12 @@ TextInput.propTypes = {
   icon: PropTypes.elementType,
   validations: PropTypes.object,
   placeholder: PropTypes.string,
+};
+
+TextInput.defaultProps = {
+  icon: null,
+  placeholder: '',
+  validations: null,
 };
 
 export default TextInput;

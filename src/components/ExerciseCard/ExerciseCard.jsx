@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -69,4 +70,6 @@ function ExerciseCard({ openModal, onDelete, ...props }) {
   );
 }
 
-export default withOpenModal(ExerciseCard);
+const ExerciseCardWithOpenModal = withOpenModal(ExerciseCard);
+
+export default ExerciseCardWithOpenModal;

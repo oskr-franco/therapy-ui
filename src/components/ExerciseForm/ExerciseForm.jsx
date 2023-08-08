@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useRouter } from 'next/navigation';

@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React, { useCallback, useState } from 'react';
 
 import { ExerciseCard, CreateExerciseCard } from '@/components/ExerciseCard';
