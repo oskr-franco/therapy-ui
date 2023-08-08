@@ -1,7 +1,5 @@
 'use client';
 
-/* eslint-disable react/jsx-props-no-spreading */
-
 import React, { useCallback, useState } from 'react';
 
 import { ExerciseCard, CreateExerciseCard } from '@/components/ExerciseCard';
@@ -31,7 +29,14 @@ function Exercises({ data, openModal }) {
     <div className={styles.cards}>
       <CreateExerciseCard onClick={onCreateExerciseHandler} />
       {exercises.map((exercise) => (
-        <ExerciseCard key={exercise.id} {...exercise} onDelete={handleDelete} />
+        <ExerciseCard
+          key={exercise.id}
+          id={exercise.id}
+          name={exercise.name}
+          description={exercise.description}
+          media={exercise.media}
+          onDelete={handleDelete}
+        />
       ))}
     </div>
   );

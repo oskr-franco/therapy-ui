@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable jsx-a11y/no-redundant-roles */
-/* eslint-disable react/button-has-type */
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -12,10 +9,14 @@ function IconButton({
   icon: Icon,
   tooltip,
   tooltipPosition,
-  ...props
+  onClick,
 }) {
   return (
-    <button role="button" className={cx(styles.button, className)} {...props}>
+    <button
+      type="button"
+      className={cx(styles.button, className)}
+      onClick={onClick}
+    >
       <Icon />
       {tooltip && (
         <div className={cx(styles.tooltip, styles[tooltipPosition])}>

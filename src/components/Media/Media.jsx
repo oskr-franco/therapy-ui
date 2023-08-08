@@ -3,8 +3,7 @@ import React from 'react';
 import ImageFallback from '@/components/ImageFallback';
 import VideoPlayer from '@/components/VideoPlayer';
 
-function Media({ id, url, type, className, ...props }) {
-  const { layout } = props;
+function Media({ id, url, type, className, layout }) {
   if (type === 'Image' || !url) {
     return (
       <ImageFallback
