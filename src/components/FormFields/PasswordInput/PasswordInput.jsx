@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import styles from './styles.module.scss';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import styles from './PasswordInput.module.scss';
 
-const PasswordInput = ({ register, name, validations, ...rest }) => {
+function PasswordInput({ register, name, validations, ...rest }) {
   const [showPassword, setShowPassword] = useState(false);
   const inputRef = useRef();
 
@@ -12,7 +12,7 @@ const PasswordInput = ({ register, name, validations, ...rest }) => {
     register(inputRef.current, validations);
   }, [register, validations]);
 
-  const togglePasswordVisibility = () => setShowPassword(prev => !prev);
+  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
   return (
     <div className={styles.inputField}>
@@ -23,11 +23,15 @@ const PasswordInput = ({ register, name, validations, ...rest }) => {
         name={name}
         className={styles.input}
       />
-      <button type="button" onClick={togglePasswordVisibility} className={styles.eyeIcon}>
+      <button
+        type="button"
+        onClick={togglePasswordVisibility}
+        className={styles.eyeIcon}
+      >
         {showPassword ? <FaEyeSlash /> : <FaEye />}
       </button>
     </div>
   );
-};
+}
 
 export default PasswordInput;

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import cx from 'classnames';
 
-import styles from './Layout.module.scss'
+import styles from './Layout.module.scss';
 
 function Layout({ className, children }) {
   return (
@@ -11,7 +11,7 @@ function Layout({ className, children }) {
       <main className={styles.main}>{children}</main>
       {/* <footer>Footer</footer> */}
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

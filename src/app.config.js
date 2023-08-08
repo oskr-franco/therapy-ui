@@ -2,7 +2,7 @@
  * Therapy configuration.
  */
 const appConfig = {
-    apiService: process.env.API_SERVICE,
+  apiService: process.env.API_SERVICE,
 };
 
 export default appConfig;

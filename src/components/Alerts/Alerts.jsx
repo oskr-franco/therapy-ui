@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -10,7 +10,6 @@ import Alert from './Alert';
 import styles from './Alerts.module.scss';
 
 function Alerts() {
-
   const { alertState: alerts, removeAlert } = useAlert();
   if (!alerts) return null;
 
@@ -26,8 +25,14 @@ function Alerts() {
               enterActive: styles.alertEnterActive,
               exit: styles.alertExit,
               exitActive: styles.alertExitActive,
-            }}>
-            <Alert {...alert} removeAlert={removeAlert} />
+            }}
+          >
+            <Alert
+              id={alert.id}
+              message={alert.message}
+              type={alert.type}
+              removeAlert={removeAlert}
+            />
           </CSSTransition>
         ))}
       </TransitionGroup>

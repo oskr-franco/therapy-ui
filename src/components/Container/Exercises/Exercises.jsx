@@ -1,9 +1,10 @@
-'use client'
+'use client';
+
 import React, { useCallback, useState } from 'react';
 
 import { ExerciseCard, CreateExerciseCard } from '@/components/ExerciseCard';
 import ExerciseForm from '@/components/ExerciseForm';
-import { withOpenModal } from '@/hocs/withOpenModal';
+import withOpenModal from '@/hocs/withOpenModal';
 
 import styles from './Exercises.module.scss';
 
@@ -22,17 +23,15 @@ function Exercises({ data, openModal }) {
 
   const handleDelete = async (id) => {
     setExercises(exercises.filter((item) => item.id !== id));
-  }
+  };
 
   return (
-    <>
-      <div className={styles.cards}>
-        <CreateExerciseCard onClick={onCreateExerciseHandler} />
-        {exercises.map((exercise) => (
-          <ExerciseCard key={exercise.id} {...exercise} onDelete={handleDelete} />
-        ))}
-      </div>
-    </>
+    <div className={styles.cards}>
+      <CreateExerciseCard onClick={onCreateExerciseHandler} />
+      {exercises.map((exercise) => (
+        <ExerciseCard key={exercise.id} {...exercise} onDelete={handleDelete} />
+      ))}
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
-import { useContext } from "react"
+import { useContext } from 'react';
 
-import { Context } from "./Store"
+import { Context } from './Store';
 
 function useStore() {
   return useContext(Context);

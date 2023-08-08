@@ -1,10 +1,11 @@
-'use client'
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft } from 'react-icons/fa';
 
-import { IconButton, ClipboardButton } from "@/components/Button";
+import { IconButton, ClipboardButton } from '@/components/Button';
 
 import styles from './ExerciseActions.module.scss';
 
@@ -13,14 +14,14 @@ function ExerciseActions({ id }) {
   const [domain, setDomain] = useState('');
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       const url = new URL(router.asPath, window.location.href);
       setDomain(url.origin);
     }
   }, [router.asPath]);
 
   const handleBack = () => {
-    router.back();
+    router.push('/exercises');
   };
 
   return (

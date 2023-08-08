@@ -1,13 +1,19 @@
-'use client'
+'use client';
 
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 import styles from './TextInput.module.scss';
 
-
-const TextInput = ({ register, name, validations, icon: Icon, placeholder, defaultValue, ...rest }) => {
-
+function TextInput({
+  register,
+  name,
+  validations,
+  icon: Icon,
+  placeholder,
+  defaultValue,
+  ...rest
+}) {
   return (
     <div className={styles.inputField}>
       {Icon && <Icon />}
@@ -15,12 +21,12 @@ const TextInput = ({ register, name, validations, icon: Icon, placeholder, defau
         {...register(name, validations)}
         className={styles.input}
         placeholder={placeholder}
-        defaultValue={defaultValue}  
+        defaultValue={defaultValue}
         {...rest}
       />
     </div>
   );
-};
+}
 
 TextInput.propTypes = {
   register: PropTypes.func.isRequired,

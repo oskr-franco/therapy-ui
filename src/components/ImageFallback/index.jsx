@@ -1,3 +1,3 @@
-import ImageFallback from "./ImageFallback";
+import ImageFallback from './ImageFallback';
 
 export default ImageFallback;

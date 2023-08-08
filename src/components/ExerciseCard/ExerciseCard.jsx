@@ -1,19 +1,19 @@
 import React from 'react';
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { BsBoxArrowUpRight, BsPencilSquare, BsTrash } from "react-icons/bs";
+import { BsBoxArrowUpRight, BsPencilSquare, BsTrash } from 'react-icons/bs';
 
-import { withOpenModal } from '@/hocs/withOpenModal';
-import { fetchWrapper } from '@/helpers/fetchWrapper';
+import withOpenModal from '@/hocs/withOpenModal';
+import fetchWrapper from '@/helpers/fetchWrapper';
 
 import ExerciseForm from '../ExerciseForm';
-import { IconButton } from "../Button";
-import { Media } from '../Media';
+import { IconButton } from '../Button';
+import Media from '../Media';
 
 import styles from './ExerciseCard.module.scss';
 
 function ExerciseCard({ openModal, onDelete, ...props }) {
-  const { id, name, description,  media } = props;
+  const { id, name, description, media } = props;
   const router = useRouter();
   const [mediaItem] = media;
 
@@ -21,20 +21,19 @@ function ExerciseCard({ openModal, onDelete, ...props }) {
     openModal({
       component: ExerciseForm,
       componentProps: {
-        initialData : props,
+        initialData: props,
       },
     });
-    
-  }
+  };
 
   const handleView = () => {
     router.push(`/exercises/${id}`);
-  }
+  };
 
   const handleDelete = async () => {
     await fetchWrapper.delete(`/api/exercise/${id}`);
     onDelete(id);
-  }
+  };
 
   return (
     <div className={styles.card}>

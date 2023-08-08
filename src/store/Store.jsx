@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import React, { createContext, useReducer } from 'react';
 
-import reducer from './reducer'
+import reducer from './reducer';
 
 const modalInitial = {
   isOpen: false,
@@ -13,17 +13,15 @@ const modalInitial = {
 const initialState = {
   modal: modalInitial,
   alerts: [],
-}
+};
 
 export const Context = createContext(initialState);
 
-function Store({children}) {
-  const [state, dispatch] = useReducer(reducer, initialState)
+function Store({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Context.Provider value={[state, dispatch]} >
-      {children}
-    </Context.Provider>
-  )
+    <Context.Provider value={[state, dispatch]}>{children}</Context.Provider>
+  );
 }
 
 export default Store;

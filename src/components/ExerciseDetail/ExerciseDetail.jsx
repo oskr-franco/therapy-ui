@@ -1,5 +1,5 @@
 import React from 'react';
-import { Media } from '../Media';
+import Media from '../Media';
 
 import styles from './ExerciseDetail.module.scss';
 
@@ -8,7 +8,7 @@ function ExerciseDetail({ name, description, instructions, media }) {
   const instructionsTitle = 'Instrucciones';
 
   function breaklines(sentence) {
-    return sentence.split('\\n').map((str, key) => (<p key={key}>{str}</p>));
+    return sentence.split('\\n').map((str) => <p key={str}>{str}</p>);
   }
 
   return (
@@ -29,11 +29,10 @@ function ExerciseDetail({ name, description, instructions, media }) {
             {...mediaItem}
             layout="responsive"
           />
-          )
-        )}
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default ExerciseDetail;

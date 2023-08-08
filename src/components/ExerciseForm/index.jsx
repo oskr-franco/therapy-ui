@@ -1,3 +1,3 @@
-import ExerciseForm from "./ExerciseForm";
+import ExerciseForm from './ExerciseForm';
 
 export default ExerciseForm;

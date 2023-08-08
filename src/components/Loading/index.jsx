@@ -1,1 +1,3 @@
-export { default as DotsLoading } from './Dots/DotsLoading';
+import DotsLoading from './Dots/DotsLoading';
+
+export default DotsLoading;

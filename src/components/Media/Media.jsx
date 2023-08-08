@@ -1,17 +1,11 @@
-'use-client';
-import React from "react";
-import dynamic from 'next/dynamic';
+import React from 'react';
 
 import ImageFallback from '@/components/ImageFallback';
-
-const VideoPlayerLazy = dynamic(
-  () => import('@/components/VideoPlayer'),
-  { ssr: false }
-);
+import VideoPlayer from '@/components/VideoPlayer';
 
 function Media({ id, url, type, className, ...props }) {
   const { layout } = props;
-  if (type === "Image" || !url) {
+  if (type === 'Image' || !url) {
     return (
       <ImageFallback
         alt={id}
@@ -21,12 +15,10 @@ function Media({ id, url, type, className, ...props }) {
         src={url}
         layout={layout}
       />
-    )
+    );
   }
 
-  return (
-    <VideoPlayerLazy className={className} url={url} />
-  )
+  return <VideoPlayer className={className} url={url} />;
 }
 
 export default Media;
