@@ -34,6 +34,7 @@ function Exercises({ data, openModal }) {
           id={exercise.id}
           name={exercise.name}
           description={exercise.description}
+          instructions={exercise.instructions}
           media={exercise.media}
           onDelete={handleDelete}
         />
