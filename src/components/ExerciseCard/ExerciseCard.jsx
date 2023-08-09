@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -13,8 +12,15 @@ import Media from '../Media';
 
 import styles from './ExerciseCard.module.scss';
 
-function ExerciseCard({ openModal, onDelete, ...props }) {
-  const { id, name, description, media } = props;
+function ExerciseCard({
+  id,
+  name,
+  description,
+  media,
+  instructions,
+  openModal,
+  onDelete,
+}) {
   const router = useRouter();
   const [mediaItem] = media;
 
@@ -22,7 +28,7 @@ function ExerciseCard({ openModal, onDelete, ...props }) {
     openModal({
       component: ExerciseForm,
       componentProps: {
-        initialData: props,
+        initialData: { id, name, description, media, instructions },
       },
     });
   };
@@ -40,7 +46,12 @@ function ExerciseCard({ openModal, onDelete, ...props }) {
     <div className={styles.card}>
       <div className={styles.head}>
         <Link href={`/exercises/${id}`} className={styles.link} />
-        <Media className={styles.media} {...mediaItem} playing={false} />
+        <Media
+          className={styles.media}
+          id={mediaItem.id}
+          url={mediaItem.url}
+          type={mediaItem.type}
+        />
       </div>
       <div className={styles.body}>
         <div className={styles.actions}>

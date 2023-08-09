@@ -7,7 +7,7 @@ const getUrlType = (url) => {
 
   if (url.match(videoRegex) || url.match(youtubeUrlRegex)) return 'Video';
 
-  return;
+  return null;
 };
 
 export default getUrlType;

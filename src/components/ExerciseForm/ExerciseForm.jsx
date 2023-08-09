@@ -219,7 +219,7 @@ function ExerciseForm({ initialData = {}, closeModal }) {
                     validate: {
                       validType: async (value) => {
                         const type = getUrlType(value);
-                        return type !== undefined || urlValidTypeError;
+                        return type !== null || urlValidTypeError;
                       },
                     },
                   }}
