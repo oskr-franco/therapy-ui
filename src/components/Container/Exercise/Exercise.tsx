@@ -2,7 +2,12 @@ import React from 'react';
 
 import ExerciseDetail, { ExerciseActions } from '@/components/ExerciseDetail';
 
-function Exercise({ exercise, isPreview }) {
+type ExerciseProps = {
+  exercise: any;
+  isPreview?: boolean;
+};
+
+function Exercise({ exercise, isPreview = false }: ExerciseProps) {
   const { name, description, instructions, media } = exercise;
   return (
     <>

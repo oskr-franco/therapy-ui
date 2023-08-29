@@ -1,12 +1,17 @@
 'use client';
 
-/* eslint-disable react/forbid-prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
-
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import styles from './TextInput.module.scss';
+
+type TextInputProps = {
+  register: any;
+  name: string;
+  icon?: React.ElementType;
+  validations?: any;
+  placeholder?: string;
+  defaultValue?: string;
+};
 
 function TextInput({
   register,
@@ -16,7 +21,7 @@ function TextInput({
   placeholder,
   defaultValue,
   ...rest
-}) {
+}: TextInputProps) {
   return (
     <div className={styles.inputField}>
       {Icon && <Icon />}
@@ -30,19 +35,5 @@ function TextInput({
     </div>
   );
 }
-
-TextInput.propTypes = {
-  register: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  icon: PropTypes.elementType,
-  validations: PropTypes.object,
-  placeholder: PropTypes.string,
-};
-
-TextInput.defaultProps = {
-  icon: null,
-  placeholder: '',
-  validations: null,
-};
 
 export default TextInput;

@@ -4,7 +4,7 @@ import useStore from '../store/useStore';
 
 function useModal() {
   const type = 'modal';
-  const [state, dispatch] = useStore();
+  const { state, dispatch } = useStore();
 
   const openModal = useCallback(
     (value) => {

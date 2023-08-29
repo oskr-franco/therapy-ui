@@ -9,7 +9,8 @@ import Modal from './Modal';
 
 function ModalWrapper() {
   const { modalState, closeModal } = useModal();
-  const { isOpen, component: ModalBody, componentProps } = modalState;
+  const { isOpen, component, componentProps } = modalState;
+  const ModalBody = component as any;
 
   return (
     <Modal onClose={closeModal} isOpen={isOpen}>

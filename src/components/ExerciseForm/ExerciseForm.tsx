@@ -1,7 +1,5 @@
 'use client';
 
-/* eslint-disable react/jsx-props-no-spreading */
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
@@ -19,7 +17,22 @@ import { LoadingButton, IconButton } from '../Button';
 
 import styles from './ExerciseForm.module.scss';
 
-function ExerciseForm({ initialData = {}, closeModal }) {
+type ExerciseFormProps = {
+  initialData?: {
+    id?: string;
+    name?: string;
+    description?: string;
+    instructions?: string;
+    media?: {
+      id: string;
+      type: string;
+      url: string;
+    }[];
+  };
+  closeModal: () => void;
+};
+
+function ExerciseForm({ initialData = {}, closeModal }: ExerciseFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const isEditing = !!initialData.id;
@@ -125,7 +138,6 @@ function ExerciseForm({ initialData = {}, closeModal }) {
           <IconButton
             key={index}
             className={styles.addBtn}
-            type="button"
             onClick={onAddMediaItem}
             icon={FaPlusCircle}
             alt="Agregar"
@@ -137,10 +149,8 @@ function ExerciseForm({ initialData = {}, closeModal }) {
           key={index}
           id={`media-${index}`}
           className={styles.removeBtn}
-          type="button"
           onClick={onRemoveMediaItem}
           icon={FaMinusCircle}
-          alt="Eliminar"
         />
       );
     },

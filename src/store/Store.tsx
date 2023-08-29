@@ -1,8 +1,7 @@
 'use client';
 
-/* eslint-disable react/jsx-no-constructed-context-values */
-
 import React, { createContext, useReducer } from 'react';
+import { StoreState } from './types';
 
 import reducer from './reducer';
 
@@ -12,17 +11,20 @@ const modalInitial = {
   componentProps: {},
 };
 
-const initialState = {
+const initialState: StoreState = {
   modal: modalInitial,
   alerts: [],
 };
 
-export const Context = createContext(initialState);
+export const Context = createContext<{
+  state: StoreState;
+  dispatch: React.Dispatch<any>;
+}>({ state: initialState, dispatch: () => {} });
 
 function Store({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Context.Provider value={[state, dispatch]}>{children}</Context.Provider>
+    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   );
 }
 

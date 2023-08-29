@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+import { Alert as AlertType } from './types';
 import styles from './Alert.module.scss';
 
-function Alert({ id, message, type = 'info', removeAlert }) {
+type AlertProps = AlertType & {
+  removeAlert: (id: number) => void;
+};
+
+function Alert({ id, message, type = 'info', removeAlert }: AlertProps) {
   const typeStyle = styles[type];
   const handleRemove = () => {
     removeAlert(id);
@@ -28,12 +32,5 @@ function Alert({ id, message, type = 'info', removeAlert }) {
     </div>
   );
 }
-
-Alert.propTypes = {
-  id: PropTypes.number.isRequired,
-  message: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['info', 'success', 'warning', 'error']).isRequired,
-  removeAlert: PropTypes.func.isRequired,
-};
 
 export default React.memo(Alert);

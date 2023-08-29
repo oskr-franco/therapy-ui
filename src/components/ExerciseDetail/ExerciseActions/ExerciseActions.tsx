@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 import { FaArrowLeft } from 'react-icons/fa';
 
@@ -11,14 +11,15 @@ import styles from './ExerciseActions.module.scss';
 
 function ExerciseActions({ id }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [domain, setDomain] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const url = new URL(router.asPath, window.location.href);
+      const url = new URL(pathname, window.location.href);
       setDomain(url.origin);
     }
-  }, [router.asPath]);
+  }, [pathname]);
 
   const handleBack = () => {
     router.push('/exercises');

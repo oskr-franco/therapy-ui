@@ -7,7 +7,14 @@ import { IconButton } from '../Button';
 
 import styles from './Modal.module.scss';
 
-function Modal({ isOpen, onClose, children, className }) {
+type ModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  className?: string;
+};
+
+function Modal({ isOpen, onClose, children, className }: ModalProps) {
   function onClickModalHandler(e) {
     e.stopPropagation();
   }

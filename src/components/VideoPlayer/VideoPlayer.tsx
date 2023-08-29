@@ -2,15 +2,18 @@
 
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 
 import styles from './VideoPlayer.module.scss';
 
 const ReactPlayerLazy = dynamic(() => import('react-player'), { ssr: false });
 
-function VideoPlayer(props) {
-  const { className, url } = props;
+type VideoPlayerProps = {
+  className?: string;
+  url: string;
+};
+
+function VideoPlayer({ className, url }: VideoPlayerProps) {
   return (
     <div className={cx(styles.playerWrapper, className)}>
       <ReactPlayerLazy
@@ -24,14 +27,5 @@ function VideoPlayer(props) {
     </div>
   );
 }
-
-VideoPlayer.propTypes = {
-  url: PropTypes.string.isRequired,
-  className: PropTypes.string,
-};
-
-VideoPlayer.defaultProps = {
-  className: '',
-};
 
 export default VideoPlayer;

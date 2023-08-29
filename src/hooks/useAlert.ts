@@ -4,7 +4,7 @@ import useStore from '../store/useStore';
 
 const useAlert = () => {
   const type = 'alerts';
-  const [state, dispatch] = useStore();
+  const { state, dispatch } = useStore();
 
   const AlertType = {
     Success: 'success',

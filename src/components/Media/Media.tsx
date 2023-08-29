@@ -3,7 +3,15 @@ import React from 'react';
 import ImageFallback from '@/components/ImageFallback';
 import VideoPlayer from '@/components/VideoPlayer';
 
-function Media({ id, url, type, className, layout }) {
+type MediaProps = {
+  id: string;
+  url: string;
+  type: string;
+  className?: string;
+  layout?: 'fill' | 'fixed' | 'intrinsic' | 'responsive';
+};
+
+function Media({ id, url, type, className, layout }: MediaProps) {
   if (type === 'Image' || !url) {
     return (
       <ImageFallback

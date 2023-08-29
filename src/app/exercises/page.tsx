@@ -4,7 +4,7 @@ import Exercises from '@/components/Container/Exercises';
 
 import exercisesService from '../../services/exerciseService';
 
-export const fetchCache = 'force-no-store';
+export const revalidate = 0;
 
 async function ExercisesPage() {
   const data = await exercisesService.getAll();
