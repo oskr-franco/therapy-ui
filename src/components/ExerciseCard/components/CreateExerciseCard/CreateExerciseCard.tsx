@@ -7,7 +7,7 @@ import cx from 'classnames';
 import ExerciseForm from '@/components/ExerciseForm';
 import withOpenModal from '@/hocs/withOpenModal';
 
-import cardStyles from './ExerciseCard.module.scss';
+import cardStyles from '../../ExerciseCard.module.scss';
 import styles from './CreateExerciseCard.module.scss';
 
 function CreateExerciseCard({ openModal }) {

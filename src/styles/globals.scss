@@ -16,12 +16,12 @@
 */
 html,
 body {
-  min-height: 100vh;;
+  min-height: 100vh;
 }
 
 body {
   background-color: $backgound-color;
-  position: relative;
+  position: absolute;
 }
 
 textarea, input, button, select { font-family: inherit; font-size: inherit; }
