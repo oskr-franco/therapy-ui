@@ -9,7 +9,8 @@ import { TbFileDescription } from 'react-icons/tb';
 import { FaListUl, FaLink, FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 
 import getUrlType from '@/utils/getUrlType';
-import withOpenModal from '@/hocs/withOpenModal';
+import withAlerts, { AlertType } from '@/hocs/withAlerts';
+import withOpenModal, { ModalType } from '@/hocs/withOpenModal';
 import fetchWrapper from '@/helpers/fetchWrapper';
 
 import { TextInput, TextArea } from '../FormFields';
@@ -29,10 +30,16 @@ type ExerciseFormProps = {
       url: string;
     }[];
   };
-  closeModal: () => void;
+  closeModal: ModalType['closeModal'];
+  alert: AlertType;
 };
 
-function ExerciseForm({ initialData = {}, closeModal }: ExerciseFormProps) {
+function ExerciseForm({
+  initialData = {},
+  alert,
+  closeModal,
+}: ExerciseFormProps) {
+  console.log(alert);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const isEditing = !!initialData.id;
@@ -55,6 +62,8 @@ function ExerciseForm({ initialData = {}, closeModal }: ExerciseFormProps) {
   const createText = 'Crear';
   const updateText = 'Actualizar';
   const submitText = isEditing ? updateText : createText;
+  const exerciseUpdated = 'Ejercicio actualizado';
+  const exerciseCreated = 'Ejercicio creado';
 
   const {
     register,
@@ -106,12 +115,14 @@ function ExerciseForm({ initialData = {}, closeModal }: ExerciseFormProps) {
       // We have an ID, so we're updating an existing item
       await fetchWrapper.put(`/api/exercise/${data.id}`, data);
       closeModal();
-      router.push(`/exercises/${data.id}`);
+      router.refresh();
+      alert.success(exerciseUpdated);
     } else {
       // No ID, so we're creating a new item
-      const newExercise = await fetchWrapper.post('/api/exercise', data);
+      await fetchWrapper.post('/api/exercise', data);
       closeModal();
-      router.push(`/exercises/${newExercise.id}`);
+      router.refresh();
+      alert.success(exerciseCreated);
     }
 
     setIsLoading(false);
@@ -267,4 +278,4 @@ function ExerciseForm({ initialData = {}, closeModal }: ExerciseFormProps) {
   );
 }
 
-export default withOpenModal(ExerciseForm);
+export default withAlerts(withOpenModal(ExerciseForm));

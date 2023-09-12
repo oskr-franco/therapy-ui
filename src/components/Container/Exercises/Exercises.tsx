@@ -9,8 +9,6 @@ import withOpenModal from '@/hocs/withOpenModal';
 import styles from './Exercises.module.scss';
 
 function Exercises({ data, openModal }) {
-  const [exercises, setExercises] = useState(data);
-
   const onCreateExerciseHandler = useCallback(() => {
     openModal({
       component: ExerciseForm,
@@ -21,14 +19,10 @@ function Exercises({ data, openModal }) {
     return null;
   }
 
-  const handleDelete = async (id) => {
-    setExercises(exercises.filter((item) => item.id !== id));
-  };
-
   return (
     <div className={styles.cards}>
       <CreateExerciseCard onClick={onCreateExerciseHandler} />
-      {exercises.map((exercise) => (
+      {data.map((exercise) => (
         <ExerciseCard
           key={exercise.id}
           id={exercise.id}
@@ -36,7 +30,6 @@ function Exercises({ data, openModal }) {
           description={exercise.description}
           instructions={exercise.instructions}
           media={exercise.media}
-          onDelete={handleDelete}
         />
       ))}
     </div>

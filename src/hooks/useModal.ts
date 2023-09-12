@@ -2,12 +2,16 @@ import { useCallback } from 'react';
 
 import useStore from '../store/useStore';
 
+import { Modal } from '@/components/Modal/types';
+
+export type ModadalProps = Pick<Modal, 'component' | 'componentProps'>;
+
 function useModal() {
   const type = 'modal';
   const { state, dispatch } = useStore();
 
   const openModal = useCallback(
-    (value) => {
+    (value: ModadalProps) => {
       const func = 'openModal';
       dispatch({ type, func, value });
     },

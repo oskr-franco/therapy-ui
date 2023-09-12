@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { BsBoxArrowUpRight, BsPencilSquare, BsTrash } from 'react-icons/bs';
 
+import withAlerts from '@/hocs/withAlerts';
 import withOpenModal from '@/hocs/withOpenModal';
 import fetchWrapper from '@/helpers/fetchWrapper';
 
@@ -19,7 +20,7 @@ function ExerciseCard({
   media,
   instructions,
   openModal,
-  onDelete,
+  alert,
 }) {
   const router = useRouter();
   const [mediaItem] = media;
@@ -39,7 +40,8 @@ function ExerciseCard({
 
   const handleDelete = async () => {
     await fetchWrapper.delete(`/api/exercise/${id}`);
-    onDelete(id);
+    router.refresh();
+    alert.success('Ejercicio eliminado');
   };
 
   return (
@@ -81,6 +83,4 @@ function ExerciseCard({
   );
 }
 
-const ExerciseCardWithOpenModal = withOpenModal(ExerciseCard);
-
-export default ExerciseCardWithOpenModal;
+export default withAlerts(withOpenModal(ExerciseCard));
