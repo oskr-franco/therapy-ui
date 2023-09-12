@@ -39,7 +39,6 @@ function ExerciseForm({
   alert,
   closeModal,
 }: ExerciseFormProps) {
-  console.log(alert);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const isEditing = !!initialData.id;

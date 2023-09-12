@@ -1,27 +1,17 @@
-'use client';
-
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import { ExerciseCard, CreateExerciseCard } from '@/components/ExerciseCard';
-import ExerciseForm from '@/components/ExerciseForm';
-import withOpenModal from '@/hocs/withOpenModal';
 
 import styles from './Exercises.module.scss';
 
-function Exercises({ data, openModal }) {
-  const onCreateExerciseHandler = useCallback(() => {
-    openModal({
-      component: ExerciseForm,
-    });
-  }, [openModal]);
-
+function Exercises({ data }) {
   if (!data) {
     return null;
   }
 
   return (
     <div className={styles.cards}>
-      <CreateExerciseCard onClick={onCreateExerciseHandler} />
+      <CreateExerciseCard />
       {data.map((exercise) => (
         <ExerciseCard
           key={exercise.id}
@@ -36,4 +26,4 @@ function Exercises({ data, openModal }) {
   );
 }
 
-export default withOpenModal(Exercises);
+export default Exercises;
