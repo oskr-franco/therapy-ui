@@ -19,8 +19,12 @@ function ExerciseDetail({ name, description, instructions, media }) {
         <h1>{name}</h1>
         <h2>{descriptionTitle}</h2>
         <div>{breaklines(description)}</div>
-        <h2>{instructionsTitle}</h2>
-        <div>{breaklines(instructions)}</div>
+        {instructions && (
+          <>
+            <h2>{instructionsTitle}</h2>
+            <div>{breaklines(instructions)}</div>
+          </>
+        )}
       </div>
       <div className={styles.divider} />
       <div className={styles.column}>

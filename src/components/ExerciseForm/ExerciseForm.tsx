@@ -51,7 +51,6 @@ function ExerciseForm({
   const descriptionMaxLengthError =
     'La descripción no puede exceder los 2000 caracteres';
   const instructionsPlaceholder = 'Instrucciones';
-  const instructionsRequiredError = 'Instrucciones son requeridas';
   const instructionsMaxLengthError =
     'Las instrucciones no pueden exceder los 8000 caracteres';
   const mediaTitle = 'Imagenes y/o Videos';
@@ -208,7 +207,6 @@ function ExerciseForm({
           name="instructions"
           icon={FaListUl}
           validations={{
-            required: instructionsRequiredError,
             maxLength: {
               value: 8000,
               message: instructionsMaxLengthError,
