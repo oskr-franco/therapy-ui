@@ -2,17 +2,20 @@ import React from 'react';
 
 import { ExerciseCard, CreateExerciseCard } from '@/components/ExerciseCard';
 
+import IExercisesProps from './IExercises';
+
 import styles from './Exercises.module.scss';
 
-function Exercises({ data }) {
-  if (!data) {
+function Exercises({ data }: IExercisesProps) {
+  const { data: exercises } = data;
+  if (!data || !exercises) {
     return null;
   }
 
   return (
     <div className={styles.cards}>
       <CreateExerciseCard />
-      {data.map((exercise) => (
+      {exercises.map((exercise) => (
         <ExerciseCard
           key={exercise.id}
           id={exercise.id}

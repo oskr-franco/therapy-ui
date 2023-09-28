@@ -5,7 +5,7 @@
   @include gap();
   display: grid;
   grid-template-columns: 1fr;
-  margin-top: 20px; //ToDo: Added because icon toolbars, we need to remove it
+  padding-top: 20px;
 
   @include viewport(desktop){
     grid-template-columns: 1fr 1fr;

@@ -2,11 +2,18 @@ import React from 'react';
 import Link from 'next/link';
 
 import CardActions from './components/CardActions/CardActions';
+import { Exercise } from '@/types';
 
 import Media from '../Media';
 import styles from './ExerciseCard.module.scss';
 
-function ExerciseCard({ id, name, description, media, instructions }) {
+function ExerciseCard({
+  id,
+  name,
+  description,
+  media,
+  instructions,
+}: Exercise) {
   const [mediaItem] = media;
 
   return (

@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <Store>
         <body className={inter.className}>
-          {children}
+          <main>{children}</main>
           <Modal />
           <Alerts />
         </body>
