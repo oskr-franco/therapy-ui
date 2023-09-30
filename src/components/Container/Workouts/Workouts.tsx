@@ -3,7 +3,7 @@ import React from 'react';
 
 function Workouts({ workouts }) {
   console.log(workouts);
-  return <div>Workouts</div>;
+  return <div>Workouts: {workouts.leng}</div>;
 }
 
 export default Workouts;
