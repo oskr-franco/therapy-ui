@@ -1,2 +1,3 @@
-export { default as ExerciseCard } from './ExerciseCard';
-export { default as CreateExerciseCard } from './components/CreateExerciseCard/CreateExerciseCard';
+import ExerciseCard from './ExerciseCard';
+
+export default ExerciseCard;

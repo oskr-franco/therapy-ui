@@ -9,30 +9,16 @@ import { TbFileDescription } from 'react-icons/tb';
 import { FaListUl, FaLink, FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 
 import getUrlType from '@/utils/getUrlType';
-import withAlerts, { AlertType } from '@/hocs/withAlerts';
-import withOpenModal, { ModalType } from '@/hocs/withOpenModal';
+import withAlerts from '@/hocs/withAlerts';
+import withOpenModal from '@/hocs/withOpenModal';
 import fetchWrapper from '@/helpers/fetchWrapper';
 
 import { TextInput, TextArea } from '../FormFields';
 import { LoadingButton, IconButton } from '../Button';
 
-import styles from './ExerciseForm.module.scss';
+import ExerciseFormProps from './ExerciseForm.types';
 
-type ExerciseFormProps = {
-  initialData?: {
-    id?: string;
-    name?: string;
-    description?: string;
-    instructions?: string;
-    media?: {
-      id: string;
-      type: string;
-      url: string;
-    }[];
-  };
-  closeModal: ModalType['closeModal'];
-  alert: AlertType;
-};
+import styles from './ExerciseForm.module.scss';
 
 function ExerciseForm({
   initialData = {},

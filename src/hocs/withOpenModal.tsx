@@ -1,14 +1,11 @@
 import React from 'react';
 
-import useModal, { ModadalProps } from '../hooks/useModal';
+import useModal from '../hooks/useModal';
 
-export type ModalType = {
-  openModal: (modal: ModadalProps) => void;
-  closeModal: () => void;
-};
+import ModalType from './withOpenModal.types';
 
-const withOpenModal = (component) => {
-  const MemoComponent = React.memo(component);
+const withOpenModal = (WrappedComponent: React.ComponentType<any>) => {
+  const MemoComponent = React.memo(WrappedComponent);
   function ModalComponent(props) {
     const { openModal, closeModal }: ModalType = useModal();
     return (

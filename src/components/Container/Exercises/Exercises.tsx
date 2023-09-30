@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { ExerciseCard, CreateExerciseCard } from '@/components/ExerciseCard';
+import ExerciseCard from '@/components/ExerciseCard';
+import CreateCard from '@/components/CreateCardModal';
+import ExerciseForm from '@/components/ExerciseForm';
 
 import IExercisesProps from './IExercises';
 
@@ -14,9 +16,14 @@ function Exercises({ data }: IExercisesProps) {
 
   return (
     <div className={styles.cards}>
-      <CreateExerciseCard />
+      <CreateCard
+        className={styles.card}
+        text="Agregar Ejercicio"
+        component={ExerciseForm}
+      />
       {exercises.map((exercise) => (
         <ExerciseCard
+          className={styles.card}
           key={exercise.id}
           id={exercise.id}
           name={exercise.name}

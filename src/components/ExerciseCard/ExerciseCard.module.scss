@@ -1,25 +1,8 @@
 @import 'mixins';
 
 .card {
-  @include card();
   display: flex;
   flex-direction: row;
-  height: 127px;
-
-  @include viewport(big-mobile) {
-    height: 151px;
-  }
-
-  @include viewport(tablet) {
-    height: 195px;
-  }
-
-  @include viewport(desktop) {
-    height: 155px;
-  }
-  @include viewport(desktop-large) {
-    height: 195px;
-  }
 }
 
 .head {

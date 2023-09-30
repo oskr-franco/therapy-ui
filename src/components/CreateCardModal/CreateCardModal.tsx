@@ -4,25 +4,25 @@ import React, { useCallback } from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
 import cx from 'classnames';
 
-import ExerciseForm from '@/components/ExerciseForm';
 import withOpenModal from '@/hocs/withOpenModal';
 
-import cardStyles from '../../ExerciseCard.module.scss';
-import styles from './CreateExerciseCard.module.scss';
+import CreateCardType from './CreateCardModal.types';
+import styles from './CreateCardModal.module.scss';
 
-function CreateExerciseCard({ openModal }) {
-  const text = 'Agregar Ejercicio';
-
+function CreateCardModal({
+  className,
+  text,
+  openModal,
+  component,
+}: CreateCardType) {
   const onCreateExerciseHandler = useCallback(() => {
-    openModal({
-      component: ExerciseForm,
-    });
-  }, [openModal]);
+    openModal({ component });
+  }, [openModal, component]);
 
   return (
     <button
       type="button"
-      className={cx(cardStyles.card, styles.container)}
+      className={cx(className, styles.container)}
       onClick={onCreateExerciseHandler}
     >
       <div className={styles.text}>{text}</div>
@@ -31,4 +31,4 @@ function CreateExerciseCard({ openModal }) {
   );
 }
 
-export default withOpenModal(CreateExerciseCard);
+export default withOpenModal(CreateCardModal);

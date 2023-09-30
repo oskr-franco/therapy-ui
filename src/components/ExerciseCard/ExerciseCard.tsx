@@ -1,23 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
+import cx from 'classnames';
 
 import CardActions from './components/CardActions/CardActions';
-import { Exercise } from '@/types';
 
 import Media from '../Media';
+
+import ExerciseCardType from './ExerciseCard.types';
 import styles from './ExerciseCard.module.scss';
 
 function ExerciseCard({
+  className,
   id,
   name,
   description,
   media,
   instructions,
-}: Exercise) {
+}: ExerciseCardType) {
   const [mediaItem] = media;
 
   return (
-    <div className={styles.card}>
+    <div className={cx(className, styles.card)}>
       <div className={styles.head}>
         <Link href={`/exercises/${id}`} className={styles.link} />
         <Media

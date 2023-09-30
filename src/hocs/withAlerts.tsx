@@ -3,12 +3,7 @@ import React, { useMemo } from 'react';
 
 import useAlert from '@/hooks/useAlert';
 
-export type AlertType = {
-  success: (message: string) => void;
-  error: (message: string) => void;
-  warning: (message: string) => void;
-  info: (message: string) => void;
-};
+import AlertType from './withAlerts.types';
 
 const withAlerts = (component) => {
   const MemoComponent = React.memo(component);

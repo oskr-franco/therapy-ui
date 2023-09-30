@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import useStore from '../store/useStore';
 
-import { Modal } from '@/components/Modal/types';
+import Modal from '@/components/Modal/ModalWrapper.types';
 
 export type ModadalProps = Pick<Modal, 'component' | 'componentProps'>;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+// import Exercises from '../Exercises';
 
 function Workouts({ workouts }) {
   console.log(workouts);
