@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState, useRef } from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
 import { SiWheniwork } from 'react-icons/si';
 
 import ExercisePicker from '@/components/Exercise/ExercisePicker';
@@ -10,14 +10,24 @@ import { LoadingButton } from '../../Button';
 
 import WorkoutFormProps, { ExerciseState } from './WorkoutForm.types';
 import styles from './WorkoutForm.module.scss';
+import { WorkoutExercise } from '@/types';
 
 function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
+  const workoutNamePlaceholder = 'Nombre del workout';
+  const selectExercises = 'Tus ejercicios seleccionados aparecerán aquí';
+  const repsPlaceholder = 'Reps para';
+  const setsPlaceholder = 'Sets para';
   const submitText = 'Guardar workout';
-  const endOfWorkoutRef = React.useRef(null);
+
+  const endOfWorkoutRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const { workoutExercises } = initialData;
-  const { handleSubmit, register, setValue } = useForm({
+  const { control, handleSubmit, register } = useForm({
     defaultValues: initialData,
+  });
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'workoutExercises',
   });
   const initialState = workoutExercises?.map(
     (we) =>
@@ -36,20 +46,17 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
     isSelected: boolean,
   ) => {
     if (isSelected) {
+      append({
+        exerciseId: exercise.id,
+      } as WorkoutExercise);
       setSelectedExercises((prev) => [...prev, exercise]);
-      setValue(
-        `workoutExercises.${selectedExercises.length}.exerciseId`,
-        exercise.id,
-      );
     } else {
-      const index = selectedExercises.indexOf(exercise);
+      const index = selectedExercises.findIndex((e) => e.id === exercise.id);
       if (index !== -1) {
+        remove(index);
         setSelectedExercises((prev) =>
           prev.filter((e) => e.id !== exercise.id),
         );
-
-        // Remove the entire object from the workoutExercises array
-        setValue(`workoutExercises.${index}`, undefined);
       }
     }
   };
@@ -70,7 +77,7 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
       <TextInput
         register={register}
         name="name"
-        placeholder="Workout name"
+        placeholder={workoutNamePlaceholder}
         icon={SiWheniwork}
       />
       <div className={styles.body}>
@@ -80,31 +87,26 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
           selectedExercises={selectedExercises}
         />
         <div className={styles.workoutContainer}>
-          <p>Empiza seleccionando Tus ejercicios</p>
-          {selectedExercises.map((exercise, index) => {
+          <p>{selectExercises}</p>
+          {fields.map((field, index) => {
+            const exercise = selectedExercises[index];
             return (
-              <div key={exercise.id}>
+              <div key={field.id}>
                 <span>{exercise.name}</span>
                 <div className={styles.workoutFields}>
                   <input
                     {...register(`workoutExercises.${index}.exerciseId`)}
-                    defaultValue={exercise.id}
                     hidden
                   />
                   <TextInput
                     register={register}
                     name={`workoutExercises.${index}.sets`}
-                    placeholder="Sets"
+                    placeholder={`${setsPlaceholder} ${exercise.name}`}
                   />
                   <TextInput
                     register={register}
                     name={`workoutExercises.${index}.reps`}
-                    placeholder="Reps"
-                  />
-                  <TextInput
-                    register={register}
-                    name={`workoutExercises.${index}.duration`}
-                    placeholder="Duration"
+                    placeholder={`${repsPlaceholder} ${exercise.name}`}
                   />
                 </div>
                 <div ref={endOfWorkoutRef}></div>

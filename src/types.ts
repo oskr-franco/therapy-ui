@@ -16,13 +16,12 @@ export type WorkoutExercise = Omit<Exercise, 'id' | 'media'> & {
   exerciseId: string;
   sets: number;
   reps: number;
-  duration?: string; //"00:30:00"
+  // duration?: string; //"00:30:00"
 };
 
 export type Workout = {
   id: string;
   name: string;
-  description: string;
   workoutExercises: WorkoutExercise[];
 };
 
