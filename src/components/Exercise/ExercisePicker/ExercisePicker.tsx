@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 
 import { fetchExercises } from '@/actions/fetchExercises';
-// import DotsLoading from '@/components/Loading';
 import { Skeleton } from '@/components/Loading';
 import styles from './ExercisePicker.module.scss';
 
@@ -10,7 +9,6 @@ import ExercisePickerProps, {
   ExercisePicker as Exercise,
   Pagination,
 } from './ExercisePicker.types';
-import { execArgv } from 'process';
 
 function ExercisePicker({
   className,
