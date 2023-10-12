@@ -1,8 +1,11 @@
 @import 'mixins';
+// $silver-light: #EAEAEA;
+// $silver-dark: #C0C0C0;
 
 .skeleton {
    width: 100%;
   height: 100%;
+  //background: linear-gradient(-90deg, $silver-light 25%, $silver-dark 50%, $silver-light 75%);
   background: linear-gradient(-90deg, $white-color 25%, $black-light-color 50%, $white-color 75%);
   background-size: 200% 100%;
   animation: skeletonAnimation 1.5s infinite;
