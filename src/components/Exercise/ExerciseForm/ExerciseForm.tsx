@@ -13,8 +13,8 @@ import withAlerts from '@/hocs/withAlerts';
 import withOpenModal from '@/hocs/withOpenModal';
 import fetchWrapper from '@/helpers/fetchWrapper';
 
-import { TextInput, TextArea } from '../FormFields';
-import { LoadingButton, IconButton } from '../Button';
+import { TextInput, TextArea } from '../../FormFields';
+import { LoadingButton, IconButton } from '../../Button';
 
 import ExerciseFormProps from './ExerciseForm.types';
 
@@ -48,6 +48,7 @@ function ExerciseForm({
   const submitText = isEditing ? updateText : createText;
   const exerciseUpdated = 'Ejercicio actualizado';
   const exerciseCreated = 'Ejercicio creado';
+  const addAlt = 'Agregar';
 
   const {
     register,
@@ -135,7 +136,7 @@ function ExerciseForm({
             className={styles.addBtn}
             onClick={onAddMediaItem}
             icon={FaPlusCircle}
-            alt="Agregar"
+            alt={addAlt}
           />
         );
       }

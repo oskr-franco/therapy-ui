@@ -1,18 +1,11 @@
+import { Exercise } from '@/types';
 import AlertType from '@/hocs/withAlerts.types';
 import ModalType from '@/hocs/withOpenModal.types';
 
+type ExerciseUpdateType = Partial<Exercise>;
+
 type ExerciseFormProps = {
-  initialData?: {
-    id?: string;
-    name?: string;
-    description?: string;
-    instructions?: string;
-    media?: {
-      id: string;
-      type: string;
-      url: string;
-    }[];
-  };
+  initialData?: ExerciseUpdateType;
   closeModal: ModalType['closeModal'];
   alert: AlertType;
 };

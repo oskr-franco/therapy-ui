@@ -3,12 +3,14 @@ import React from 'react';
 import Workouts from '@/components/Container/Workouts';
 import workoutsService from '@/services/workoutService';
 
+export const revalidate = 0;
+
 async function WorkoutPage() {
-  const data = await workoutsService.getAll();
-  if (!data) {
+  const response = await workoutsService.getAll();
+  if (!response) {
     return null;
   }
-  return <Workouts workouts={data} />;
+  return <Workouts data={response} />;
 }
 
 export default WorkoutPage;

@@ -3,7 +3,11 @@ import cx from 'classnames';
 
 import styles from './DotsLoading.module.scss';
 
-function DotsLoading({ className }) {
+type DotsLoadingProps = {
+  className?: string;
+};
+
+function DotsLoading({ className }: DotsLoadingProps) {
   return (
     <div className={cx(styles.spinner, className)}>
       <div className={styles.bounce1} />

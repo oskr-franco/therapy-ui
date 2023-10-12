@@ -1,20 +1,29 @@
-function handleResponse(response) {
+import { FetchError, PaginationResponse } from '@/types';
+
+function handleResponse<T>(response) {
   return response.text().then((text) => {
-    const data = text && JSON.parse(text);
+    const data: T = text && JSON.parse(text);
 
     if (!response.ok) {
-      const error = (data && data.message) || response.statusText;
+      const errorData = data as FetchError;
+      const error = (errorData && errorData.message) || response.statusText;
       return Promise.reject(error);
     }
     return data;
   });
 }
 
-function get(url) {
+function get<T>(
+  url: string,
+  init?: RequestInit,
+): Promise<PaginationResponse<T>> {
   const requestOptions = {
     method: 'GET',
+    ...init,
   };
-  return fetch(url, requestOptions).then(handleResponse);
+  return fetch(url, requestOptions).then((response) =>
+    handleResponse<PaginationResponse<T>>(response),
+  );
 }
 
 function post(url, body) {

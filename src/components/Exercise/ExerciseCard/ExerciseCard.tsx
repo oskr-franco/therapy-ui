@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import CardActions from './components/CardActions/CardActions';
 
-import Media from '../Media';
+import Media from '../../Media';
 
 import ExerciseCardType from './ExerciseCard.types';
 import styles from './ExerciseCard.module.scss';

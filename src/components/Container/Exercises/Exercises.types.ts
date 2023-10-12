@@ -1,7 +1,7 @@
 import { Exercise, PaginationResponse } from '@/types';
 
-interface IExercisesProps {
+type ExercisesType = {
   data: PaginationResponse<Exercise>;
-}
+};
 
-export default IExercisesProps;
+export default ExercisesType;

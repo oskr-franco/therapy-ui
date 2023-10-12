@@ -1,6 +1,8 @@
 import React from 'react';
 
-import ExerciseDetail, { ExerciseActions } from '@/components/ExerciseDetail';
+import ExerciseDetail, {
+  ExerciseActions,
+} from '@/components/Exercise/ExerciseDetail';
 
 type ExerciseProps = {
   exercise: any;

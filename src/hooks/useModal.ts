@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import useStore from '../store/useStore';
 
@@ -23,8 +23,10 @@ function useModal() {
     dispatch({ type, func });
   }, [dispatch]);
 
+  const modalState = useMemo(() => state[type], [state]);
+
   return {
-    modalState: state[type],
+    modalState,
     openModal,
     closeModal,
   };

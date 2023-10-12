@@ -6,7 +6,7 @@ import { BsBoxArrowUpRight, BsPencilSquare, BsTrash } from 'react-icons/bs';
 
 import fetchWrapper from '@/helpers/fetchWrapper';
 
-import ExerciseForm from '@/components/ExerciseForm';
+import ExerciseForm from '@/components/Exercise/ExerciseForm';
 import { IconButton } from '@/components/Button';
 import withAlerts from '@/hocs/withAlerts';
 

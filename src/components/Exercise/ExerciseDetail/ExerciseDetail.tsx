@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import Media from '../Media';
+import Media from '../../Media';
 
 import styles from './ExerciseDetail.module.scss';
 

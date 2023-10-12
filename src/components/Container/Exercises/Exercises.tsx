@@ -1,14 +1,15 @@
 import React from 'react';
 
-import ExerciseCard from '@/components/ExerciseCard';
+import ExerciseCard from '@/components/Exercise/ExerciseCard';
 import CreateCard from '@/components/CreateCardModal';
-import ExerciseForm from '@/components/ExerciseForm';
+import ExerciseForm from '@/components/Exercise/ExerciseForm';
 
-import IExercisesProps from './IExercises';
+import ExercisesType from './Exercises.types';
 
 import styles from './Exercises.module.scss';
 
-function Exercises({ data }: IExercisesProps) {
+function Exercises({ data }: ExercisesType) {
+  const addExercise = 'Crear Ejercicio';
   const { data: exercises } = data;
   if (!data || !exercises) {
     return null;
@@ -18,7 +19,7 @@ function Exercises({ data }: IExercisesProps) {
     <div className={styles.cards}>
       <CreateCard
         className={styles.card}
-        text="Agregar Ejercicio"
+        text={addExercise}
         component={ExerciseForm}
       />
       {exercises.map((exercise) => (

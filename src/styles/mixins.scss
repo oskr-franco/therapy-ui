@@ -33,6 +33,14 @@
   }
 }
 
+@mixin margin() {
+  margin: $spacing;
+
+  @include viewport(tablet) {
+    margin: $desktop-spacing;
+  }
+}
+
 @mixin gap() {
   gap: $spacing;
 

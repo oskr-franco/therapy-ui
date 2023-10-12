@@ -1,0 +1,34 @@
+@import 'mixins';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 80vh;
+  // justify-content: space-evenly;
+}
+
+.body {
+  @include margin();
+  display: flex;
+  flex-direction: row;
+  height: 80%;
+
+}
+
+.exercisePicker {
+  width: 30%;
+}
+
+.workoutContainer {
+  @include gap();
+  display:flex;
+  flex-direction: column;
+  overflow: scroll;
+  width: 100%;
+}
+
+.workoutFields {
+  @include gap();
+  display: flex;
+}

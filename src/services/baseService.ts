@@ -1,14 +1,17 @@
 import fetchWrapper from '@/helpers/fetchWrapper';
+import { PaginationFilter } from '@/types';
+import toQueryString from '@/utils/toQueryString';
 
-class BaseService {
+class BaseService<T> {
   url: string;
 
   constructor(url) {
     this.url = url;
   }
 
-  async getAll() {
-    return fetchWrapper.get(this.url);
+  async getAll(filter?: PaginationFilter) {
+    const queryString = filter ? toQueryString(filter) : '';
+    return fetchWrapper.get<T>(this.url + queryString);
   }
 
   async getById(id) {

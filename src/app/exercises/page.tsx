@@ -7,12 +7,12 @@ import exercisesService from '../../services/exerciseService';
 export const revalidate = 0;
 
 async function ExercisesPage() {
-  const data = await exercisesService.getAll();
+  const response = await exercisesService.getAll();
 
-  if (!data) {
+  if (!response) {
     return null;
   }
-  return <Exercises data={data} />;
+  return <Exercises data={response} />;
 }
 
 export default ExercisesPage;
