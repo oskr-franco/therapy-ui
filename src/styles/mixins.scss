@@ -49,6 +49,16 @@
   }
 }
 
+@mixin verticalDivider(){
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, $black-light-color, transparent);
+  // margin: 0 20px; // space on the left and right of the divider
+
+  box-shadow: 5px 0 5px -2px $grey-color, 
+              -5px 0 5px -2px $grey-color;
+}
+
 @mixin card($includeSpacing: true, $shadowColor: $shadow-color) {
   border-radius: 10px;
   box-shadow:  4px 4px 8px 0 $shadowColor;

@@ -10,14 +10,21 @@
 
 .body {
   @include margin();
+  @include gap();
+  height: 80%;
   display: flex;
   flex-direction: row;
-  height: 80%;
+}
 
+.exercisePickerContainer {
+  width: 30%;
+  min-width: 110px;
 }
 
 .exercisePicker {
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .workoutContainer {
@@ -28,7 +35,25 @@
   width: 100%;
 }
 
+.subtitle {
+  color: $black-color;
+  margin-bottom: 16px;
+}
+
 .workoutFields {
   @include gap();
   display: flex;
+}
+
+.divider {
+  @include verticalDivider();
+}
+
+.error {
+  color: $error-dark-color;
+  display: flex;
+  @include gap();
+  & > * {
+    flex: 1 1 0px;
+  }
 }

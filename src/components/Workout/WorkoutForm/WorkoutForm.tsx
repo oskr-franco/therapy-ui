@@ -17,12 +17,20 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
   const selectExercises = 'Tus ejercicios seleccionados aparecerán aquí';
   const repsPlaceholder = 'Reps para';
   const setsPlaceholder = 'Sets para';
+  const setsRequiredError = 'Sets es requerido';
+  const repsRequiredError = 'Repeticiones es requerido';
+  const numberError = 'Solo se permiten números';
   const submitText = 'Guardar workout';
 
   const endOfWorkoutRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const { workoutExercises } = initialData;
-  const { control, handleSubmit, register } = useForm({
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
     defaultValues: initialData,
   });
   const { fields, append, remove } = useFieldArray({
@@ -66,6 +74,7 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
   }, [selectedExercises.length]);
 
   const onSubmit = (data) => {
+    console.log(errors);
     setIsLoading(true);
     // Clean up data and call API here
     console.log(data);
@@ -81,13 +90,17 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
         icon={SiWheniwork}
       />
       <div className={styles.body}>
-        <ExercisePicker
-          className={styles.exercisePicker}
-          onSelect={handleExerciseSelect}
-          selectedExercises={selectedExercises}
-        />
+        <div className={styles.exercisePickerContainer}>
+          <h4 className={styles.subtitle}>Selecciona tus ejercicios</h4>
+          <ExercisePicker
+            className={styles.exercisePicker}
+            onSelect={handleExerciseSelect}
+            selectedExercises={selectedExercises}
+          />
+        </div>
+        <div className={styles.divider} />
         <div className={styles.workoutContainer}>
-          <p>{selectExercises}</p>
+          <h4 className={styles.subtitle}>{selectExercises}</h4>
           {fields.map((field, index) => {
             const exercise = selectedExercises[index];
             return (
@@ -102,17 +115,37 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
                     register={register}
                     name={`workoutExercises.${index}.sets`}
                     placeholder={`${setsPlaceholder} ${exercise.name}`}
+                    validations={{
+                      required: setsRequiredError,
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: numberError,
+                      },
+                    }}
                   />
                   <TextInput
                     register={register}
                     name={`workoutExercises.${index}.reps`}
                     placeholder={`${repsPlaceholder} ${exercise.name}`}
+                    validations={{
+                      required: repsRequiredError,
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: numberError,
+                      },
+                    }}
                   />
                 </div>
-                <div ref={endOfWorkoutRef}></div>
+                {errors.workoutExercises && (
+                  <p className={styles.error}>
+                    <span>{errors.workoutExercises[index].sets?.message}</span>
+                    <span>{errors.workoutExercises[index].reps?.message}</span>
+                  </p>
+                )}
               </div>
             );
           })}
+          <div ref={endOfWorkoutRef}></div>
         </div>
       </div>
       <LoadingButton
