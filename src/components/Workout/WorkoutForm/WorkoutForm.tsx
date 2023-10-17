@@ -14,9 +14,10 @@ import { WorkoutExercise } from '@/types';
 
 function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
   const workoutNamePlaceholder = 'Nombre del workout';
-  const selectExercises = 'Tus ejercicios seleccionados aparecerán aquí';
-  const repsPlaceholder = 'Reps para';
-  const setsPlaceholder = 'Sets para';
+  const buildWorkout = 'Construye tu workout';
+  const selectExercises = 'Selecciona tus ejercicios';
+  const repsPlaceholder = 'Ej: 12 repeticiones';
+  const setsPlaceholder = 'Ej: 3 sets';
   const setsRequiredError = 'Sets es requerido';
   const repsRequiredError = 'Repeticiones es requerido';
   const numberError = 'Solo se permiten números';
@@ -83,6 +84,7 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <h2 className={styles.title}>{buildWorkout}</h2>
       <TextInput
         register={register}
         name="name"
@@ -91,7 +93,7 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
       />
       <div className={styles.body}>
         <div className={styles.exercisePickerContainer}>
-          <h4 className={styles.subtitle}>Selecciona tus ejercicios</h4>
+          <h4 className={styles.subtitle}>{selectExercises}</h4>
           <ExercisePicker
             className={styles.exercisePicker}
             onSelect={handleExerciseSelect}
@@ -100,7 +102,6 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
         </div>
         <div className={styles.divider} />
         <div className={styles.workoutContainer}>
-          <h4 className={styles.subtitle}>{selectExercises}</h4>
           {fields.map((field, index) => {
             const exercise = selectedExercises[index];
             return (
@@ -114,7 +115,7 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
                   <TextInput
                     register={register}
                     name={`workoutExercises.${index}.sets`}
-                    placeholder={`${setsPlaceholder} ${exercise.name}`}
+                    placeholder={`${setsPlaceholder}`}
                     validations={{
                       required: setsRequiredError,
                       pattern: {
@@ -126,7 +127,7 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
                   <TextInput
                     register={register}
                     name={`workoutExercises.${index}.reps`}
-                    placeholder={`${repsPlaceholder} ${exercise.name}`}
+                    placeholder={`${repsPlaceholder}`}
                     validations={{
                       required: repsRequiredError,
                       pattern: {

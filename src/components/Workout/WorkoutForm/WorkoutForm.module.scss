@@ -8,6 +8,11 @@
   // justify-content: space-evenly;
 }
 
+.title {
+  color: $black-color;
+  margin: 0 auto 12px;
+}
+
 .body {
   @include margin();
   @include gap();
