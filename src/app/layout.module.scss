@@ -1,0 +1,8 @@
+@import 'mixins';
+
+.bodyContent {
+  padding : 0 20px;
+  @include viewport(tablet) {
+    padding: 0 100px;
+  }
+}

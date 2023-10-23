@@ -1,0 +1,25 @@
+@import 'mixins';
+
+.container {
+  position: relative;
+}
+
+.icon {
+  margin-right: 10px;
+  color: $grey-color;
+}
+
+.textContainer {
+  overflow: hidden; // To hide the overflow when the text is translated
+  width: 0; // Initial width
+  transition: width 0.4s ease-in-out; // Transition for width
+  opacity: 0;
+  transform: translateX(-50%);
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.text {
+  font-size: 1rem;
+  color: #333;
+}

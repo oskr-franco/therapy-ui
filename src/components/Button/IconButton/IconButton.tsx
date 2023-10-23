@@ -1,5 +1,8 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import cx from 'classnames';
+
+import Tooltip from '@/components/Tooltip';
 
 import styles from './IconButton.module.scss';
 
@@ -29,11 +32,12 @@ function IconButton({
       onClick={onClick}
     >
       <Icon />
-      {tooltip && (
-        <div className={cx(styles.tooltip, styles[tooltipPosition])}>
-          {tooltip}
-        </div>
-      )}
+      <Tooltip
+        className={styles.tooltip}
+        tooltip={tooltip}
+        tooltipPosition={tooltipPosition}
+        showTooltip
+      />
     </button>
   );
 }
