@@ -32,6 +32,7 @@ function Modal({ isOpen, onClose, children, className }: ModalProps) {
           icon={FaRegTimesCircle}
           onClick={onClose}
           className={styles.closeBtn}
+          color="red"
         />
         {children}
       </div>

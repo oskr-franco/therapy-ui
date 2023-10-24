@@ -37,8 +37,9 @@ function Menu() {
             className={styles.menuItem}
             icon={item.icon}
             href={item.href}
-            text={item.text}
-          />
+          >
+            <span className={styles.text}>{item.text}</span>
+          </Item>
         ))}
       </div>
     </div>

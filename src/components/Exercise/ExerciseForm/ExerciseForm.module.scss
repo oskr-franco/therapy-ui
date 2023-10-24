@@ -43,14 +43,6 @@
   justify-content: center;
 }
 
-button.removeBtn {
-  @include iconBtn($red-color);
-}
-
-button.addBtn {
-  @include iconBtn($green-color);
-}
-
 .error {
   color: $error-dark-color;
 }

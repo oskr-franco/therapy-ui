@@ -1,7 +1,13 @@
 @import 'mixins';
 
 .button {
-  @include iconBtn();
+  border: none;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
 
   .tooltip {
     opacity: 0;
@@ -9,6 +15,7 @@
   }
 
   &:hover {
+    
     @include viewport(desktop) {
       .tooltip {
         opacity: 1;
@@ -16,5 +23,54 @@
       }
     }
   }
+}
 
+.iconContainer {
+  display: flex;
+  padding: 4px; 
+  border-radius: 50%;
+  transition: background-color .5s ease;
+  // font-size: 20px;
+}
+
+.black {
+  &:hover {
+    .iconContainer{
+      background-color: $black-color;
+      color: $white-color;
+    }
+  }
+
+  .iconContainer{
+    background-color: $white-color;
+    color: $black-color;
+  }
+}
+
+.red {
+  &:hover {
+    .iconContainer{
+      background-color: $red-color;
+      color: $white-color;
+    }
+  }
+
+  .iconContainer{
+    background-color: $white-color;
+    color: $red-color;
+  }
+}
+
+.green {
+  &:hover {
+    .iconContainer{
+      background-color: $green-color;
+      color: $white-color;
+    }
+  }
+
+  .iconContainer{
+    background-color: $white-color;
+    color: $green-color;
+  }
 }

@@ -3,14 +3,4 @@
 .actions {
   display: flex;
   justify-content: flex-end;
-
-  .edit {
-    @include iconBtn($color: $black-color);
-  }
-  .view {
-    @include iconBtn($color: $black-color);
-  }
-  .delete {
-    @include iconBtn($color: $black-color);
-  }
 }

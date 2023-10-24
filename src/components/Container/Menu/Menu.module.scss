@@ -6,7 +6,6 @@
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 4px 4px 8px 0 $shadow-color;
-  overflow: hidden;
   position: fixed;
   left: 0;
   height: 100vh;
@@ -18,12 +17,7 @@
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  background-color: $white-color;
   transition: background-color 0.3s;
-}
-
-.menuItem:hover {
-  background-color: $black-light-color;
 }
 
 .menuItem:last-child {
@@ -32,6 +26,17 @@
 
 .toggleLabel {
   justify-content: flex-end; // Align items to the end (right side)
+}
+
+.text {
+  font-size: 1rem;
+  color: #333;
+  overflow: hidden; // To hide the overflow when the text is translated
+  width: 0; // Initial width
+  opacity: 0;
+  transform: translateX(-50%);
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
 }
 
 /* Hide the actual checkbox */
@@ -57,7 +62,7 @@
 .menuToggle:checked ~ .menuContent {
   width: 200px;
 
-  [data-textcontainer] {
+  .text {
     width: auto;
     visibility: visible;
     opacity: 1;

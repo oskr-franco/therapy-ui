@@ -133,10 +133,10 @@ function ExerciseForm({
         return (
           <IconButton
             key={index}
-            className={styles.addBtn}
             onClick={onAddMediaItem}
             icon={FaPlusCircle}
             alt={addAlt}
+            color="green"
           />
         );
       }
@@ -144,9 +144,9 @@ function ExerciseForm({
         <IconButton
           key={index}
           id={`media-${index}`}
-          className={styles.removeBtn}
           onClick={onRemoveMediaItem}
           icon={FaMinusCircle}
+          color="red"
         />
       );
     },

@@ -1,23 +1,22 @@
-import Link from 'next/link';
 import { IconType } from 'react-icons';
 import cx from 'classnames';
 
 import styles from './Item.module.scss';
+import { IconButton } from '@/components/Button';
 
 type ItemProps = {
   className?: string;
   icon: IconType;
   href: string;
-  text: string;
+  children?: React.ReactNode;
 };
-function Item({ icon: Icon, href, text, className }: ItemProps) {
+function Item({ icon: Icon, href, className, children }: ItemProps) {
   return (
-    <Link href={href} className={cx(styles.container, className)}>
-      <Icon className={styles.icon} size={30} />
-      <div data-textcontainer className={styles.textContainer}>
-        <span className={styles.text}>{text}</span>
-      </div>
-    </Link>
+    <div className={cx(styles.container, className)}>
+      <IconButton href={href} icon={Icon} className={styles.icon} iconSize={25}>
+        {children}
+      </IconButton>
+    </div>
   );
 }
 

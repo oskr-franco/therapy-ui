@@ -89,26 +89,6 @@
   }
 }
 
-@mixin iconBtn($color: $black-color) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px; 
-  border: none;
-  border-radius: 50%;
-  background-color: $white-color;
-  color: $color;
-  cursor: pointer;
-  transition: background-color .5s ease;
-  font-size: 20px;
-  position: relative;
-
-  &:hover {
-    background-color: $color;
-    color: $white-color;
-  }
-}
-
 @mixin truncate-lines($lines) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;
