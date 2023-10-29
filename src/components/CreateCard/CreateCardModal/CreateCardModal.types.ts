@@ -5,10 +5,11 @@ type OpenModalType = Pick<ModalType, 'openModal'>;
 
 type ModalComponentType = Pick<Modal, 'component'>;
 
-type CreateCardType = OpenModalType &
-  ModalComponentType & {
-    text: string;
-    className?: string;
-  };
+type BaseCardType = {
+  text: string;
+  className?: string;
+};
 
-export default CreateCardType;
+type CreateCardModalType = OpenModalType & ModalComponentType & BaseCardType;
+
+export default CreateCardModalType;

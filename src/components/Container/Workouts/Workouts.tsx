@@ -1,7 +1,6 @@
 import React from 'react';
 
-import CreateCard from '@/components/CreateCardModal';
-import WorkoutForm from '@/components/Workout/WorkoutForm';
+import { CreateCardLink } from '@/components/CreateCard';
 
 import WorkoutsType from './Workouts.types';
 import styles from './Workouts.module.scss';
@@ -16,10 +15,10 @@ function Workouts({ data }: WorkoutsType) {
 
   return (
     <div className={styles.cards}>
-      <CreateCard
+      <CreateCardLink
         className={styles.card}
         text={addWorkout}
-        component={WorkoutForm}
+        href="/workouts/build"
       />
       {/* {exercises.map((exercise) => (
         <ExerciseCard

@@ -9,6 +9,7 @@ import IconButton from '../IconButton/IconButton';
 import styles from './ClipboardButton.module.scss';
 
 function ClipboardButton({ url, alert }) {
+  const copyLinkText = 'Copiar link';
   const urlCopiedText = 'Link copiado a portapapeles!';
 
   const copyToClipboard = () => {
@@ -26,7 +27,7 @@ function ClipboardButton({ url, alert }) {
     <div className={styles.wrapper}>
       <IconButton
         icon={FaLink}
-        tooltip="Copiar link"
+        tooltip={copyLinkText}
         tooltipPosition="bottom"
         onClick={copyToClipboard}
       />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Inter } from 'next/font/google';
-import cx from 'classnames';
 import Menu from '@/components/Container/Menu';
+import Header from '@/components/Container/Header';
 import Alerts from '@/components/Alerts/Alerts';
 import Store from '../store/Store';
 import Modal from '../components/Modal';
@@ -21,9 +21,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <Store>
-        <body className={cx(inter.className, styles.bodyContent)}>
+        <body className={inter.className}>
           <Menu />
-          <main>{children}</main>
+          <Header />
+          <main className={styles.main}>{children}</main>
           <Modal />
           <Alerts />
         </body>

@@ -26,6 +26,11 @@ body {
 
 textarea, input, button, select { font-family: inherit; font-size: inherit; }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 // h2 {
 //   font-size: rem(16px);
 //   font-weight: 700;

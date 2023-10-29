@@ -7,7 +7,7 @@ import cx from 'classnames';
 import withOpenModal from '@/hocs/withOpenModal';
 
 import CreateCardType from './CreateCardModal.types';
-import styles from './CreateCardModal.module.scss';
+import styles from '../CreateCard.module.scss';
 
 function CreateCardModal({
   className,

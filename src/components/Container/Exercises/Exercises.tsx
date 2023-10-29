@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ExerciseCard from '@/components/Exercise/ExerciseCard';
-import CreateCard from '@/components/CreateCardModal';
+import { CreateCardModal } from '@/components/CreateCard';
 import ExerciseForm from '@/components/Exercise/ExerciseForm';
 
 import ExercisesType from './Exercises.types';
@@ -17,7 +17,7 @@ function Exercises({ data }: ExercisesType) {
 
   return (
     <div className={styles.cards}>
-      <CreateCard
+      <CreateCardModal
         className={styles.card}
         text={addExercise}
         component={ExerciseForm}
