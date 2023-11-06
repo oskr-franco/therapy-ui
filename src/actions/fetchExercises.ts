@@ -3,9 +3,12 @@
 import exercisesService from '@/services/exerciseService';
 import { Exercise, PaginationFilter, PaginationResponse } from '@/types';
 
+const PAGE_SIZE = 10;
+
 export async function fetchExercises(
   filter?: PaginationFilter,
 ): Promise<PaginationResponse<Exercise>> {
-  const exercisesResponse = await exercisesService.getAll(filter);
+  const newFilter: PaginationFilter = { pageSize: PAGE_SIZE, ...filter };
+  const exercisesResponse = await exercisesService.getAll(newFilter);
   return exercisesResponse;
 }

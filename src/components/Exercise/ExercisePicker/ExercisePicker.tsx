@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { fetchExercises } from '@/actions/fetchExercises';
 import { Skeleton } from '@/components/Loading';
@@ -12,41 +13,47 @@ import ExercisePickerProps, {
 
 function ExercisePicker({
   className,
+  initialExercises,
   onSelect,
   selectedExercises,
 }: ExercisePickerProps) {
-  const [exercises, setExercises] = useState<Exercise[]>([]);
-  const [, setPagination] = useState<Pagination>();
+  const { data: initialData, ...initialPagination } = initialExercises;
+  const [exercises, setExercises] = useState<Exercise[]>(initialData);
+  const [pagination, setPagination] = useState<Pagination>(initialPagination);
 
   async function fetchMoreData() {
-    const { data, ...paginationData } = await fetchExercises();
-    setExercises(data);
+    const { data, ...paginationData } = await fetchExercises({
+      after: pagination?.lastCursor,
+    });
+    setExercises((prevData) => [...prevData, ...data]);
     setPagination(paginationData);
   }
-
-  useEffect(() => {
-    void fetchMoreData();
-  }, []);
 
   function checkIfExerciseSelected(id: string): boolean {
     return !!selectedExercises.find((e) => e.id === id);
   }
 
-  if (!exercises.length) return <Skeleton className={className} />;
-
   return (
-    <div className={className}>
-      {exercises.map((exercise) => (
-        <label key={exercise.id} className={styles.label}>
-          <input
-            type="checkbox"
-            value={exercise.id}
-            checked={checkIfExerciseSelected(exercise.id)}
-            onChange={(e) => onSelect(exercise, e.target.checked)}
-          />
-          {exercise.name}
-        </label>
-      ))}
+    <div id="scrollableDiv" className={className}>
+      <InfiniteScroll
+        dataLength={exercises.length}
+        next={fetchMoreData}
+        hasMore={pagination?.hasNextPage}
+        loader={<Skeleton className={styles.skeleton} />}
+        scrollableTarget="scrollableDiv"
+      >
+        {exercises.map((exercise) => (
+          <label key={exercise.id} className={styles.label}>
+            <input
+              type="checkbox"
+              value={exercise.id}
+              checked={checkIfExerciseSelected(exercise.id)}
+              onChange={(e) => onSelect(exercise, e.target.checked)}
+            />
+            {exercise.name}
+          </label>
+        ))}
+      </InfiniteScroll>
     </div>
   );
 }

@@ -12,12 +12,13 @@ import WorkoutFormProps, { ExerciseState } from './WorkoutForm.types';
 import styles from './WorkoutForm.module.scss';
 import { WorkoutExercise } from '@/types';
 
-function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
+function WorkoutForm({ initialData = {}, initialExercises }: WorkoutFormProps) {
   const workoutNamePlaceholder = 'Nombre del workout';
   const buildWorkout = 'Construye tu workout';
   const selectExercises = 'Selecciona tus ejercicios';
   const repsPlaceholder = 'Ej: 12 repeticiones';
   const setsPlaceholder = 'Ej: 3 sets';
+  const RequiredError = 'Campo es requerido';
   const setsRequiredError = 'Sets es requerido';
   const repsRequiredError = 'Repeticiones es requerido';
   const numberError = 'Solo se permiten números';
@@ -75,6 +76,10 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
   }, [selectedExercises.length]);
 
   const onSubmit = (data) => {
+    if (!data.workoutExercises.length) {
+      alert('Selecciona al menos un ejercicio');
+      return;
+    }
     console.log(errors);
     setIsLoading(true);
     // Clean up data and call API here
@@ -90,12 +95,17 @@ function WorkoutForm({ initialData = {} }: WorkoutFormProps) {
         name="name"
         placeholder={workoutNamePlaceholder}
         icon={SiWheniwork}
+        validations={{
+          required: RequiredError,
+        }}
       />
+      {errors.name && <p className={styles.error}>{errors.name.message}</p>}
       <div className={styles.body}>
         <div className={styles.exercisePickerContainer}>
           <h4 className={styles.subtitle}>{selectExercises}</h4>
           <ExercisePicker
             className={styles.exercisePicker}
+            initialExercises={initialExercises}
             onSelect={handleExerciseSelect}
             selectedExercises={selectedExercises}
           />

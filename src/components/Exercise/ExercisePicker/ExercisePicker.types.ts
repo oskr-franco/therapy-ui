@@ -6,6 +6,7 @@ export type Pagination = Omit<PaginationResponse<Exercise>, 'data'>;
 
 type ExercisePicekerType = {
   className?: string;
+  initialExercises: PaginationResponse<ExercisePicker>;
   onSelect: (exercise: ExercisePicker, isSelected: boolean) => void;
   selectedExercises: ExercisePicker[];
 };
