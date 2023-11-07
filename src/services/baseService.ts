@@ -18,8 +18,8 @@ class BaseService<T> {
     return fetchWrapper.get(`${this.url}/${id}`);
   }
 
-  async create(params) {
-    return fetchWrapper.post(this.url, params);
+  async create(params: T) {
+    return fetchWrapper.post<T>(this.url, params);
   }
 
   async update(id, params) {

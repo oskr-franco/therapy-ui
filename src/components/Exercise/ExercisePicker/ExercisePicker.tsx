@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { fetchExercises } from '@/actions/fetchExercises';
+import { fetchExercises } from '@/actions/exercises/fetchExercises';
 import { Skeleton } from '@/components/Loading';
 import styles from './ExercisePicker.module.scss';
 

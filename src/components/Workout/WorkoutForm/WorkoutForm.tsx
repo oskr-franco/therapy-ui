@@ -7,12 +7,18 @@ import { SiWheniwork } from 'react-icons/si';
 import ExercisePicker from '@/components/Exercise/ExercisePicker';
 import { TextInput } from '@/components/FormFields';
 import { LoadingButton } from '../../Button';
+import { WorkoutExercise } from '@/types';
+import { createWorkout } from '@/actions/workouts/createWorkout';
+import withAlerts from '@/hocs/withAlerts';
 
 import WorkoutFormProps, { ExerciseState } from './WorkoutForm.types';
 import styles from './WorkoutForm.module.scss';
-import { WorkoutExercise } from '@/types';
 
-function WorkoutForm({ initialData = {}, initialExercises }: WorkoutFormProps) {
+function WorkoutForm({
+  initialData = {},
+  initialExercises,
+  alert,
+}: WorkoutFormProps) {
   const workoutNamePlaceholder = 'Nombre del workout';
   const buildWorkout = 'Construye tu workout';
   const selectExercises = 'Selecciona tus ejercicios';
@@ -75,15 +81,17 @@ function WorkoutForm({ initialData = {}, initialExercises }: WorkoutFormProps) {
     endOfWorkoutRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [selectedExercises.length]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (!data.workoutExercises.length) {
-      alert('Selecciona al menos un ejercicio');
+      alert.error('Selecciona al menos un ejercicio');
       return;
     }
-    console.log(errors);
     setIsLoading(true);
     // Clean up data and call API here
-    console.log(data);
+    const result = await createWorkout(data);
+    if (!!result.id) {
+      alert.success('Workout creado exitosamente');
+    }
     setIsLoading(false);
   };
 
@@ -170,4 +178,4 @@ function WorkoutForm({ initialData = {}, initialExercises }: WorkoutFormProps) {
   );
 }
 
-export default WorkoutForm;
+export default withAlerts(WorkoutForm);
