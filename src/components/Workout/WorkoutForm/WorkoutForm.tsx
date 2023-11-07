@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { SiWheniwork } from 'react-icons/si';
+import { useRouter } from 'next/navigation';
 
 import ExercisePicker from '@/components/Exercise/ExercisePicker';
 import { TextInput } from '@/components/FormFields';
@@ -30,6 +31,7 @@ function WorkoutForm({
   const numberError = 'Solo se permiten números';
   const submitText = 'Guardar workout';
 
+  const router = useRouter();
   const endOfWorkoutRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const { workoutExercises } = initialData;
@@ -90,6 +92,7 @@ function WorkoutForm({
     // Clean up data and call API here
     const result = await createWorkout(data);
     if (!!result.id) {
+      router.push('/workouts');
       alert.success('Workout creado exitosamente');
     }
     setIsLoading(false);
