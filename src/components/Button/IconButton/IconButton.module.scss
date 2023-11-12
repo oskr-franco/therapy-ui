@@ -15,7 +15,7 @@
 
   &:hover {
     
-    @include viewport(desktop) {
+    @include viewport(tablet) {
       .tooltip {
         opacity: 1;
         visibility: visible;

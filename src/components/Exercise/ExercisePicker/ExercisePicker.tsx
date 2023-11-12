@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { fetchExercises } from '@/actions/exercises/fetchExercises';
+import { getExercises } from '@/actions/exercises/actions';
 import { Skeleton } from '@/components/Loading';
 import styles from './ExercisePicker.module.scss';
 
@@ -22,7 +22,7 @@ function ExercisePicker({
   const [pagination, setPagination] = useState<Pagination>(initialPagination);
 
   async function fetchMoreData() {
-    const { data, ...paginationData } = await fetchExercises({
+    const { data, ...paginationData } = await getExercises({
       after: pagination?.lastCursor,
     });
     setExercises((prevData) => [...prevData, ...data]);

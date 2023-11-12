@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
 
-import CardActions from './components/CardActions/CardActions';
+import CardActions from './components/CardActions/CardActionsExercise';
 
 import Media from '../../Media';
 

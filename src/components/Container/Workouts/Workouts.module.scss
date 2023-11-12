@@ -7,7 +7,7 @@
   grid-template-columns: 1fr;
   padding-top: 20px;
 
-  @include viewport(desktop){
+  @include viewport(tablet){
     grid-template-columns: 1fr 1fr;
   }
   
@@ -15,10 +15,10 @@
 
 .card {
   @include card();
-  height: 127px;
+  height: 180px;
 
   @include viewport(big-mobile) {
-    height: 151px;
+    height: 170px;
   }
 
   @include viewport(tablet) {
@@ -26,9 +26,9 @@
   }
 
   @include viewport(desktop) {
-    height: 155px;
+    height: 195px;
   }
   @include viewport(desktop-large) {
-    height: 195px;
+    height: 200px;
   }
 }

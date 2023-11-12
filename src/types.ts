@@ -29,7 +29,7 @@ export type WorkoutExercise = Omit<Exercise, 'id' | 'media'> & {
 };
 
 export type Workout = {
-  id: string;
+  id: number;
   name: string;
   workoutExercises: WorkoutExercise[];
 };

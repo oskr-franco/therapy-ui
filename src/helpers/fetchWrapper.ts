@@ -1,4 +1,4 @@
-import { FetchError, PaginationResponse } from '@/types';
+import { FetchError } from '@/types';
 
 function handleResponse<T>(response) {
   return response.text().then((text) => {
@@ -13,16 +13,13 @@ function handleResponse<T>(response) {
   });
 }
 
-function get<T>(
-  url: string,
-  init?: RequestInit,
-): Promise<PaginationResponse<T>> {
+function get<T>(url: string, init?: RequestInit): Promise<T> {
   const requestOptions = {
     method: 'GET',
     ...init,
   };
   return fetch(url, requestOptions).then((response) =>
-    handleResponse<PaginationResponse<T>>(response),
+    handleResponse<T>(response),
   );
 }
 
@@ -36,7 +33,7 @@ function post<T>(url, body): Promise<T> {
   return fetch(url, requestOptions).then(handleResponse);
 }
 
-function put(url, body) {
+function put(url, body): Promise<void> {
   const requestOptions = {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },

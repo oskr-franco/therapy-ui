@@ -1,19 +1,17 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { BsBoxArrowUpRight, BsPencilSquare, BsTrash } from 'react-icons/bs';
 
 import fetchWrapper from '@/helpers/fetchWrapper';
 
 import ExerciseForm from '@/components/Exercise/ExerciseForm';
-import { IconButton } from '@/components/Button';
 import withAlerts from '@/hocs/withAlerts';
+import CardActions from '@/components/CardActions';
 
-import styles from './CardActions.module.scss';
+import styles from './CardActionsExercise.module.scss';
 import withOpenModal from '@/hocs/withOpenModal';
 
-function CardActions({
+function CardActionsExercise({
   id,
   name,
   description,
@@ -23,6 +21,7 @@ function CardActions({
   alert,
 }) {
   const router = useRouter();
+  const exerciseDeleted = 'Ejercicio eliminado';
 
   const handleEdit = () => {
     openModal({
@@ -36,31 +35,17 @@ function CardActions({
   const handleDelete = async () => {
     await fetchWrapper.delete(`/api/exercise/${id}`);
     router.refresh();
-    alert.success('Ejercicio eliminado');
+    alert.success(exerciseDeleted);
   };
   return (
     <div className={styles.actions}>
-      <IconButton
-        className={styles.edit}
-        icon={BsPencilSquare}
-        tooltip="Editar"
-        onClick={handleEdit}
-      />
-      <Link href={`/exercises/${id}`}>
-        <IconButton
-          className={styles.view}
-          icon={BsBoxArrowUpRight}
-          tooltip="Ver"
-        />
-      </Link>
-      <IconButton
-        className={styles.delete}
-        icon={BsTrash}
-        tooltip="Eliminar"
-        onClick={handleDelete}
+      <CardActions
+        to={`/exercises/${id}`}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
       />
     </div>
   );
 }
 
-export default withAlerts(withOpenModal(CardActions));
+export default withAlerts(withOpenModal(CardActionsExercise));

@@ -5,7 +5,7 @@ import { Exercise, PaginationFilter, PaginationResponse } from '@/types';
 
 const PAGE_SIZE = 10;
 
-export async function fetchExercises(
+export async function getExercises(
   filter?: PaginationFilter,
 ): Promise<PaginationResponse<Exercise>> {
   const newFilter: PaginationFilter = { pageSize: PAGE_SIZE, ...filter };

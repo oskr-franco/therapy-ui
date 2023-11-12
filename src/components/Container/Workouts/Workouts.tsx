@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CreateCardLink } from '@/components/CreateCard';
+import WorkoutCard from '@/components/Workout/WorkoutCard';
 
 import WorkoutsType from './Workouts.types';
 import styles from './Workouts.module.scss';
@@ -20,17 +21,15 @@ function Workouts({ data }: WorkoutsType) {
         text={addWorkout}
         href="/workouts/build"
       />
-      {/* {exercises.map((exercise) => (
-        <ExerciseCard
+      {workouts.map((workout) => (
+        <WorkoutCard
           className={styles.card}
-          key={exercise.id}
-          id={exercise.id}
-          name={exercise.name}
-          description={exercise.description}
-          instructions={exercise.instructions}
-          media={exercise.media}
+          key={workout.id}
+          id={workout.id}
+          name={workout.name}
+          workoutExercises={workout.workoutExercises}
         />
-      ))} */}
+      ))}
     </div>
   );
 }

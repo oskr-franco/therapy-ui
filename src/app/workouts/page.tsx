@@ -6,7 +6,9 @@ import workoutsService from '@/services/workoutService';
 export const revalidate = 0;
 
 async function WorkoutPage() {
-  const response = await workoutsService.getAll();
+  const response = await workoutsService.getAll({
+    includeExerciseDetails: true,
+  });
   if (!response) {
     return null;
   }

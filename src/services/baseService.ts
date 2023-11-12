@@ -1,28 +1,28 @@
 import fetchWrapper from '@/helpers/fetchWrapper';
-import { PaginationFilter } from '@/types';
+import { PaginationFilter, PaginationResponse } from '@/types';
 import toQueryString from '@/utils/toQueryString';
 
-class BaseService<T> {
+class BaseService<T, TFilter = {}> {
   url: string;
 
   constructor(url) {
     this.url = url;
   }
 
-  async getAll(filter?: PaginationFilter) {
+  async getAll(filter?: TFilter | PaginationFilter) {
     const queryString = filter ? toQueryString(filter) : '';
-    return fetchWrapper.get<T>(this.url + queryString);
+    return fetchWrapper.get<PaginationResponse<T>>(this.url + queryString);
   }
 
-  async getById(id) {
-    return fetchWrapper.get(`${this.url}/${id}`);
+  async getById(id: number) {
+    return fetchWrapper.get<T>(`${this.url}/${id}`);
   }
 
   async create(params: T) {
     return fetchWrapper.post<T>(this.url, params);
   }
 
-  async update(id, params) {
+  async update(id: number, params: T) {
     return fetchWrapper.put(`${this.url}/${id}`, params);
   }
 

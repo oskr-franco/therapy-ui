@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation';
 import ExercisePicker from '@/components/Exercise/ExercisePicker';
 import { TextInput } from '@/components/FormFields';
 import { LoadingButton } from '../../Button';
-import { WorkoutExercise } from '@/types';
-import { createWorkout } from '@/actions/workouts/createWorkout';
+import { Workout, WorkoutExercise } from '@/types';
+import { createWorkout, updateWorkout } from '@/actions/workouts/actions';
 import withAlerts from '@/hocs/withAlerts';
 
 import WorkoutFormProps, { ExerciseState } from './WorkoutForm.types';
@@ -24,9 +24,9 @@ function WorkoutForm({
   const buildWorkout = 'Construye tu workout';
   const selectExercises = 'Selecciona tus ejercicios';
   const repsPlaceholder = 'Ej: 12 repeticiones';
-  const setsPlaceholder = 'Ej: 3 sets';
+  const setsPlaceholder = 'Ej: 3 series';
   const RequiredError = 'Campo es requerido';
-  const setsRequiredError = 'Sets es requerido';
+  const setsRequiredError = 'Series es requerido';
   const repsRequiredError = 'Repeticiones es requerido';
   const numberError = 'Solo se permiten números';
   const submitText = 'Guardar workout';
@@ -83,17 +83,22 @@ function WorkoutForm({
     endOfWorkoutRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [selectedExercises.length]);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: Workout) => {
     if (!data.workoutExercises.length) {
       alert.error('Selecciona al menos un ejercicio');
       return;
     }
     setIsLoading(true);
-    // Clean up data and call API here
-    const result = await createWorkout(data);
-    if (!!result.id) {
+    if (data.id) {
+      await updateWorkout(data.id, data);
       router.push('/workouts');
-      alert.success('Workout creado exitosamente');
+      alert.success('Workout actualizado exitosamente');
+    } else {
+      const result = await createWorkout(data);
+      if (!!result.id) {
+        router.push('/workouts');
+        alert.success('Workout creado exitosamente');
+      }
     }
     setIsLoading(false);
   };
