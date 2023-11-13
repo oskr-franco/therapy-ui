@@ -1,5 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
+import { BsChevronRight } from 'react-icons/bs';
+
+import { IconButton } from '@/components/Button';
 
 import { Workout, WorkoutExercise } from '@/types';
 import CardActionsWorkout from './components/CardActionsWorkout';
@@ -29,6 +32,7 @@ function WorkoutCard({
   name,
   workoutExercises,
 }: WorkoutCardProps) {
+  const seeMore = 'Ver más';
   const FirstThreeExercises = workoutExercises.slice(0, 3);
   return (
     <div className={cx(styles.card, className)}>
@@ -38,6 +42,14 @@ function WorkoutCard({
         {FirstThreeExercises.map((exercise) => (
           <ExerciseInfo key={exercise.exerciseId} {...exercise} />
         ))}
+        {workoutExercises.length >= 3 && (
+          <IconButton
+            href={`/workouts/${id}`}
+            className={styles.seeMore}
+            icon={BsChevronRight}
+            tooltip={seeMore}
+          />
+        )}
       </div>
     </div>
   );
