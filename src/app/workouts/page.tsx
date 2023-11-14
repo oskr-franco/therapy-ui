@@ -7,7 +7,7 @@ export const revalidate = 0;
 
 async function WorkoutPage() {
   const response = await workoutsService.getAll({
-    includeExerciseDetails: true,
+    includeMedia: true,
   });
   if (!response) {
     return null;

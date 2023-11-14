@@ -51,7 +51,7 @@ function WorkoutForm({
     (we) =>
       ({
         id: we.exerciseId,
-        name: we.description,
+        name: we.name,
       }) as ExerciseState,
   );
   const [selectedExercises, setSelectedExercises] = useState<ExerciseState[]>(

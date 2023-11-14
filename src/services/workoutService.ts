@@ -3,7 +3,7 @@ import BaseService from './baseService';
 import { PaginationFilter, Workout } from '@/types';
 
 type PaginationFilterWorkout = PaginationFilter & {
-  includeExerciseDetails?: boolean;
+  includeMedia?: boolean;
 };
 
 const { apiService } = appConfig;

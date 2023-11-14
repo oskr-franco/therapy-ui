@@ -4,6 +4,8 @@ import WorkoutForm from '@/components/Workout/WorkoutForm';
 import { getExercises } from '@/actions/exercises/actions';
 import { getWorkout } from '@/actions/workouts/actions';
 
+export const revalidate = 0;
+
 async function WorkoutBuilderPage({ params }: { params: { id: number[] } }) {
   const [id] = params?.id || [];
   const initialExercises = await getExercises();

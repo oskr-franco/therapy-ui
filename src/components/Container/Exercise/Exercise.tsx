@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { Exercise as ExerciseType } from '@/types';
+
 import ExerciseDetail, {
   ExerciseActions,
 } from '@/components/Exercise/ExerciseDetail';
 
 type ExerciseProps = {
-  exercise: any;
+  exercise: ExerciseType;
   isPreview?: boolean;
 };
 
