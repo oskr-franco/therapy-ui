@@ -24,7 +24,6 @@ function CardActionsWorkout({ id, alert }: CardActionsWorkoutProps) {
 
   const handleDelete = async () => {
     await deleteWorkout(id);
-    router.refresh();
     alert.success(exerciseDeleted);
   };
   return (

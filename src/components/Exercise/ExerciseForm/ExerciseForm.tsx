@@ -2,16 +2,15 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import cx from 'classnames';
 import { CgGym } from 'react-icons/cg';
 import { TbFileDescription } from 'react-icons/tb';
 import { FaListUl, FaLink, FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 
+import { updateExercise, createExercise } from '@/actions/exercises/actions';
 import getUrlType from '@/utils/getUrlType';
 import withAlerts from '@/hocs/withAlerts';
 import withOpenModal from '@/hocs/withOpenModal';
-import fetchWrapper from '@/helpers/fetchWrapper';
 
 import { TextInput, TextArea } from '../../FormFields';
 import { LoadingButton, IconButton } from '../../Button';
@@ -25,7 +24,6 @@ function ExerciseForm({
   alert,
   closeModal,
 }: ExerciseFormProps) {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const isEditing = !!initialData.id;
   const titleText = 'Agregar Ejercicio';
@@ -98,15 +96,14 @@ function ExerciseForm({
     setIsLoading(true);
     if (data.id) {
       // We have an ID, so we're updating an existing item
-      await fetchWrapper.put(`/api/exercise/${data.id}`, data);
+      // await fetchWrapper.put(`/api/exercise/${data.id}`, data);
+      updateExercise(data.id, data);
       closeModal();
-      router.refresh();
       alert.success(exerciseUpdated);
     } else {
-      // No ID, so we're creating a new item
-      await fetchWrapper.post('/api/exercise', data);
+      // No ID, so we're creating a new item;
+      createExercise(data);
       closeModal();
-      router.refresh();
       alert.success(exerciseCreated);
     }
 

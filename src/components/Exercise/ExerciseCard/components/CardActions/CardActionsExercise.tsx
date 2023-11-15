@@ -1,8 +1,7 @@
 'use client';
 import React from 'react';
-import { useRouter } from 'next/navigation';
 
-import fetchWrapper from '@/helpers/fetchWrapper';
+import { deleteExercise } from '@/actions/exercises/actions';
 
 import ExerciseForm from '@/components/Exercise/ExerciseForm';
 import withAlerts from '@/hocs/withAlerts';
@@ -20,7 +19,6 @@ function CardActionsExercise({
   openModal,
   alert,
 }) {
-  const router = useRouter();
   const exerciseDeleted = 'Ejercicio eliminado';
 
   const handleEdit = () => {
@@ -33,8 +31,7 @@ function CardActionsExercise({
   };
 
   const handleDelete = async () => {
-    await fetchWrapper.delete(`/api/exercise/${id}`);
-    router.refresh();
+    deleteExercise(id);
     alert.success(exerciseDeleted);
   };
   return (

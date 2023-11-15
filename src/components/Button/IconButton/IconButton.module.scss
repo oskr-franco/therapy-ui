@@ -14,7 +14,6 @@
   }
 
   &:hover {
-    
     @include viewport(tablet) {
       .tooltip {
         opacity: 1;
@@ -33,7 +32,7 @@
 }
 
 .black {
-  &:hover {
+  &:hover:not(:disabled) {
     .iconContainer{
       background-color: $black-color;
       color: $white-color;
@@ -47,7 +46,7 @@
 }
 
 .red {
-  &:hover {
+  &:hover:not(:disabled) {
     .iconContainer{
       background-color: $red-color;
       color: $white-color;
@@ -61,7 +60,7 @@
 }
 
 .green {
-  &:hover {
+  &:hover:not(:disabled) {
     .iconContainer{
       background-color: $green-color;
       color: $white-color;

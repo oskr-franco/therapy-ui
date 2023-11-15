@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Media from '../../Media';
+import Carousel from '@/components/Carousel';
 
 import styles from './ExerciseDetail.module.scss';
 
@@ -17,6 +18,16 @@ function ExerciseDetail({ name, description, instructions, media }) {
     <div className={styles.exerciseWrapper}>
       <div className={styles.column}>
         <h1>{name}</h1>
+        <Carousel>
+          {media.map((mediaItem) => (
+            <Media
+              key={mediaItem.id}
+              className={styles.media}
+              {...mediaItem}
+              layout="responsive"
+            />
+          ))}
+        </Carousel>
         <h2>{descriptionTitle}</h2>
         <div>{breaklines(description)}</div>
         {instructions && (

@@ -1,6 +1,7 @@
 'use server';
 import workoutService from '@/services/workoutService';
 import { Workout } from '@/types';
+import { revalidatePath } from 'next/cache';
 
 export async function getWorkout(id: number): Promise<Workout> {
   return workoutService.getById(id);
@@ -19,4 +20,6 @@ export async function updateWorkout(
 
 export async function deleteWorkout(id: string): Promise<void> {
   await workoutService.delete(id);
+  revalidatePath('/workouts');
+  return;
 }

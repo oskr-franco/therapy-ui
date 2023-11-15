@@ -18,6 +18,7 @@ type IconButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   tooltip?: string;
   tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
+  disabled?: boolean;
 };
 
 function IconButton({
@@ -31,6 +32,7 @@ function IconButton({
   onClick,
   tooltip,
   tooltipPosition = 'top',
+  disabled,
 }: IconButtonProps) {
   const IconTooltip = (
     <>
@@ -63,6 +65,7 @@ function IconButton({
       type="button"
       className={cx(styles.button, styles[color], className)}
       onClick={onClick}
+      disabled={disabled}
     >
       {IconTooltip}
       {children}
