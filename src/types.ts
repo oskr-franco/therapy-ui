@@ -8,13 +8,13 @@ export type PageProps = {
 };
 
 export type Media = {
-  id: string;
+  id: number;
   url: string;
   type: string;
 };
 
 export type Exercise = {
-  id: string;
+  id: number;
   name: string;
   description: string;
   instructions: string;
@@ -22,7 +22,7 @@ export type Exercise = {
 };
 
 export type WorkoutExercise = Omit<Exercise, 'id' | 'media'> & {
-  exerciseId: string;
+  exerciseId: number;
   sets: number;
   reps: number;
   // duration?: string; //"00:30:00"

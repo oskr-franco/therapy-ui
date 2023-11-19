@@ -2,6 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
+import Paths from '@/constants/paths';
 import withAlerts from '@/hocs/withAlerts';
 import CardActions from '@/components/CardActions';
 import AlertType from '@/hocs/withAlerts.types';
@@ -10,16 +11,18 @@ import { deleteWorkout } from '@/actions/workouts/actions';
 import styles from './CardActionsWorkout.module.scss';
 
 type CardActionsWorkoutProps = {
-  id: string;
+  id: number;
   alert: AlertType;
 };
 
 function CardActionsWorkout({ id, alert }: CardActionsWorkoutProps) {
   const router = useRouter();
   const exerciseDeleted = 'Workout eliminado';
+  const workoutPath = Paths.Workout(id);
+  const editWorkoutPath = Paths.EditWorkout(id);
 
   const handleEdit = () => {
-    router.push(`/workouts/build/${id}`);
+    router.push(editWorkoutPath);
   };
 
   const handleDelete = async () => {
@@ -29,7 +32,7 @@ function CardActionsWorkout({ id, alert }: CardActionsWorkoutProps) {
   return (
     <CardActions
       className={styles.actions}
-      to={`/workouts/${id}`}
+      to={workoutPath}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
     />

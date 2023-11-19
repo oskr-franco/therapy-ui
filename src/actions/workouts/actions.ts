@@ -1,7 +1,9 @@
 'use server';
+import { revalidatePath } from 'next/cache';
+
+import Paths from '@/constants/paths';
 import workoutService from '@/services/workoutService';
 import { Workout } from '@/types';
-import { revalidatePath } from 'next/cache';
 
 export async function getWorkout(id: number): Promise<Workout> {
   return workoutService.getById(id);
@@ -9,17 +11,21 @@ export async function getWorkout(id: number): Promise<Workout> {
 
 export async function createWorkout(workout: Workout): Promise<Workout> {
   return workoutService.create(workout);
+  revalidatePath(Paths.Workouts);
 }
 
 export async function updateWorkout(
   id: number,
   workout: Workout,
 ): Promise<void> {
-  return workoutService.update(id, workout);
+  await workoutService.update(id, workout);
+  revalidatePath(Paths.Workouts);
+  revalidatePath(Paths.Workout(id));
+  return;
 }
 
-export async function deleteWorkout(id: string): Promise<void> {
+export async function deleteWorkout(id: number): Promise<void> {
   await workoutService.delete(id);
-  revalidatePath('/workouts');
+  revalidatePath(Paths.Workouts);
   return;
 }

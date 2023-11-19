@@ -2,7 +2,7 @@ import React from 'react';
 
 import Exercises from '@/components/Container/Exercises';
 
-import exercisesService from '../../services/exerciseService';
+import exercisesService from '../../../services/exerciseService';
 
 export const revalidate = 0;
 

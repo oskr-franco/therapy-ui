@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { BsChevronRight } from 'react-icons/bs';
 
 import { IconButton } from '@/components/Button';
+import Paths from '@/constants/paths';
 
 import { Workout, WorkoutExercise } from '@/types';
 import CardActionsWorkout from './components/CardActionsWorkout';
@@ -34,6 +35,7 @@ function WorkoutCard({
 }: WorkoutCardProps) {
   const seeMore = 'Ver más';
   const FirstThreeExercises = workoutExercises.slice(0, 3);
+  const workoutPath = Paths.Workout(id);
   return (
     <div className={cx(styles.card, className)}>
       <CardActionsWorkout id={id} />
@@ -44,7 +46,7 @@ function WorkoutCard({
         ))}
         {workoutExercises.length >= 3 && (
           <IconButton
-            href={`/workouts/${id}`}
+            href={workoutPath}
             className={styles.seeMore}
             icon={BsChevronRight}
             tooltip={seeMore}

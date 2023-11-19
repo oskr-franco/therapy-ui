@@ -2,8 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
 
-import CardActions from './components/CardActions/CardActionsExercise';
+import Paths from '@/constants/paths';
 
+import CardActions from './components/CardActions/CardActionsExercise';
 import Media from '../../Media';
 
 import ExerciseCardType from './ExerciseCard.types';
@@ -18,11 +19,12 @@ function ExerciseCard({
   instructions,
 }: ExerciseCardType) {
   const [mediaItem] = media;
+  const exercisePath = Paths.Exercise(id);
 
   return (
     <div className={cx(className, styles.card)}>
       <div className={styles.head}>
-        <Link href={`/exercises/${id}`} className={styles.link} />
+        <Link href={exercisePath} className={styles.link} />
         <Media
           className={styles.media}
           id={mediaItem.id}

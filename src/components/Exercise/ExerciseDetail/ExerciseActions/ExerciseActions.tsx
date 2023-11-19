@@ -4,12 +4,18 @@ import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { ClipboardButton } from '@/components/Button';
+import Paths from '@/constants/paths';
 
 import styles from './ExerciseActions.module.scss';
 
-function ExerciseActions({ id }) {
+type ExerciseActionsProps = {
+  id: number;
+};
+
+function ExerciseActions({ id }: ExerciseActionsProps) {
   const pathname = usePathname();
   const [domain, setDomain] = useState('');
+  const previewId = Paths.ExercisePreview(id);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -20,7 +26,7 @@ function ExerciseActions({ id }) {
 
   return (
     <div className={styles.wrapper}>
-      <ClipboardButton url={`${domain}/preview/${id}`} />
+      <ClipboardButton url={`${domain}${previewId}`} />
     </div>
   );
 }

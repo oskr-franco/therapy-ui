@@ -5,6 +5,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { SiWheniwork } from 'react-icons/si';
 import { useRouter } from 'next/navigation';
 
+import Paths from '@/constants/paths';
 import ExercisePicker from '@/components/Exercise/ExercisePicker';
 import { TextInput } from '@/components/FormFields';
 import { LoadingButton } from '../../Button';
@@ -30,6 +31,9 @@ function WorkoutForm({
   const repsRequiredError = 'Repeticiones es requerido';
   const numberError = 'Solo se permiten números';
   const submitText = 'Guardar workout';
+  const selectAtLeastOneExercise = 'Selecciona al menos un ejercicio';
+  const workoutUpdatedSuccesfully = 'Workout actualizado exitosamente';
+  const workoutCreatedSuccesfully = 'Workout creado exitosamente';
 
   const router = useRouter();
   const endOfWorkoutRef = useRef(null);
@@ -85,19 +89,19 @@ function WorkoutForm({
 
   const onSubmit = async (data: Workout) => {
     if (!data.workoutExercises.length) {
-      alert.error('Selecciona al menos un ejercicio');
+      alert.error(selectAtLeastOneExercise);
       return;
     }
     setIsLoading(true);
     if (data.id) {
       await updateWorkout(data.id, data);
-      router.push('/workouts');
-      alert.success('Workout actualizado exitosamente');
+      router.push(Paths.Workouts);
+      alert.success(workoutUpdatedSuccesfully);
     } else {
       const result = await createWorkout(data);
       if (!!result.id) {
-        router.push('/workouts');
-        alert.success('Workout creado exitosamente');
+        router.push(Paths.Workouts);
+        alert.success(workoutCreatedSuccesfully);
       }
     }
     setIsLoading(false);

@@ -29,7 +29,7 @@ function ExercisePicker({
     setPagination(paginationData);
   }
 
-  function checkIfExerciseSelected(id: string): boolean {
+  function checkIfExerciseSelected(id: number): boolean {
     return !!selectedExercises.find((e) => e.id === id);
   }
 

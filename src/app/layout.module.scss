@@ -1,10 +1,9 @@
 @import 'mixins';
 
 .main {
-  margin-left: 50px;
   padding: 0 20px;
 
   @include viewport(tablet) {
-    padding: 0 100px;
+    padding: 0 30px;
   }
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { deleteExercise } from '@/actions/exercises/actions';
-
+import Paths from '@/constants/paths';
 import ExerciseForm from '@/components/Exercise/ExerciseForm';
 import withAlerts from '@/hocs/withAlerts';
 import CardActions from '@/components/CardActions';
@@ -20,6 +20,7 @@ function CardActionsExercise({
   alert,
 }) {
   const exerciseDeleted = 'Ejercicio eliminado';
+  const exercisePath = Paths.Exercise(id);
 
   const handleEdit = () => {
     openModal({
@@ -37,7 +38,7 @@ function CardActionsExercise({
   return (
     <div className={styles.actions}>
       <CardActions
-        to={`/exercises/${id}`}
+        to={exercisePath}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
       />

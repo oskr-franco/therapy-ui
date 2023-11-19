@@ -1,12 +1,10 @@
 import React from 'react';
 
+import { Media as MediaType } from '@/types';
 import ImageFallback from '@/components/ImageFallback';
 import VideoPlayer from '@/components/VideoPlayer';
 
-type MediaProps = {
-  id: string;
-  url: string;
-  type: string;
+type MediaProps = MediaType & {
   className?: string;
   layout?: 'fill' | 'fixed' | 'intrinsic' | 'responsive';
 };
