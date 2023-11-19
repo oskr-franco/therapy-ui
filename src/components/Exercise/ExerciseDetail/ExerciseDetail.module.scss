@@ -1,20 +1,48 @@
 @import './mixins.scss';
 
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
 .exerciseWrapper {
   display: grid;
+  grid-template-areas: 
+    "carousel"
+    "desc";
+
   @include viewport(tablet) {
+    grid-template-areas: "desc divider carousel";
     grid-template-columns: 1fr 1px 1fr;
   }
 }
 
 .column {
-  padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  justify-content: center;
 }
 
+.descriptionContainer {
+  padding: 0 20px 40px;
+  grid-area: desc;
+}
+
+.carouselContainer {
+  grid-area: carousel;
+  margin-bottom: 40px;
+
+  @include viewport(tablet) {
+    padding: 0 40px;
+    margin-bottom: 0;
+  }
+}
+
+
 .divider {
+  grid-area: divider;
   @include verticalDivider();
 }
 

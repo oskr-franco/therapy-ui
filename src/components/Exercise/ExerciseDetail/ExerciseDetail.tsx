@@ -1,6 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
-
 import React from 'react';
+import cx from 'classnames';
+
 import Media from '../../Media';
 import Carousel from '@/components/Carousel';
 
@@ -15,40 +15,34 @@ function ExerciseDetail({ name, description, instructions, media }) {
   }
 
   return (
-    <div className={styles.exerciseWrapper}>
-      <div className={styles.column}>
-        <h1>{name}</h1>
-        <Carousel>
-          {media.map((mediaItem) => (
-            <Media
-              key={mediaItem.id}
-              className={styles.media}
-              {...mediaItem}
-              layout="responsive"
-            />
-          ))}
-        </Carousel>
-        <h2>{descriptionTitle}</h2>
-        <div>{breaklines(description)}</div>
-        {instructions && (
-          <>
-            <h2>{instructionsTitle}</h2>
-            <div>{breaklines(instructions)}</div>
-          </>
-        )}
+    <>
+      <h1 className={styles.title}>{name}</h1>
+      <div className={styles.exerciseWrapper}>
+        <div className={cx(styles.column, styles.descriptionContainer)}>
+          <h2>{descriptionTitle}</h2>
+          <div>{breaklines(description)}</div>
+          {instructions && (
+            <>
+              <h2>{instructionsTitle}</h2>
+              <div>{breaklines(instructions)}</div>
+            </>
+          )}
+        </div>
+        <div className={styles.divider} />
+        <div className={cx(styles.column, styles.carouselContainer)}>
+          <Carousel>
+            {media.map((mediaItem) => (
+              <Media
+                key={mediaItem.id}
+                className={styles.media}
+                {...mediaItem}
+                layout="responsive"
+              />
+            ))}
+          </Carousel>
+        </div>
       </div>
-      <div className={styles.divider} />
-      <div className={styles.column}>
-        {media.map((mediaItem) => (
-          <Media
-            key={mediaItem.id}
-            className={styles.media}
-            {...mediaItem}
-            layout="responsive"
-          />
-        ))}
-      </div>
-    </div>
+    </>
   );
 }
 

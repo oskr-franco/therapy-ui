@@ -15,8 +15,8 @@ function Media({ id, url, type, className, layout }: MediaProps) {
       <ImageFallback
         alt={id}
         className={className}
-        width={100}
-        height={100}
+        width={120}
+        height={40}
         src={url}
         layout={layout}
       />
