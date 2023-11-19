@@ -17,12 +17,12 @@ type WorkoutCardProps = WorkoutProps & {
 };
 
 function ExerciseInfo({ name, sets, reps }: WorkoutExercise) {
+  const setsText = 'Series';
+  const repsText = 'Repeticiones';
+  const exerciseText = `${name}: ${sets} ${setsText} - ${reps} ${repsText}`;
   return (
     <div className={styles.exercise}>
-      <span className={styles.exerciseName}>{name}: </span>
-      <span className={styles.exerciseInfo}>
-        {sets} X {reps}
-      </span>
+      <span>{exerciseText}</span>
     </div>
   );
 }
