@@ -6,15 +6,15 @@ import { usePathname } from 'next/navigation';
 import { ClipboardButton } from '@/components/Button';
 import Paths from '@/constants/paths';
 
-type ExerciseActionsProps = {
+type WorkoutActionsProps = {
   id: number;
   className?: string;
 };
 
-function ExerciseActions({ id, className }: ExerciseActionsProps) {
+function WorkoutActions({ id, className }: WorkoutActionsProps) {
   const pathname = usePathname();
   const [domain, setDomain] = useState('');
-  const previewId = Paths.ExercisePreview(id);
+  const previewId = Paths.WorkoutPreview(id);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -30,4 +30,4 @@ function ExerciseActions({ id, className }: ExerciseActionsProps) {
   );
 }
 
-export default ExerciseActions;
+export default WorkoutActions;

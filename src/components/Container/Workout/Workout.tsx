@@ -1,13 +1,23 @@
 import React from 'react';
 
+import WorkoutDetails, {
+  WorkoutActions,
+} from '@/components/Workout/WorkoutDetails';
 import WorkoutProps from './Workout.types';
+import styles from './Workout.module.scss';
 
-function WorkoutContainer({ workout }: WorkoutProps) {
+function WorkoutContainer({ workout, isPreview }: WorkoutProps) {
   // console.log(workout);
-  const { name, workoutExercises } = workout;
-  console.log(workoutExercises);
+  const { id, name, workoutExercises } = workout;
 
-  return <h2>{name}</h2>;
+  return (
+    <>
+      {!isPreview && (
+        <WorkoutActions className={styles.workoutActions} id={workout.id} />
+      )}
+      <WorkoutDetails id={id} name={name} workoutExercises={workoutExercises} />
+    </>
+  );
 }
 
 export default WorkoutContainer;

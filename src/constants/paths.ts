@@ -4,6 +4,7 @@ type URLS = {
   ExercisePreview: (id: number) => string;
   Workouts: string;
   Workout: (id: number) => string;
+  WorkoutPreview: (id: number) => string;
   CreateWorkout: string;
   EditWorkout: (id: number) => string;
 };
@@ -19,6 +20,9 @@ const Paths: URLS = {
   Workouts: '/admin/workouts',
   Workout: (id: number) => {
     return `/admin/workouts/${id}`;
+  },
+  WorkoutPreview: (id: number) => {
+    return `/preview/workout/${id}`;
   },
   CreateWorkout: '/admin/workouts/build',
   EditWorkout: (id: number) => {

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Exercise as ExerciseType } from '@/types';
 
+import styles from './Exercise.module.scss';
+
 import ExerciseDetail, {
   ExerciseActions,
 } from '@/components/Exercise/ExerciseDetail';
@@ -15,7 +17,9 @@ function Exercise({ exercise, isPreview = false }: ExerciseProps) {
   const { name, description, instructions, media } = exercise;
   return (
     <>
-      {!isPreview && <ExerciseActions id={exercise.id} />}
+      {!isPreview && (
+        <ExerciseActions className={styles.exerciseActions} id={exercise.id} />
+      )}
       <ExerciseDetail
         name={name}
         description={description}

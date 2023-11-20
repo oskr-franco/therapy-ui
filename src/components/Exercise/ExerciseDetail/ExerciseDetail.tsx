@@ -4,9 +4,16 @@ import cx from 'classnames';
 import Media from '../../Media';
 import Carousel from '@/components/Carousel';
 
+import ExerciseDetailProps from './ExerciseDetail.types';
 import styles from './ExerciseDetail.module.scss';
 
-function ExerciseDetail({ name, description, instructions, media }) {
+function ExerciseDetail({
+  name,
+  description,
+  instructions,
+  media,
+  children,
+}: ExerciseDetailProps) {
   const descriptionTitle = 'Descripción';
   const instructionsTitle = 'Instrucciones';
 
@@ -16,14 +23,14 @@ function ExerciseDetail({ name, description, instructions, media }) {
 
   return (
     <>
-      <h1 className={styles.title}>{name}</h1>
+      <h2 className={styles.title}>{name}</h2>
       <div className={styles.exerciseWrapper}>
         <div className={cx(styles.column, styles.descriptionContainer)}>
-          <h2>{descriptionTitle}</h2>
+          <h3>{descriptionTitle}</h3>
           <div>{breaklines(description)}</div>
           {instructions && (
             <>
-              <h2>{instructionsTitle}</h2>
+              <h3>{instructionsTitle}</h3>
               <div>{breaklines(instructions)}</div>
             </>
           )}
@@ -40,6 +47,7 @@ function ExerciseDetail({ name, description, instructions, media }) {
               />
             ))}
           </Carousel>
+          {children}
         </div>
       </div>
     </>

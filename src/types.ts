@@ -21,7 +21,7 @@ export type Exercise = {
   media: Media[];
 };
 
-export type WorkoutExercise = Omit<Exercise, 'id' | 'media'> & {
+export type WorkoutExercise = Omit<Exercise, 'id'> & {
   exerciseId: number;
   sets: number;
   reps: number;
