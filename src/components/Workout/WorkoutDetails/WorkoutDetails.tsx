@@ -10,7 +10,9 @@ function WorkoutDetails({ id, name, workoutExercises }: WorkoutDetailProps) {
   const repsText = 'Repeticiones';
   return (
     <>
-      <h1 key={id}>{name}</h1>
+      <h1 key={id} className={styles.title}>
+        {name}
+      </h1>
       {workoutExercises.map((workoutExercise) => {
         const {
           exerciseId,
