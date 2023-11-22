@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import WorkoutForm from '@/components/Workout/WorkoutForm';
 import { getExercises } from '@/actions/exercises/actions';
@@ -14,12 +14,10 @@ async function WorkoutBuilderPage({ params }: { params: { id: number[] } }) {
   const initialWorkout = id ? await getWorkout(id) : undefined;
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <WorkoutForm
-        initialExercises={initialExercises}
-        initialData={initialWorkout}
-      />
-    </Suspense>
+    <WorkoutForm
+      initialExercises={initialExercises}
+      initialData={initialWorkout}
+    />
   );
 }
 
