@@ -26,7 +26,7 @@ export async function createExercise(exercise: Exercise): Promise<Exercise> {
   const createdExercise = await exercisesService.create(exercise);
   revalidatePath(Paths.Exercises);
   // revalidatePath(Paths.Workouts, 'page');
-  // revalidatePath('/admin/workouts/[id]', 'page');
+  revalidatePath('/admin/workouts/[id]', 'page');
   return createdExercise;
 }
 

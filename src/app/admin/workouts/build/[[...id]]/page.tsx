@@ -4,7 +4,7 @@ import WorkoutForm from '@/components/Workout/WorkoutForm';
 import { getExercises } from '@/actions/exercises/actions';
 import { getWorkout } from '@/actions/workouts/actions';
 
-// export const revalidate = 0;
+export const revalidate = 0;
 // export const dynamic = 'force-dynamic';
 // export const dynamicParams = false;
 
