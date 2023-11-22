@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { getExercises } from '@/actions/exercises/actions';
@@ -32,6 +32,12 @@ function ExercisePicker({
   function checkIfExerciseSelected(id: number): boolean {
     return !!selectedExercises.find((e) => e.id === id);
   }
+
+  useEffect(() => {
+    if (initialData.length) {
+      setExercises(initialData);
+    }
+  }, [initialData]);
 
   return (
     <div id="scrollableDiv" className={className}>

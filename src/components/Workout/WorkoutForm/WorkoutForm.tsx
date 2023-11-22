@@ -12,6 +12,8 @@ import { LoadingButton } from '../../Button';
 import { Workout, WorkoutExercise } from '@/types';
 import { createWorkout, updateWorkout } from '@/actions/workouts/actions';
 import withAlerts from '@/hocs/withAlerts';
+import { CreateCardModal } from '@/components/CreateCard';
+import ExerciseForm from '@/components/Exercise/ExerciseForm';
 
 import WorkoutFormProps, { ExerciseState } from './WorkoutForm.types';
 import styles from './WorkoutForm.module.scss';
@@ -34,6 +36,7 @@ function WorkoutForm({
   const selectAtLeastOneExercise = 'Selecciona al menos un ejercicio';
   const workoutUpdatedSuccesfully = 'Workout actualizado exitosamente';
   const workoutCreatedSuccesfully = 'Workout creado exitosamente';
+  const addExercise = 'Crear Ejercicio';
 
   const router = useRouter();
   const endOfWorkoutRef = useRef(null);
@@ -123,6 +126,13 @@ function WorkoutForm({
       <div className={styles.body}>
         <div className={styles.exercisePickerContainer}>
           <h4 className={styles.subtitle}>{selectExercises}</h4>
+          <CreateCardModal
+            className={styles.card}
+            text={addExercise}
+            component={ExerciseForm}
+            onSubmitSuccess={() => router.refresh()}
+            iconSize="small"
+          />
           <ExercisePicker
             className={styles.exercisePicker}
             initialExercises={initialExercises}

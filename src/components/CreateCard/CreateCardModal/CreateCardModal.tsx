@@ -14,6 +14,7 @@ function CreateCardModal({
   text,
   openModal,
   component,
+  iconSize = 'large',
 }: CreateCardType) {
   const onCreateExerciseHandler = useCallback(() => {
     openModal({ component });
@@ -25,8 +26,8 @@ function CreateCardModal({
       className={cx(className, styles.container)}
       onClick={onCreateExerciseHandler}
     >
-      <div className={styles.text}>{text}</div>
-      <FaPlusCircle size={40} className={styles.icon} />
+      <div>{text}</div>
+      <FaPlusCircle className={cx(styles.icon, styles[iconSize])} />
     </button>
   );
 }

@@ -2,6 +2,7 @@
 
 .workout {
   margin-top: 40px;
+
   @include viewport(tablet) {
     width: 70%;
     margin: 40px auto;

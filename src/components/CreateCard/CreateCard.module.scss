@@ -11,6 +11,9 @@
   justify-content: center;
   padding: 20px;
   transition: border-color 0.3s ease-in-out;
+  font-size: rem(26px);
+  font-weight: 700;
+  color: $grey-color;
 
   &:hover {
     border-color: darken($grey-color, 10%);
@@ -25,20 +28,34 @@
   }
 }
 
-.text {
-  font-size: rem(26px);
-  font-weight: 700;
-  color: $grey-color;
-}
-
 .icon {
-  padding: 3px;
   border-radius: 50%;
   background-color: $grey-color;
   color: $backgound-color;
+}
 
+.large {
+  padding: 3px;
+  width: 40px;
+  height: 40px;
   @include viewport(tablet) {
     width: 60px;
     height: 60px;
   }
+}
+
+.medium {
+  padding: 2px;
+  width: 20px;
+  height: 20px;
+  @include viewport(tablet) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.small {
+  padding: 1px;
+  width: 20px;
+  height: 20px;
 }
