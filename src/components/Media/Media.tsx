@@ -6,19 +6,17 @@ import VideoPlayer from '@/components/VideoPlayer';
 
 type MediaProps = MediaType & {
   className?: string;
-  layout?: 'fill' | 'fixed' | 'intrinsic' | 'responsive';
 };
 
-function Media({ id, url, type, className, layout }: MediaProps) {
+function Media({ id, url, type, className }: MediaProps) {
   if (type === 'Image' || !url) {
     return (
       <ImageFallback
-        alt={id}
+        alt={`${id}`}
         className={className}
-        width={120}
-        height={40}
+        width={450}
+        height={150}
         src={url}
-        layout={layout}
       />
     );
   }

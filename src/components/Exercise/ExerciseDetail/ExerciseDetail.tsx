@@ -43,7 +43,6 @@ function ExerciseDetail({
                 key={mediaItem.id}
                 className={styles.media}
                 {...mediaItem}
-                layout="responsive"
               />
             ))}
           </Carousel>
