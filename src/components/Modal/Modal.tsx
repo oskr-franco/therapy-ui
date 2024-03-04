@@ -15,7 +15,7 @@ type ModalProps = {
 };
 
 function Modal({ isOpen, onClose, children, className }: ModalProps) {
-  function onClickModalHandler(e) {
+  function onClickModalHandler(e: React.MouseEvent<HTMLDivElement>) {
     e.stopPropagation();
   }
 
