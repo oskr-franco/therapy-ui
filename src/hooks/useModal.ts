@@ -2,28 +2,36 @@ import { useCallback, useMemo } from 'react';
 
 import useStore from '../store/useStore';
 
-import Modal from '@/components/Modal/ModalWrapper.types';
+import {
+  ModalProps,
+  ModalStoreProps,
+} from '@/components/Modal/ModalWrapper.types';
+import { Types, ModalAction } from '@/store/types';
 
-export type ModadalProps = Pick<Modal, 'component' | 'componentProps'>;
+export type UseModalResponse = {
+  modalState: ModalStoreProps<unknown>;
+  openModal: <T>(value: ModalProps<T>) => void;
+  closeModal: () => void;
+};
 
 function useModal() {
-  const type = 'modal';
+  const type = Types.MODAL;
   const { state, dispatch } = useStore();
 
   const openModal = useCallback(
-    (value: ModadalProps) => {
-      const func = 'openModal';
+    <T>(value: ModalProps<T>) => {
+      const func = ModalAction.OPEN;
       dispatch({ type, func, value });
     },
-    [dispatch],
+    [dispatch, type],
   );
 
   const closeModal = useCallback(() => {
-    const func = 'closeModal';
+    const func = ModalAction.CLOSE;
     dispatch({ type, func });
-  }, [dispatch]);
+  }, [dispatch, type]);
 
-  const modalState = useMemo(() => state[type], [state]);
+  const modalState = useMemo(() => state[type], [state, type]);
 
   return {
     modalState,

@@ -2,16 +2,17 @@ import React from 'react';
 
 import useModal from '../hooks/useModal';
 
-import ModalType from './withOpenModal.types';
+import WithModalType from './withOpenModal.types';
 
-const withOpenModal = (WrappedComponent: React.ComponentType<any>) => {
-  const MemoComponent = React.memo(WrappedComponent);
-  function ModalComponent(props) {
-    const { openModal, closeModal }: ModalType = useModal();
+const withOpenModal = <T extends WithModalType = WithModalType>(
+  WrappedComponent: React.FunctionComponent<T>,
+) => {
+  const MemoComponent = React.memo<T>(WrappedComponent);
+  function ModalComponent(props: Omit<T, keyof WithModalType>) {
+    const { openModal, closeModal } = useModal();
     return (
       <MemoComponent
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
+        {...(props as T)}
         openModal={openModal}
         closeModal={closeModal}
       />

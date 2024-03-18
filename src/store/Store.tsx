@@ -1,15 +1,9 @@
 'use client';
 
 import React, { createContext, useReducer } from 'react';
-import { StoreState } from './types';
+import { ReducerAction, StoreState, modalInitial } from './types';
 
 import reducer from './reducer';
-
-const modalInitial = {
-  isOpen: false,
-  component: '',
-  componentProps: {},
-};
 
 const initialState: StoreState = {
   modal: modalInitial,
@@ -18,10 +12,10 @@ const initialState: StoreState = {
 
 export const Context = createContext<{
   state: StoreState;
-  dispatch: React.Dispatch<any>;
+  dispatch: React.Dispatch<ReducerAction>;
 }>({ state: initialState, dispatch: () => {} });
 
-function Store({ children }) {
+function Store({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>

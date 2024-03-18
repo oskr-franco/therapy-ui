@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 import { IconButton } from '@/components/Button';
@@ -20,9 +20,9 @@ function Carousel({
   cardsPerSlide = 1,
 }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const intervalIdRef = useRef<NodeJS.Timeout | null>(null); // Using useRef
+  const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
 
-  const startSliding = () => {
+  const startSliding = useCallback(() => {
     if (slideTimeInSeconds && slideTimeInSeconds > 0) {
       const timer = setInterval(() => {
         setCurrentSlide(
@@ -33,14 +33,14 @@ function Carousel({
       }, slideTimeInSeconds * 1000);
       intervalIdRef.current = timer;
     }
-  };
+  }, [cardsPerSlide, children, slideTimeInSeconds]);
 
   useEffect(() => {
     startSliding();
     return () => {
       if (intervalIdRef.current) clearInterval(intervalIdRef.current);
     };
-  }, [children, slideTimeInSeconds]);
+  }, [children, slideTimeInSeconds, startSliding]);
 
   const handleIndicatorClick = (i: number) => {
     if (intervalIdRef.current) {

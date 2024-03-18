@@ -1,7 +1,14 @@
-export type Alert = {
+export enum MessageType {
+  Success = 'success',
+  Error = 'error',
+  Info = 'info',
+  Warning = 'warning',
+}
+
+export type AlertType = {
   id: number;
   message: string;
-  type: 'info' | 'success' | 'warning' | 'error';
+  type: MessageType;
 };
 
-export default Alert;
+export default AlertType;

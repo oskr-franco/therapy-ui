@@ -1,4 +1,18 @@
-const openModal = (state, { component, componentProps }) => {
+import { ModalProps } from '@/components/Modal/ModalWrapper.types';
+import {
+  ReducerAction,
+  StoreState,
+  modalInitial,
+  Types,
+  AlertAction,
+  ModalAction,
+} from './types';
+import AlertType from '@/components/Alerts/Alert/types';
+
+const openModal = (
+  state: StoreState,
+  { component, componentProps }: ModalProps<unknown>,
+): StoreState => {
   const modal = {
     isOpen: true,
     component,
@@ -10,19 +24,17 @@ const openModal = (state, { component, componentProps }) => {
   };
 };
 
-const closeModal = (state) => {
-  const modal = {
-    isOpen: false,
-    component: '',
-    componentProps: {},
-  };
+const closeModal = (state: StoreState): StoreState => {
   return {
     ...state,
-    modal,
+    modal: modalInitial,
   };
 };
 
-const addAlert = (state, { id, type, message }) => {
+const addAlert = (
+  state: StoreState,
+  { id, type, message }: AlertType,
+): StoreState => {
   const alert = {
     id,
     type,
@@ -34,7 +46,7 @@ const addAlert = (state, { id, type, message }) => {
   };
 };
 
-const removeAlert = (state, id) => {
+const removeAlert = (state: StoreState, { id }: AlertType) => {
   const alerts = state.alerts.filter((alert) => alert.id !== id);
   return {
     ...state,
@@ -43,19 +55,22 @@ const removeAlert = (state, id) => {
 };
 
 const reducersMap = {
-  modal: {
-    openModal,
-    closeModal,
+  [Types.MODAL]: {
+    [ModalAction.OPEN]: openModal,
+    [ModalAction.CLOSE]: closeModal,
   },
-  alerts: {
-    addAlert,
-    removeAlert,
+  [Types.ALERTS]: {
+    [AlertAction.ADD]: addAlert,
+    [AlertAction.REMOVE]: removeAlert,
   },
 };
 
-function reducer(state, action) {
+function reducer(state: StoreState, action: ReducerAction) {
   const { type, func, value } = action;
-  return reducersMap[type][func](state, value);
+  //Todo: Fix this any
+  const reducerType = reducersMap[type] as any;
+  const reducerFunc = reducerType[func];
+  return reducerFunc(state, value);
 }
 
 export default reducer;

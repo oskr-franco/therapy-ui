@@ -1,13 +1,18 @@
 import React from 'react';
 
-import { Alert as AlertType } from './types';
+import { AlertType, MessageType } from './types';
 import styles from './Alert.module.scss';
 
 type AlertProps = AlertType & {
   removeAlert: (id: number) => void;
 };
 
-function Alert({ id, message, type = 'info', removeAlert }: AlertProps) {
+function Alert({
+  id,
+  message,
+  type = MessageType.Info,
+  removeAlert,
+}: AlertProps) {
   const typeStyle = styles[type];
   const handleRemove = () => {
     removeAlert(id);

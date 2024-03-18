@@ -1,16 +1,12 @@
-import ModalType from '@/hocs/withOpenModal.types';
-import Modal from '@/components/Modal/ModalWrapper.types';
-
-type OpenModalType = Pick<ModalType, 'openModal'>;
-
-type ModalComponentType = Pick<Modal, 'component'>;
+import WithModalType from '@/hocs/withOpenModal.types';
 
 type BaseCardType = {
   text: string;
   className?: string;
-  iconSize: 'small' | 'medium' | 'large';
+  iconSize?: 'small' | 'medium' | 'large';
+  component: (input: unknown) => JSX.Element;
 };
 
-type CreateCardModalType = OpenModalType & ModalComponentType & BaseCardType;
+type CreateCardModalType = BaseCardType & WithModalType;
 
 export default CreateCardModalType;

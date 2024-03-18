@@ -1,14 +1,13 @@
 import { Workout, PaginationResponse } from '@/types';
 import { ExercisePicker } from '@/components/Exercise/ExercisePicker/ExercisePicker.types';
-import AlertType from '@/hocs/withAlerts.types';
+import WithAlertType from '@/hocs/withAlerts.types';
 
 type WorkoutUpdateType = Partial<Workout>;
 
 type WorkoutFormProps = {
   initialData?: WorkoutUpdateType;
   initialExercises: PaginationResponse<ExercisePicker>;
-  alert: AlertType;
-};
+} & WithAlertType;
 
 export type ExerciseState = ExercisePicker;
 

@@ -5,7 +5,6 @@ import Header from '@/components/Container/Header';
 import styles from './layout.module.scss';
 
 export default function AdminLayout({ children }: LayoutProps) {
-  // return <section>{children}</section>;
   return (
     <>
       <Menu />

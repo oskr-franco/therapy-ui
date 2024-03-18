@@ -10,9 +10,9 @@ export async function getWorkout(id: number): Promise<Workout> {
 }
 
 export async function createWorkout(workout: Workout): Promise<Workout> {
-  workoutService.create(workout);
+  const result = workoutService.create(workout);
   revalidatePath(Paths.Workouts);
-  return;
+  return result;
 }
 
 export async function updateWorkout(

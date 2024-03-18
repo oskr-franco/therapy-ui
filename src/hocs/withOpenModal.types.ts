@@ -1,8 +1,5 @@
-import { ModadalProps } from '../hooks/useModal';
+import { UseModalResponse } from '../hooks/useModal';
 
-type ModalType = {
-  openModal: (modal: ModadalProps) => void;
-  closeModal: () => void;
-};
+type WithModalType = Omit<UseModalResponse, 'modalState'>;
 
-export default ModalType;
+export default WithModalType;

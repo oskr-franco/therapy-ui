@@ -9,6 +9,7 @@ import CardActions from '@/components/CardActions';
 
 import styles from './CardActionsExercise.module.scss';
 import withOpenModal from '@/hocs/withOpenModal';
+import CardActionsExerciseProps from './CardActionsExercise.types';
 
 function CardActionsExercise({
   id,
@@ -18,7 +19,7 @@ function CardActionsExercise({
   instructions,
   openModal,
   alert,
-}) {
+}: CardActionsExerciseProps) {
   const exerciseDeleted = 'Ejercicio eliminado';
   const exercisePath = Paths.Exercise(id);
 

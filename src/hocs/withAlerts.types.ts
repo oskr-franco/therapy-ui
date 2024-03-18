@@ -1,8 +1,12 @@
-type AlertType = {
+export type AlertActions = {
   success: (message: string) => void;
   error: (message: string) => void;
   warning: (message: string) => void;
   info: (message: string) => void;
 };
 
-export default AlertType;
+type WithAlertType = {
+  alert: AlertActions;
+};
+
+export default WithAlertType;

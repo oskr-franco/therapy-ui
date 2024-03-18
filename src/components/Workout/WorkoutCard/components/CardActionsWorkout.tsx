@@ -5,15 +5,14 @@ import { useRouter } from 'next/navigation';
 import Paths from '@/constants/paths';
 import withAlerts from '@/hocs/withAlerts';
 import CardActions from '@/components/CardActions';
-import AlertType from '@/hocs/withAlerts.types';
+import WithAlertType from '@/hocs/withAlerts.types';
 import { deleteWorkout } from '@/actions/workouts/actions';
 
 import styles from './CardActionsWorkout.module.scss';
 
 type CardActionsWorkoutProps = {
   id: number;
-  alert: AlertType;
-};
+} & WithAlertType;
 
 function CardActionsWorkout({ id, alert }: CardActionsWorkoutProps) {
   const router = useRouter();

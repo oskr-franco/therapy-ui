@@ -16,7 +16,7 @@ export async function getExercises(
   return exercisesResponse;
 }
 
-export async function deleteExercise(id: string): Promise<void> {
+export async function deleteExercise(id: number): Promise<void> {
   await exercisesService.delete(id);
   revalidatePath(Paths.Exercises);
   return;

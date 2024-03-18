@@ -1,7 +1,5 @@
 'use client';
 
-/* eslint-disable react/jsx-props-no-spreading */
-
 import React from 'react';
 import useModal from '@/hooks/useModal';
 
@@ -14,7 +12,7 @@ function ModalWrapper() {
 
   return (
     <Modal onClose={closeModal} isOpen={isOpen}>
-      {!!ModalBody && <ModalBody {...componentProps} />}
+      {!!ModalBody && <ModalBody {...(componentProps as any)} />}
     </Modal>
   );
 }

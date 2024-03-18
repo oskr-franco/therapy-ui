@@ -3,14 +3,16 @@ import React, { useMemo } from 'react';
 
 import useAlert from '@/hooks/useAlert';
 
-import AlertType from './withAlerts.types';
+import WithAlertType, { AlertActions } from './withAlerts.types';
 
-const withAlerts = (component) => {
-  const MemoComponent = React.memo(component);
-  function AlertComponent(props) {
+const withAlerts = <T extends WithAlertType = WithAlertType>(
+  component: React.FunctionComponent<T>,
+) => {
+  const MemoComponent = React.memo<T>(component);
+  function AlertComponent(props: Omit<T, keyof WithAlertType>) {
     const { success, error, warning, info } = useAlert();
 
-    const alert: AlertType = useMemo(
+    const alert: AlertActions = useMemo(
       () => ({
         success,
         error,
@@ -20,7 +22,7 @@ const withAlerts = (component) => {
       [success, error, warning, info],
     );
 
-    return <MemoComponent {...props} alert={alert} />;
+    return <MemoComponent {...(props as T)} alert={alert} />;
   }
   return AlertComponent;
 };

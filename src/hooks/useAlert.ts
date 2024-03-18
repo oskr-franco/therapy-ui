@@ -1,29 +1,27 @@
 import { useCallback } from 'react';
 
 import useStore from '../store/useStore';
+import { Types, AlertAction } from '@/store/types';
+import AlertType, { MessageType } from '@/components/Alerts/Alert/types';
+
+type AddAlertType = Omit<AlertType, 'id'>;
 
 const useAlert = () => {
-  const type = 'alerts';
+  const type = Types.ALERTS;
   const { state, dispatch } = useStore();
 
-  const AlertType = {
-    Success: 'success',
-    Error: 'error',
-    Info: 'info',
-    Warning: 'warning',
-  };
-
   const removeAlert = useCallback(
-    (value) => {
-      const func = 'removeAlert';
+    (id: number) => {
+      const func = AlertAction.REMOVE;
+      const value = { id } as AlertType;
       dispatch({ type, func, value });
     },
-    [dispatch],
+    [dispatch, type],
   );
 
   const addAlert = useCallback(
-    (value) => {
-      const func = 'addAlert';
+    (value: AddAlertType) => {
+      const func = AlertAction.ADD;
       const id = Math.random();
       const newValue = { ...value, id };
       dispatch({ type, func, value: newValue });
@@ -32,35 +30,35 @@ const useAlert = () => {
         removeAlert(id);
       }, 3000);
     },
-    [dispatch, removeAlert],
+    [dispatch, removeAlert, type],
   );
 
   const success = useCallback(
-    (message) => {
-      addAlert({ message, type: AlertType.Success });
+    (message: string) => {
+      addAlert({ message, type: MessageType.Success });
     },
-    [addAlert, AlertType.Success],
+    [addAlert],
   );
 
   const error = useCallback(
-    (message) => {
-      addAlert({ message, type: AlertType.Error });
+    (message: string) => {
+      addAlert({ message, type: MessageType.Error });
     },
-    [addAlert, AlertType.Error],
+    [addAlert],
   );
 
   const info = useCallback(
-    (message) => {
-      addAlert({ message, type: AlertType.Info });
+    (message: string) => {
+      addAlert({ message, type: MessageType.Info });
     },
-    [addAlert, AlertType.Info],
+    [addAlert],
   );
 
   const warning = useCallback(
-    (message) => {
-      addAlert({ message, type: AlertType.Warning });
+    (message: string) => {
+      addAlert({ message, type: MessageType.Warning });
     },
-    [addAlert, AlertType.Warning],
+    [addAlert],
   );
 
   return {

@@ -91,6 +91,7 @@ function WorkoutForm({
   }, [selectedExercises.length]);
 
   const onSubmit = async (data: Workout) => {
+    console.log('onSubmit', data);
     if (!data.workoutExercises.length) {
       alert.error(selectAtLeastOneExercise);
       return;
@@ -130,7 +131,6 @@ function WorkoutForm({
             className={styles.card}
             text={addExercise}
             component={ExerciseForm}
-            onSubmitSuccess={() => router.refresh()}
             iconSize="small"
           />
           <ExercisePicker
@@ -162,6 +162,7 @@ function WorkoutForm({
                         value: /^[0-9]+$/,
                         message: numberError,
                       },
+                      valueAsNumber: true,
                     }}
                   />
                   <TextInput
@@ -174,6 +175,7 @@ function WorkoutForm({
                         value: /^[0-9]+$/,
                         message: numberError,
                       },
+                      valueAsNumber: true,
                     }}
                   />
                 </div>

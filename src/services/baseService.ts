@@ -26,7 +26,7 @@ class BaseService<T, TFilter = {}> {
     return fetchWrapper.put(`${this.url}/${id}`, params);
   }
 
-  async delete(id) {
+  async delete(id: number) {
     return fetchWrapper.delete(`${this.url}/${id}`);
   }
 }
