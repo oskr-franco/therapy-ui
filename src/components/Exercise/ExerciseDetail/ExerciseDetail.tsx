@@ -18,7 +18,11 @@ function ExerciseDetail({
   const instructionsTitle = 'Instrucciones';
 
   function breaklines(sentence: string) {
-    return sentence.split('\\n').map((str) => <p key={str}>{str}</p>);
+    return sentence.split('\n').map((str) => (
+      <>
+        {str} <br />{' '}
+      </>
+    ));
   }
 
   return (
