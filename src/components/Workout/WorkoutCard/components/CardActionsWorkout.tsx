@@ -16,7 +16,7 @@ type CardActionsWorkoutProps = {
 
 function CardActionsWorkout({ id, alert }: CardActionsWorkoutProps) {
   const router = useRouter();
-  const exerciseDeleted = 'Workout eliminado';
+  const exerciseDeleted = 'Rutina eliminada';
   const workoutPath = Paths.Workout(id);
   const editWorkoutPath = Paths.EditWorkout(id);
 

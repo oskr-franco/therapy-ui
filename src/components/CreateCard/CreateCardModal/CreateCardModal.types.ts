@@ -4,7 +4,7 @@ type BaseCardType = {
   text: string;
   className?: string;
   iconSize?: 'small' | 'medium' | 'large';
-  component: (input: unknown) => JSX.Element;
+  component: (input: any) => JSX.Element;
 };
 
 type CreateCardModalType = BaseCardType & WithModalType;

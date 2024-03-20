@@ -3,7 +3,7 @@ export type LayoutProps = {
   params: { slug: string };
 };
 export type PageProps = {
-  params: { slug: string };
+  params: { id: number };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 

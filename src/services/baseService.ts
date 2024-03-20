@@ -5,7 +5,7 @@ import toQueryString from '@/utils/toQueryString';
 class BaseService<T, TFilter = {}> {
   url: string;
 
-  constructor(url) {
+  constructor(url: string) {
     this.url = url;
   }
 

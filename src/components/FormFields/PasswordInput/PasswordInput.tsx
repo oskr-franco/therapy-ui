@@ -1,25 +1,34 @@
 'use client';
 
-/* eslint-disable react/jsx-props-no-spreading */
-
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FieldValues, RegisterOptions, UseFormRegister } from 'react-hook-form';
+
 import styles from './PasswordInput.module.scss';
 
-function PasswordInput({ register, name, validations, ...rest }) {
+type PasswordInputProps = {
+  register: UseFormRegister<FieldValues>;
+  name: string;
+  validations?: RegisterOptions;
+};
+
+function PasswordInput({
+  register,
+  name,
+  validations,
+  ...rest
+}: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
-  const inputRef = useRef();
 
   useEffect(() => {
-    register(inputRef.current, validations);
-  }, [register, validations]);
+    register(name, validations);
+  }, [name, register, validations]);
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
   return (
     <div className={styles.inputField}>
       <input
-        ref={inputRef}
         {...rest}
         type={showPassword ? 'text' : 'password'}
         name={name}

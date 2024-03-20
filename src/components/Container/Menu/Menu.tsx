@@ -16,7 +16,7 @@ const MENU_ITEMS = [
   {
     icon: CgGym,
     href: Paths.Workouts,
-    text: 'Workout',
+    text: 'Rutina',
   },
 ];
 

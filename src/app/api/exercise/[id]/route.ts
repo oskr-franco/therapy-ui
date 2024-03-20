@@ -1,8 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 
 import exercisesService from '@/services/exerciseService';
 
-export async function PUT(req, { params }) {
+type Params = {
+  id: number;
+};
+
+export async function PUT(req: NextRequest, { params }: { params: Params }) {
   const { id } = params;
   const body = await req.json();
   try {
@@ -16,7 +20,7 @@ export async function PUT(req, { params }) {
   }
 }
 
-export async function DELETE(_, { params }) {
+export async function DELETE(_: NextRequest, { params }: { params: Params }) {
   const { id } = params;
   try {
     const res = await exercisesService.delete(id);

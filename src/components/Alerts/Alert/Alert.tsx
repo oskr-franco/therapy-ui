@@ -18,7 +18,7 @@ function Alert({
     removeAlert(id);
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.keyCode === 13 || event.keyCode === 32) {
       // 13 is 'Enter' and 32 is 'Space'
       handleRemove();

@@ -8,7 +8,7 @@ import WorkoutsType from './Workouts.types';
 import styles from './Workouts.module.scss';
 
 function Workouts({ data }: WorkoutsType) {
-  const addWorkout = 'Crear Workout';
+  const addWorkout = 'Crear Rutina';
   const { data: workouts } = data;
 
   if (!data || !workouts) {

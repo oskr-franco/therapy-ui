@@ -18,6 +18,7 @@ import { LoadingButton, IconButton } from '../../Button';
 import ExerciseFormProps from './ExerciseForm.types';
 
 import styles from './ExerciseForm.module.scss';
+import { Exercise } from '@/types';
 
 function ExerciseForm({
   initialData = {},
@@ -55,13 +56,12 @@ function ExerciseForm({
     setValue,
     watch,
     formState: { errors },
-  } = useForm({
+  } = useForm<Partial<Exercise>>({
     defaultValues: {
-      id: null,
       name: '',
       description: '',
       instructions: '',
-      media: [{ id: null, type: '', url: '' }],
+      media: [{ type: '', url: '' }],
       ...initialData,
     },
   });
@@ -92,17 +92,18 @@ function ExerciseForm({
     });
   }, [mediaUrls, setValue]);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: Partial<Exercise>) => {
     setIsLoading(true);
+    const exercise = data as Exercise;
     if (data.id) {
       // We have an ID, so we're updating an existing item
       // await fetchWrapper.put(`/api/exercise/${data.id}`, data);
-      updateExercise(data.id, data);
+      updateExercise(data.id, exercise);
       closeModal();
       alert.success(exerciseUpdated);
     } else {
       // No ID, so we're creating a new item;
-      createExercise(data);
+      createExercise(exercise);
       closeModal();
       alert.success(exerciseCreated);
     }
@@ -111,20 +112,20 @@ function ExerciseForm({
   };
 
   const onAddMediaItem = useCallback(() => {
-    append({ id: null, type: '', url: '' });
+    append({ id: -1, type: '', url: '' });
   }, [append]);
 
   const onRemoveMediaItem = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
       const [id] = e.currentTarget.id.split('-').slice(-1);
-      remove(id);
+      remove(Number(id));
     },
     [remove],
   );
 
   const printMediaButton = useCallback(
-    (index) => {
+    (index: number) => {
       if (index === 0) {
         if (fields.length > 3) return null;
         return (
@@ -219,7 +220,7 @@ function ExerciseForm({
                   validations={{
                     required: index === 0 ? urlRequiredError : undefined,
                     validate: {
-                      validType: async (value) => {
+                      validType: async (value: string) => {
                         const type = getUrlType(value);
                         return type !== null || urlValidTypeError;
                       },
@@ -241,7 +242,7 @@ function ExerciseForm({
               </div>
               {errors.media?.[index]?.url && (
                 <p className={cx(styles.error, styles.mediaError)}>
-                  {errors.media[index].url.message}
+                  {errors.media[index]?.url?.message}
                 </p>
               )}
             </div>

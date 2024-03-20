@@ -13,7 +13,7 @@ import styles from './Tooltip.module.scss';
 function Tooltip({
   className,
   tooltip,
-  tooltipPosition,
+  tooltipPosition = 'top',
   showTooltip,
 }: ITooltipProps) {
   if (!tooltip || !showTooltip) {

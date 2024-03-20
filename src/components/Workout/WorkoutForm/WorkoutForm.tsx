@@ -23,23 +23,22 @@ function WorkoutForm({
   initialExercises,
   alert,
 }: WorkoutFormProps) {
-  const workoutNamePlaceholder = 'Nombre del workout';
-  const buildWorkout = 'Construye tu workout';
+  const workoutNamePlaceholder = 'Nombre de la rutina';
+  const buildWorkout = 'Construye tu rutina';
   const selectExercises = 'Selecciona tus ejercicios';
   const repsPlaceholder = 'Ej: 12 repeticiones';
   const setsPlaceholder = 'Ej: 3 series';
   const RequiredError = 'Campo es requerido';
   const setsRequiredError = 'Series es requerido';
   const repsRequiredError = 'Repeticiones es requerido';
-  const numberError = 'Solo se permiten números';
-  const submitText = 'Guardar workout';
+  const submitText = 'Guardar rutina';
   const selectAtLeastOneExercise = 'Selecciona al menos un ejercicio';
-  const workoutUpdatedSuccesfully = 'Workout actualizado exitosamente';
-  const workoutCreatedSuccesfully = 'Workout creado exitosamente';
+  const workoutUpdatedSuccesfully = 'Rutina actualizada exitosamente';
+  const workoutCreatedSuccesfully = 'Rutina creada exitosamente';
   const addExercise = 'Crear Ejercicio';
 
   const router = useRouter();
-  const endOfWorkoutRef = useRef(null);
+  const endOfWorkoutRef = useRef<HTMLDivElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { workoutExercises } = initialData;
   const {
@@ -90,19 +89,19 @@ function WorkoutForm({
     endOfWorkoutRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [selectedExercises.length]);
 
-  const onSubmit = async (data: Workout) => {
-    console.log('onSubmit', data);
-    if (!data.workoutExercises.length) {
+  const onSubmit = async (data: Partial<Workout>) => {
+    if (!data.workoutExercises?.length) {
       alert.error(selectAtLeastOneExercise);
       return;
     }
     setIsLoading(true);
+    const workout = data as Workout;
     if (data.id) {
-      await updateWorkout(data.id, data);
+      await updateWorkout(data.id, workout);
       router.push(Paths.Workouts);
       alert.success(workoutUpdatedSuccesfully);
     } else {
-      const result = await createWorkout(data);
+      const result = await createWorkout(workout);
       if (!!result.id) {
         router.push(Paths.Workouts);
         alert.success(workoutCreatedSuccesfully);
@@ -158,10 +157,6 @@ function WorkoutForm({
                     placeholder={`${setsPlaceholder}`}
                     validations={{
                       required: setsRequiredError,
-                      pattern: {
-                        value: /^[0-9]+$/,
-                        message: numberError,
-                      },
                       valueAsNumber: true,
                     }}
                   />
@@ -171,18 +166,14 @@ function WorkoutForm({
                     placeholder={`${repsPlaceholder}`}
                     validations={{
                       required: repsRequiredError,
-                      pattern: {
-                        value: /^[0-9]+$/,
-                        message: numberError,
-                      },
                       valueAsNumber: true,
                     }}
                   />
                 </div>
                 {errors.workoutExercises && (
                   <p className={styles.error}>
-                    <span>{errors.workoutExercises[index].sets?.message}</span>
-                    <span>{errors.workoutExercises[index].reps?.message}</span>
+                    <span>{errors.workoutExercises[index]?.sets?.message}</span>
+                    <span>{errors.workoutExercises[index]?.reps?.message}</span>
                   </p>
                 )}
               </div>

@@ -1,6 +1,6 @@
 import { FetchError } from '@/types';
 
-function handleResponse<T>(response) {
+function handleResponse<T>(response: Response) {
   return response.text().then((text) => {
     const data: T = text && JSON.parse(text);
 
@@ -23,27 +23,27 @@ function get<T>(url: string, init?: RequestInit): Promise<T> {
   );
 }
 
-function post<T>(url, body): Promise<T> {
+function post<T>(url: string, body: T): Promise<T> {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   };
 
-  return fetch(url, requestOptions).then(handleResponse);
+  return fetch(url, requestOptions).then<T>(handleResponse);
 }
 
-function put(url, body): Promise<void> {
+function put<T>(url: string, body: T): Promise<void> {
   const requestOptions = {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   };
-  return fetch(url, requestOptions).then(handleResponse);
+  return fetch(url, requestOptions).then<void>(handleResponse);
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
-function remove(url) {
+function remove(url: string) {
   const requestOptions = {
     method: 'DELETE',
   };
