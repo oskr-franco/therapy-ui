@@ -22,28 +22,30 @@ const MENU_ITEMS = [
 
 function Menu() {
   return (
-    <div className={styles.menu}>
+    <>
       <input type="checkbox" id="menuToggle" className={styles.menuToggle} />
-      <label
-        htmlFor="menuToggle"
-        className={cx(styles.menuItem, styles.toggleLabel)}
-      >
-        <span className={styles.icon}></span>
-        <MdKeyboardArrowRight size={30} className={styles.icon} />
-      </label>
-      <div className={styles.menuContent}>
-        {MENU_ITEMS.map((item) => (
-          <Item
-            key={item.text}
-            className={styles.menuItem}
-            icon={item.icon}
-            href={item.href}
-          >
-            <span className={styles.text}>{item.text}</span>
-          </Item>
-        ))}
+      <div className={styles.menu}>
+        <label
+          htmlFor="menuToggle"
+          className={cx(styles.menuItem, styles.toggleLabel)}
+        >
+          <MdKeyboardArrowRight size={30} className={styles.icon} />
+        </label>
+        <div className={styles.menuContent}>
+          {MENU_ITEMS.map((item) => (
+            <Item
+              key={item.text}
+              className={styles.menuItem}
+              icon={item.icon}
+              href={item.href}
+            >
+              <span className={styles.text}>{item.text}</span>
+            </Item>
+          ))}
+        </div>
       </div>
-    </div>
+      <label htmlFor="menuToggle" className={styles.menuOverlay}></label>
+    </>
   );
 }
 

@@ -1,5 +1,19 @@
 @import 'mixins';
 
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10; // Overlay behind menu items
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -9,7 +23,7 @@
   position: fixed;
   left: 0;
   height: 100vh;
-  z-index: 1;
+  z-index: 20;
 }
 
 .menuItem {
@@ -55,18 +69,23 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.menuToggle:checked + .menuItem .icon{
-  transform: rotate(180deg); 
-}
-
-/* Styling for the menu content based on checkbox state */
-.menuToggle:checked ~ .menuContent {
-  width: 200px;
-
-  .text {
-    width: auto;
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(0);
+.menuToggle:checked ~ .menu {
+  .menuItem .icon {
+    transform: rotate(180deg);
   }
+
+  .menuContent {
+    width: 200px;
+
+    .text {
+      width: auto;
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(0);
+    }
+   }
+}
+.menuToggle:checked ~ .menuOverlay {
+  opacity: 1; // Fully visible when checked
+  visibility: visible;
 }
