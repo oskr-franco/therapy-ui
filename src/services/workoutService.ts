@@ -6,10 +6,16 @@ type PaginationFilterWorkout = PaginationFilter & {
   includeMedia?: boolean;
 };
 
-const { apiService } = appConfig;
-const baseUrl = `${apiService}/api/workout`;
-const workoutService = new BaseService<Workout, PaginationFilterWorkout>(
-  baseUrl,
-);
+class WorkoutService extends BaseService<Workout, PaginationFilterWorkout> {
+  constructor() {
+    super(`${appConfig.apiService}/api/workout`);
+  }
+
+  async getBySlug(slug: string) {
+    return this.fetchWrapper.get<Workout>(`${this.url}/${slug}`);
+  }
+}
+
+const workoutService = new WorkoutService();
 
 export default workoutService;

@@ -15,18 +15,16 @@ export async function createWorkout(workout: Workout): Promise<Workout> {
   return result;
 }
 
-export async function updateWorkout(
-  id: number,
-  workout: Workout,
-): Promise<void> {
-  await workoutService.update(id, workout);
+export async function updateWorkout(workout: Workout): Promise<void> {
+  await workoutService.update(workout.id, workout);
   revalidatePath(Paths.Workouts);
-  revalidatePath(Paths.Workout(id));
+  revalidatePath(Paths.Workout(workout.slug));
   return;
 }
 
-export async function deleteWorkout(id: number): Promise<void> {
+export async function deleteWorkout(id: number, slug: string): Promise<void> {
   await workoutService.delete(id);
   revalidatePath(Paths.Workouts);
+  revalidatePath(Paths.Workout(slug));
   return;
 }

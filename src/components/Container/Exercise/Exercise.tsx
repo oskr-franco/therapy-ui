@@ -14,11 +14,11 @@ type ExerciseProps = {
 };
 
 function Exercise({ className, exercise, isPreview = false }: ExerciseProps) {
-  const { name, description, instructions, media } = exercise;
+  const { name, slug, description, instructions, media } = exercise;
   return (
     <div className={className}>
       {!isPreview && (
-        <ExerciseActions className={styles.exerciseActions} id={exercise.id} />
+        <ExerciseActions className={styles.exerciseActions} slug={slug} />
       )}
       <ExerciseDetail
         name={name}

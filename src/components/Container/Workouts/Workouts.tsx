@@ -23,13 +23,7 @@ function Workouts({ data }: WorkoutsType) {
         href={Paths.CreateWorkout}
       />
       {workouts.map((workout) => (
-        <WorkoutCard
-          className={styles.card}
-          key={workout.id}
-          id={workout.id}
-          name={workout.name}
-          workoutExercises={workout.workoutExercises}
-        />
+        <WorkoutCard className={styles.card} key={workout.id} {...workout} />
       ))}
     </div>
   );

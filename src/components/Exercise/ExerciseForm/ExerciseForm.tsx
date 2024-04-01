@@ -98,7 +98,7 @@ function ExerciseForm({
     if (data.id) {
       // We have an ID, so we're updating an existing item
       // await fetchWrapper.put(`/api/exercise/${data.id}`, data);
-      updateExercise(data.id, exercise);
+      updateExercise(exercise);
       closeModal();
       alert.success(exerciseUpdated);
     } else {

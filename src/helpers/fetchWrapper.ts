@@ -1,5 +1,12 @@
 import { FetchError } from '@/types';
 
+export type FetchWrapperType = {
+  get<T>(url: string, init?: RequestInit): Promise<T>;
+  post<T>(url: string, body: T): Promise<T>;
+  put<T>(url: string, body: T): Promise<void>;
+  delete(url: string): Promise<void>;
+};
+
 function handleResponse<T>(response: Response) {
   return response.text().then((text) => {
     const data: T = text && JSON.parse(text);
@@ -42,15 +49,14 @@ function put<T>(url: string, body: T): Promise<void> {
   return fetch(url, requestOptions).then<void>(handleResponse);
 }
 
-// prefixed with underscored because delete is a reserved word in javascript
-function remove(url: string) {
+function remove(url: string): Promise<void> {
   const requestOptions = {
     method: 'DELETE',
   };
-  return fetch(url, requestOptions).then(handleResponse);
+  return fetch(url, requestOptions).then<void>(handleResponse);
 }
 
-const fetchWrapper = {
+const fetchWrapper: FetchWrapperType = {
   get,
   post,
   put,

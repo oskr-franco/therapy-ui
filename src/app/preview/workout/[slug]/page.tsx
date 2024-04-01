@@ -7,8 +7,8 @@ import styles from './PreviewWorkoutPage.module.scss';
 import { PageProps } from '@/types';
 
 async function PreviewWorkoutPage({ params }: PageProps) {
-  const { id } = params;
-  const data = await workoutService.getById(id);
+  const { slug } = params;
+  const data = await workoutService.getBySlug(slug);
   return <Workout className={styles.workout} workout={data} isPreview />;
 }
 

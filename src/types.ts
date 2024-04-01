@@ -3,7 +3,7 @@ export type LayoutProps = {
   params: { slug: string };
 };
 export type PageProps = {
-  params: { id: number };
+  params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
@@ -16,6 +16,7 @@ export type Media = {
 export type Exercise = {
   id: number;
   name: string;
+  slug: string;
   description: string;
   instructions: string;
   media: Media[];
@@ -31,6 +32,7 @@ export type WorkoutExercise = Omit<Exercise, 'id'> & {
 export type Workout = {
   id: number;
   name: string;
+  slug: string;
   workoutExercises: WorkoutExercise[];
 };
 

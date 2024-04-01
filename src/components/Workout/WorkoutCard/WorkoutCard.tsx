@@ -10,9 +10,7 @@ import CardActionsWorkout from './components/CardActionsWorkout';
 
 import styles from './WorkoutCard.module.scss';
 
-type WorkoutProps = Pick<Workout, 'id' | 'name' | 'workoutExercises'>;
-
-type WorkoutCardProps = WorkoutProps & {
+type WorkoutCardProps = Workout & {
   className?: string;
 };
 
@@ -31,14 +29,15 @@ function WorkoutCard({
   className,
   id,
   name,
+  slug,
   workoutExercises,
 }: WorkoutCardProps) {
   const seeMore = 'Ver más';
   const FirstThreeExercises = workoutExercises.slice(0, 3);
-  const workoutPath = Paths.Workout(id);
+  const workoutPath = Paths.Workout(slug);
   return (
     <div className={cx(styles.card, className)}>
-      <CardActionsWorkout id={id} />
+      <CardActionsWorkout id={id} slug={slug} />
       <h3>{name}</h3>
       <div className={styles.exercises}>
         {FirstThreeExercises.map((exercise) => (

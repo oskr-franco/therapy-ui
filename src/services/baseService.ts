@@ -1,12 +1,15 @@
-import fetchWrapper from '@/helpers/fetchWrapper';
+import fetchWrapper, { FetchWrapperType } from '@/helpers/fetchWrapper';
 import { PaginationFilter, PaginationResponse } from '@/types';
 import toQueryString from '@/utils/toQueryString';
 
 class BaseService<T, TFilter = {}> {
   url: string;
 
+  public fetchWrapper: FetchWrapperType;
+
   constructor(url: string) {
     this.url = url;
+    this.fetchWrapper = fetchWrapper;
   }
 
   async getAll(filter?: TFilter | PaginationFilter) {

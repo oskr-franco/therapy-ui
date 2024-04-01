@@ -1,32 +1,32 @@
 type URLS = {
   Exercises: string;
-  Exercise: (id: number) => string;
-  ExercisePreview: (id: number) => string;
+  Exercise: (slug: string) => string;
+  ExercisePreview: (slug: string) => string;
   Workouts: string;
-  Workout: (id: number) => string;
-  WorkoutPreview: (id: number) => string;
+  Workout: (slug: string) => string;
+  WorkoutPreview: (slug: string) => string;
   CreateWorkout: string;
-  EditWorkout: (id: number) => string;
+  EditWorkout: (slug: string) => string;
 };
 
 const Paths: URLS = {
   Exercises: '/admin/exercises',
-  Exercise: (id: number) => {
-    return `/admin/exercises/${id}`;
+  Exercise: (slug: string) => {
+    return `/admin/exercises/${slug}`;
   },
-  ExercisePreview: (id: number) => {
-    return `/preview/${id}`;
+  ExercisePreview: (slug: string) => {
+    return `/preview/${slug}`;
   },
   Workouts: '/admin/workouts',
-  Workout: (id: number) => {
-    return `/admin/workouts/${id}`;
+  Workout: (slug: string) => {
+    return `/admin/workouts/${slug}`;
   },
-  WorkoutPreview: (id: number) => {
-    return `/preview/workout/${id}`;
+  WorkoutPreview: (slug: string) => {
+    return `/preview/workout/${slug}`;
   },
   CreateWorkout: '/admin/workouts/build',
-  EditWorkout: (id: number) => {
-    return `/admin/workouts/build/${id}`;
+  EditWorkout: (slug: string) => {
+    return `/admin/workouts/build/${slug}`;
   },
 };
 

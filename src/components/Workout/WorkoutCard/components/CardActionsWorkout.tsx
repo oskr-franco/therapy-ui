@@ -12,20 +12,21 @@ import styles from './CardActionsWorkout.module.scss';
 
 type CardActionsWorkoutProps = {
   id: number;
+  slug: string;
 } & WithAlertType;
 
-function CardActionsWorkout({ id, alert }: CardActionsWorkoutProps) {
+function CardActionsWorkout({ id, slug, alert }: CardActionsWorkoutProps) {
   const router = useRouter();
   const exerciseDeleted = 'Rutina eliminada';
-  const workoutPath = Paths.Workout(id);
-  const editWorkoutPath = Paths.EditWorkout(id);
+  const workoutPath = Paths.Workout(slug);
+  const editWorkoutPath = Paths.EditWorkout(slug);
 
   const handleEdit = () => {
     router.push(editWorkoutPath);
   };
 
   const handleDelete = async () => {
-    await deleteWorkout(id);
+    await deleteWorkout(id, slug);
     alert.success(exerciseDeleted);
   };
   return (

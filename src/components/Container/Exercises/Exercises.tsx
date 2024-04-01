@@ -23,15 +23,7 @@ function Exercises({ data }: ExercisesType) {
         component={ExerciseForm}
       />
       {exercises.map((exercise) => (
-        <ExerciseCard
-          className={styles.card}
-          key={exercise.id}
-          id={exercise.id}
-          name={exercise.name}
-          description={exercise.description}
-          instructions={exercise.instructions}
-          media={exercise.media}
-        />
+        <ExerciseCard className={styles.card} key={exercise.id} {...exercise} />
       ))}
     </div>
   );

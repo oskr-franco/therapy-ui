@@ -97,7 +97,7 @@ function WorkoutForm({
     setIsLoading(true);
     const workout = data as Workout;
     if (data.id) {
-      await updateWorkout(data.id, workout);
+      await updateWorkout(workout);
       router.push(Paths.Workouts);
       alert.success(workoutUpdatedSuccesfully);
     } else {

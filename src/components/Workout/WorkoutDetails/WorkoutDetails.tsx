@@ -5,14 +5,12 @@ import ExerciseDetail from '@/components/Exercise/ExerciseDetail';
 import styles from './WorkoutDetails.module.scss';
 import WorkoutDetailProps from './WorkoutDetails.types';
 
-function WorkoutDetails({ id, name, workoutExercises }: WorkoutDetailProps) {
+function WorkoutDetails({ name, workoutExercises }: WorkoutDetailProps) {
   const setsText = 'Series';
   const repsText = 'Repeticiones';
   return (
     <>
-      <h1 key={id} className={styles.title}>
-        {name}
-      </h1>
+      <h1 className={styles.title}>{name}</h1>
       {workoutExercises.map((workoutExercise) => {
         const {
           exerciseId,

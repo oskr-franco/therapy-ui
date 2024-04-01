@@ -1,5 +1,5 @@
 import { Workout } from '@/types';
 
-type WorkoutDetailProps = Workout;
+type WorkoutDetailProps = Omit<Workout, 'id' | 'slug'>;
 
 export default WorkoutDetailProps;

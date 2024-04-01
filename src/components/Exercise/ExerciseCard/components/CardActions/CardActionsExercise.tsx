@@ -14,6 +14,7 @@ import CardActionsExerciseProps from './CardActionsExercise.types';
 function CardActionsExercise({
   id,
   name,
+  slug,
   description,
   media,
   instructions,
@@ -21,7 +22,7 @@ function CardActionsExercise({
   alert,
 }: CardActionsExerciseProps) {
   const exerciseDeleted = 'Ejercicio eliminado';
-  const exercisePath = Paths.Exercise(id);
+  const exercisePath = Paths.Exercise(slug);
 
   const handleEdit = () => {
     openModal({
@@ -33,7 +34,7 @@ function CardActionsExercise({
   };
 
   const handleDelete = async () => {
-    deleteExercise(id);
+    deleteExercise(id, slug);
     alert.success(exerciseDeleted);
   };
   return (

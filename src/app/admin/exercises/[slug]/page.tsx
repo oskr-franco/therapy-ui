@@ -8,9 +8,9 @@ import { PageProps } from '@/types';
 export const revalidate = 0;
 
 async function ExercisePage({ params }: PageProps) {
-  const { id } = params;
+  const { slug } = params;
 
-  const data = await exercisesService.getById(id);
+  const data = await exercisesService.getBySlug(slug);
   return <Exercise exercise={data} />;
 }
 

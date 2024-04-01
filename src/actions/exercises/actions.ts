@@ -16,26 +16,24 @@ export async function getExercises(
   return exercisesResponse;
 }
 
-export async function deleteExercise(id: number): Promise<void> {
-  await exercisesService.delete(id);
-  revalidatePath(Paths.Exercises);
-  return;
-}
-
 export async function createExercise(exercise: Exercise): Promise<Exercise> {
   const createdExercise = await exercisesService.create(exercise);
   revalidatePath(Paths.Exercises);
   // revalidatePath(Paths.Workouts, 'page');
-  revalidatePath('/admin/workouts/[id]', 'page');
+  revalidatePath('/admin/workouts/[slug]', 'page');
   return createdExercise;
 }
 
-export async function updateExercise(
-  id: number,
-  exercise: Exercise,
-): Promise<void> {
-  await exercisesService.update(id, exercise);
+export async function updateExercise(exercise: Exercise): Promise<void> {
+  await exercisesService.update(exercise.id, exercise);
   revalidatePath(Paths.Exercises);
-  revalidatePath(Paths.Exercise(id));
+  revalidatePath(Paths.Exercise(exercise.slug));
+  return;
+}
+
+export async function deleteExercise(id: number, slug: string): Promise<void> {
+  await exercisesService.delete(id);
+  revalidatePath(Paths.Exercises);
+  revalidatePath(Paths.Exercise(slug));
   return;
 }

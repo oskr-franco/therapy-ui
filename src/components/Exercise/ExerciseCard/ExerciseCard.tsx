@@ -17,20 +17,16 @@ function ExerciseCard({
   description,
   media,
   instructions,
+  slug,
 }: ExerciseCardType) {
   const [mediaItem] = media;
-  const exercisePath = Paths.Exercise(id);
+  const exercisePath = Paths.Exercise(slug);
 
   return (
     <div className={cx(className, styles.card)}>
       <div className={styles.head}>
         <Link href={exercisePath} className={styles.link} />
-        <Media
-          className={styles.media}
-          id={mediaItem.id}
-          url={mediaItem.url}
-          type={mediaItem.type}
-        />
+        <Media className={styles.media} {...mediaItem} />
       </div>
       <div className={styles.body}>
         <CardActions
@@ -39,6 +35,7 @@ function ExerciseCard({
           description={description}
           media={media}
           instructions={instructions}
+          slug={slug}
         />
         <h3>{name}</h3>
         <p className={styles.description}>{description}</p>

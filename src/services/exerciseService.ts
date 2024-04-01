@@ -2,8 +2,16 @@ import appConfig from '@/app.config';
 import BaseService from './baseService';
 import { Exercise } from '@/types';
 
-const { apiService } = appConfig;
-const baseUrl = `${apiService}/api/exercise`;
-const workoutService = new BaseService<Exercise>(baseUrl);
+class ExerciseService extends BaseService<Exercise> {
+  constructor() {
+    super(`${appConfig.apiService}/api/exercise`);
+  }
 
-export default workoutService;
+  async getBySlug(slug: string) {
+    return this.fetchWrapper.get<Exercise>(`${this.url}/${slug}`);
+  }
+}
+
+const exerciseService = new ExerciseService();
+
+export default exerciseService;

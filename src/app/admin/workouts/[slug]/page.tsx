@@ -5,9 +5,9 @@ import Workout from '@/components/Container/Workout';
 import { PageProps } from '@/types';
 
 async function WorkoutPage({ params }: PageProps) {
-  const { id } = params;
+  const { slug } = params;
 
-  const data = await workoutService.getById(id);
+  const data = await workoutService.getBySlug(slug);
   return <Workout workout={data} />;
 }
 

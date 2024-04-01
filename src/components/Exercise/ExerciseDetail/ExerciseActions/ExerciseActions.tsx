@@ -7,14 +7,14 @@ import { ClipboardButton } from '@/components/Button';
 import Paths from '@/constants/paths';
 
 type ExerciseActionsProps = {
-  id: number;
+  slug: string;
   className?: string;
 };
 
-function ExerciseActions({ id, className }: ExerciseActionsProps) {
+function ExerciseActions({ slug, className }: ExerciseActionsProps) {
   const pathname = usePathname();
   const [domain, setDomain] = useState('');
-  const previewId = Paths.ExercisePreview(id);
+  const previewSlug = Paths.ExercisePreview(slug);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -25,7 +25,7 @@ function ExerciseActions({ id, className }: ExerciseActionsProps) {
 
   return (
     <div className={className}>
-      <ClipboardButton url={`${domain}${previewId}`} />
+      <ClipboardButton url={`${domain}${previewSlug}`} />
     </div>
   );
 }
