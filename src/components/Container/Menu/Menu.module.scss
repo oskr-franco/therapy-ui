@@ -1,5 +1,8 @@
 @import 'mixins';
 
+$z-index-overlay: $z-index-menu;
+$z-index-menu-container: $z-index-menu+10;
+
 .menuOverlay {
   position: fixed;
   top: 0;
@@ -7,7 +10,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 10; // Overlay behind menu items
+  z-index: $z-index-menu; // Overlay behind menu items
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
@@ -23,7 +26,7 @@
   position: fixed;
   left: 0;
   height: 100vh;
-  z-index: 20;
+  z-index: $z-index-menu-container;
 }
 
 .menuItem {

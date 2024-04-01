@@ -1,3 +1,5 @@
+@import 'variables';
+
 .carouselContainer {
   align-items: center;
   display: flex;
@@ -52,7 +54,7 @@
   height: 40px;
   padding: 0;
   width: 40px;
-  z-index: 1;
+  z-index: $z-index-carousel;
 }
 
 .arrow:disabled {
