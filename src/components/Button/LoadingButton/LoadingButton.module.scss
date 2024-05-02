@@ -9,6 +9,10 @@
   transition: background-color 0.3s ease;
   background-color: $blue-color;
 
+  &:hover {
+    background-color: darken($blue-color, 20%);
+  }
+
   &:disabled {
     background-color: $disable-color;
   }
@@ -16,6 +20,8 @@
   &.loading {
     background-color: $disable-color;
   }
+
+  
 }
 
 .loading {

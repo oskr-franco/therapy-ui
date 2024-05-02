@@ -2,4 +2,5 @@
 
 .inputField {
   @include inputField();
+  align-items: center;
 }

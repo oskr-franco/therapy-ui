@@ -1,17 +1,15 @@
 'use client';
 
-import React, { ElementType } from 'react';
+import React, { ElementType, InputHTMLAttributes } from 'react';
 import { FieldValues, RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 import styles from './TextInput.module.scss';
 
-type TextInputProps = {
+type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
   register: UseFormRegister<FieldValues>;
   name: string;
   icon?: ElementType;
   validations?: RegisterOptions;
-  placeholder?: string;
-  defaultValue?: string;
 };
 
 function TextInput({

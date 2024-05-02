@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import Paths from '@/constants/paths';
 import ExercisePicker from '@/components/Exercise/ExercisePicker';
-import { TextInput } from '@/components/FormFields';
+import { TextInput, Error } from '@/components/FormFields';
 import { LoadingButton } from '../../Button';
 import { Workout, WorkoutExercise } from '@/types';
 import { createWorkout, updateWorkout } from '@/actions/workouts/actions';
@@ -28,7 +28,7 @@ function WorkoutForm({
   const selectExercises = 'Selecciona tus ejercicios';
   const repsPlaceholder = 'Ej: 12 repeticiones';
   const setsPlaceholder = 'Ej: 3 series';
-  const RequiredError = 'Campo es requerido';
+  const requiredError = 'Campo es requerido';
   const setsRequiredError = 'Series es requerido';
   const repsRequiredError = 'Repeticiones es requerido';
   const submitText = 'Guardar rutina';
@@ -119,10 +119,10 @@ function WorkoutForm({
         placeholder={workoutNamePlaceholder}
         icon={SiWheniwork}
         validations={{
-          required: RequiredError,
+          required: requiredError,
         }}
       />
-      {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+      {errors.name && <Error error={errors.name?.message} />}
       <div className={styles.body}>
         <div className={styles.exercisePickerContainer}>
           <h4 className={styles.subtitle}>{selectExercises}</h4>
@@ -164,6 +164,7 @@ function WorkoutForm({
                     register={register}
                     name={`workoutExercises.${index}.reps`}
                     placeholder={`${repsPlaceholder}`}
+                    type="number"
                     validations={{
                       required: repsRequiredError,
                       valueAsNumber: true,
@@ -172,8 +173,12 @@ function WorkoutForm({
                 </div>
                 {errors.workoutExercises && (
                   <p className={styles.error}>
-                    <span>{errors.workoutExercises[index]?.sets?.message}</span>
-                    <span>{errors.workoutExercises[index]?.reps?.message}</span>
+                    <Error
+                      error={errors.workoutExercises[index]?.sets?.message}
+                    />
+                    <Error
+                      error={errors.workoutExercises[index]?.reps?.message}
+                    />
                   </p>
                 )}
               </div>

@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { InputHTMLAttributes, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FieldValues, RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 import styles from './PasswordInput.module.scss';
+import { IconButton } from '@/components/Button';
 
-type PasswordInputProps = {
+type PasswordInputProps = InputHTMLAttributes<HTMLInputElement> & {
   register: UseFormRegister<FieldValues>;
   name: string;
   validations?: RegisterOptions;
@@ -20,27 +21,24 @@ function PasswordInput({
 }: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    register(name, validations);
-  }, [name, register, validations]);
-
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
   return (
     <div className={styles.inputField}>
       <input
-        {...rest}
+        {...register(name, validations)}
         type={showPassword ? 'text' : 'password'}
         name={name}
         className={styles.input}
+        {...rest}
       />
-      <button
-        type="button"
+      <IconButton
+        iconSize={15}
+        color="grey"
+        icon={showPassword ? FaEyeSlash : FaEye}
+        tooltip={showPassword ? 'Hide password' : 'Show password'}
         onClick={togglePasswordVisibility}
-        className={styles.eyeIcon}
-      >
-        {showPassword ? <FaEyeSlash /> : <FaEye />}
-      </button>
+      />
     </div>
   );
 }

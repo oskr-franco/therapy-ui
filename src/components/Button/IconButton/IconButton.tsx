@@ -10,7 +10,7 @@ type IconButtonProps = {
   alt?: string;
   children?: React.ReactNode;
   className?: string;
-  color?: 'red' | 'black' | 'green';
+  color?: 'red' | 'black' | 'green' | 'grey';
   href?: string;
   icon: React.ElementType;
   iconSize?: number;

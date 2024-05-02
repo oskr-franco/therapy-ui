@@ -64,9 +64,9 @@
 }
 
 .error {
-  color: $error-dark-color;
   display: flex;
   @include gap();
+
   & > * {
     flex: 1 1 0px;
   }

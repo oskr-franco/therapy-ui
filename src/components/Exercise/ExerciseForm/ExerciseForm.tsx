@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
-import cx from 'classnames';
 import { CgGym } from 'react-icons/cg';
 import { TbFileDescription } from 'react-icons/tb';
 import { FaListUl, FaLink, FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
@@ -12,7 +11,7 @@ import getUrlType from '@/utils/getUrlType';
 import withAlerts from '@/hocs/withAlerts';
 import withOpenModal from '@/hocs/withOpenModal';
 
-import { TextInput, TextArea } from '../../FormFields';
+import { TextInput, TextArea, Error } from '../../FormFields';
 import { LoadingButton, IconButton } from '../../Button';
 
 import ExerciseFormProps from './ExerciseForm.types';
@@ -168,7 +167,7 @@ function ExerciseForm({
           }}
           placeholder={namePlaceholder}
         />
-        {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+        <Error error={errors.name?.message} />
 
         <TextArea
           register={register}
@@ -183,9 +182,7 @@ function ExerciseForm({
           }}
           placeholder={descriptionPlaceholder}
         />
-        {errors.description && (
-          <p className={styles.error}>{errors.description.message}</p>
-        )}
+        <Error error={errors.description?.message} />
 
         <TextArea
           register={register}
@@ -199,9 +196,8 @@ function ExerciseForm({
           }}
           placeholder={instructionsPlaceholder}
         />
-        {errors.instructions && (
-          <p className={styles.error}>{errors.instructions.message}</p>
-        )}
+        <Error error={errors.instructions?.message} />
+
         <div className={styles.mediaList}>
           <h4>{mediaTitle}</h4>
           {fields.map((field, index) => (
@@ -240,11 +236,7 @@ function ExerciseForm({
               <div className={styles.mediaBtnContainer}>
                 {printMediaButton(index)}
               </div>
-              {errors.media?.[index]?.url && (
-                <p className={cx(styles.error, styles.mediaError)}>
-                  {errors.media[index]?.url?.message}
-                </p>
-              )}
+              <Error error={errors.media?.[index]?.url?.message} />
             </div>
           ))}
         </div>
