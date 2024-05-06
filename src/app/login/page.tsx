@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm } from '@/components/Account';
+import { LoginForm } from '@/components/Auth';
 
 import styles from './LoginPage.module.scss';
 

@@ -12,25 +12,31 @@ class BaseService<T, TFilter = {}> {
     this.fetchWrapper = fetchWrapper;
   }
 
-  async getAll(filter?: TFilter | PaginationFilter) {
+  async getAll(
+    filter?: TFilter | PaginationFilter,
+    headers?: HeadersInit,
+  ): Promise<PaginationResponse<T>> {
     const queryString = filter ? toQueryString(filter) : '';
-    return fetchWrapper.get<PaginationResponse<T>>(this.url + queryString);
+    return fetchWrapper.get<PaginationResponse<T>>(
+      this.url + queryString,
+      headers,
+    );
   }
 
-  async getById(id: number) {
-    return fetchWrapper.get<T>(`${this.url}/${id}`);
+  async getById(id: number, headers?: HeadersInit) {
+    return fetchWrapper.get<T>(`${this.url}/${id}`, headers);
   }
 
-  async create(params: T) {
-    return fetchWrapper.post<T>(this.url, params);
+  async create<TOut = T>(params: T, headers?: HeadersInit): Promise<TOut> {
+    return fetchWrapper.post(this.url, params, headers);
   }
 
-  async update(id: number, params: T) {
-    return fetchWrapper.put(`${this.url}/${id}`, params);
+  async update(id: number, params: T, headers?: HeadersInit) {
+    return fetchWrapper.put(`${this.url}/${id}`, params, headers);
   }
 
-  async delete(id: number) {
-    return fetchWrapper.delete(`${this.url}/${id}`);
+  async delete(id: number, headers?: HeadersInit) {
+    return fetchWrapper.delete(`${this.url}/${id}`, headers);
   }
 }
 

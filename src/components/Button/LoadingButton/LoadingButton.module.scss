@@ -1,13 +1,15 @@
 @import 'mixins';
 
 .button {
-  padding: 0.5rem 1rem;
-  border: none;
+  background-color: $blue-color;
   border-radius: 0.25rem;
+  border: none;
   color: $white-color;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1rem;
   transition: background-color 0.3s ease;
-  background-color: $blue-color;
 
   &:hover {
     background-color: darken($blue-color, 20%);

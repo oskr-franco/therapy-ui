@@ -1,32 +1,45 @@
 'use client';
 import React, { useState } from 'react';
-import { LoadingButton } from '@/components/Button';
-import { TextInput, PasswordInput, Error } from '@/components/FormFields';
 import { useForm } from 'react-hook-form';
 import { BsEnvelopeAt, BsPerson, BsPersonFill } from 'react-icons/bs';
+
+import { LoadingButton } from '@/components/Button';
+import { RegisterType } from '@/types';
+import { signup } from '@/actions/auth/actions';
 import { SignupValidation as Validations } from '@/constants/validations';
+import { TextInput, PasswordInput, Error } from '@/components/FormFields';
+import withAlerts from '@/hocs/withAlerts';
+import WithAlertType from '@/hocs/withAlerts.types';
 
 import styles from './SignupForm.module.scss';
 
-type SignupData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-const SignupForm = () => {
+const SignupForm = ({ alert }: WithAlertType) => {
   const [isLoading, setIsLoading] = useState(false);
+  const firstNamePlaceholder = 'Nombre';
+  const lastNamePlaceholder = 'Apellido';
+  const emailPlaceholder = 'Correo electrónico';
+  const passwordPlaceholder = 'Contraseña';
+  const confirmPasswordPlaceholder = 'Confirmar Contraseña';
+  const signupText = 'Crear cuenta';
+  const loginText = '¿Ya tienes una cuenta?';
+  const loginLinkText = 'Iniciar sesión';
+  const signupError = 'Error al crear cuenta';
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Partial<SignupData>>();
-  const onSubmit = (data: Partial<SignupData>) => {
+  } = useForm<Partial<RegisterType>>();
+  const onSubmit = async (data: Partial<RegisterType>) => {
     setIsLoading(true);
-    console.log(data);
-    setIsLoading(false);
+    try {
+      await signup(data as RegisterType);
+    } catch (error) {
+      console.error(error);
+      alert.error(signupError);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -38,7 +51,7 @@ const SignupForm = () => {
         id="firstName"
         name="firstName"
         icon={BsPerson}
-        placeholder="First Name"
+        placeholder={firstNamePlaceholder}
         validations={Validations.firstName}
       />
       {errors.firstName && <Error error={errors.firstName.message} />}
@@ -48,7 +61,7 @@ const SignupForm = () => {
         id="lastName"
         name="lastName"
         icon={BsPersonFill}
-        placeholder="Last Name"
+        placeholder={lastNamePlaceholder}
         validations={Validations.lastName}
       />
       {errors.lastName && <Error error={errors.lastName.message} />}
@@ -58,7 +71,7 @@ const SignupForm = () => {
         id="email"
         name="email"
         icon={BsEnvelopeAt}
-        placeholder="Email"
+        placeholder={emailPlaceholder}
         validations={Validations.email}
       />
       {errors.email && <Error error={errors.email.message} />}
@@ -67,7 +80,7 @@ const SignupForm = () => {
         register={register}
         id="password"
         name="password"
-        placeholder="Password"
+        placeholder={passwordPlaceholder}
         validations={Validations.password}
       />
       {errors.password && <Error error={errors.password.message} />}
@@ -76,7 +89,7 @@ const SignupForm = () => {
         register={register}
         id="confirmPassword"
         name="confirmPassword"
-        placeholder="Confirm Password"
+        placeholder={confirmPasswordPlaceholder}
         validations={Validations.confirmPassword}
       />
       {errors.confirmPassword && (
@@ -89,14 +102,14 @@ const SignupForm = () => {
           className={styles.submitBtn}
           type="submit"
         >
-          Sign Up
+          {signupText}
         </LoadingButton>
         <p className={styles.loginLink}>
-          Already have an account? <a href="/login">Log in</a>
+          {loginText} <a href="/login">{loginLinkText}</a>
         </p>
       </div>
     </form>
   );
 };
 
-export default SignupForm;
+export default withAlerts(SignupForm);

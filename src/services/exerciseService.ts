@@ -1,8 +1,9 @@
 import appConfig from '@/app.config';
-import BaseService from './baseService';
+// import BaseService from './baseService';
 import { Exercise } from '@/types';
+import AuthService from './authService';
 
-class ExerciseService extends BaseService<Exercise> {
+class ExerciseService extends AuthService<Exercise> {
   constructor() {
     super(`${appConfig.apiService}/api/exercise`);
   }

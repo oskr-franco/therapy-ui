@@ -1,5 +1,5 @@
 import React from 'react';
-import { SignupForm } from '@/components/Account';
+import { SignupForm } from '@/components/Auth';
 
 import styles from './SignupPage.module.scss';
 

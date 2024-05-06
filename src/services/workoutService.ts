@@ -1,12 +1,12 @@
 import appConfig from '@/app.config';
-import BaseService from './baseService';
 import { PaginationFilter, Workout } from '@/types';
+import AuthService from './authService';
 
-type PaginationFilterWorkout = PaginationFilter & {
+export type PaginationFilterWorkout = PaginationFilter & {
   includeMedia?: boolean;
 };
 
-class WorkoutService extends BaseService<Workout, PaginationFilterWorkout> {
+class WorkoutService extends AuthService<Workout, PaginationFilterWorkout> {
   constructor() {
     super(`${appConfig.apiService}/api/workout`);
   }

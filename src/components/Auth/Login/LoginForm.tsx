@@ -3,35 +3,42 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { BsEnvelopeAt } from 'react-icons/bs';
 
-import styles from './LoginForm.module.scss';
-import { TextInput, PasswordInput, Error } from '@/components/FormFields';
 import { LoadingButton } from '@/components/Button';
-import Paths from '@/constants/paths';
+import { login } from '@/actions/auth/actions';
+import { LoginType } from '@/types';
 import { LoginValidation as Validations } from '@/constants/validations';
+import { TextInput, PasswordInput, Error } from '@/components/FormFields';
+import Paths from '@/constants/paths';
+import withAlerts from '@/hocs/withAlerts';
+import WithAlertType from '@/hocs/withAlerts.types';
 
-type LoginData = {
-  email: string;
-  password: string;
-};
+import styles from './LoginForm.module.scss';
 
-function LoginForm() {
+function LoginForm({ alert }: WithAlertType) {
   const [isLoading, setIsLoading] = useState(false);
-  const emailPlaceholder = 'Email';
+  const emailPlaceholder = 'Correo electrónico';
   const passwordPlaceholder = 'Contraseña';
-  const submitText = 'Login';
-  const signupText = `Don\'t have an account? Sign up`;
-  const signupLinkText = 'Sign up';
+  const submitText = 'Iniciar sesión';
+  const signupText = `¿No tienes una cuenta?`;
+  const signupLinkText = 'Crear cuenta';
+  const loginError = 'Error al iniciar sesión';
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Partial<LoginData>>();
+  } = useForm<Partial<LoginType>>();
 
-  const onSubmit = (data: Partial<LoginData>) => {
+  const onSubmit = async (data: Partial<LoginType>) => {
     setIsLoading(true);
-    console.log(data);
-    setIsLoading(false);
-    // Implement your login logic here
+    try {
+      await login(data as LoginType);
+    } catch (error) {
+      console.error(error);
+      alert.error(loginError);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -72,4 +79,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default withAlerts(LoginForm);

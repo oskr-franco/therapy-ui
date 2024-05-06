@@ -1,5 +1,7 @@
 type URLS = {
   Signup: string;
+  Login: string;
+  Dashboard: string;
   Exercises: string;
   Exercise: (slug: string) => string;
   ExercisePreview: (slug: string) => string;
@@ -12,6 +14,8 @@ type URLS = {
 
 const Paths: URLS = {
   Signup: '/signup',
+  Login: '/login',
+  Dashboard: '/admin',
   Exercises: '/admin/exercises',
   Exercise: (slug: string) => {
     return `/admin/exercises/${slug}`;

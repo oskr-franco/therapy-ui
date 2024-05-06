@@ -36,6 +36,19 @@ export type Workout = {
   workoutExercises: WorkoutExercise[];
 };
 
+export type RegisterType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
+export type LoginType = {
+  email: string;
+  password: string;
+};
+
 export type PaginationFilter = {
   pageSize?: number;
   after?: string;
@@ -54,5 +67,6 @@ export type PaginationResponse<T> = {
 export type FetchError = {
   message: string;
   errors: string[];
-  statusCode: number;
+  status: number;
+  title: string;
 };

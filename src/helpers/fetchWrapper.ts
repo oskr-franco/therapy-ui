@@ -1,10 +1,10 @@
 import { FetchError } from '@/types';
 
 export type FetchWrapperType = {
-  get<T>(url: string, init?: RequestInit): Promise<T>;
-  post<T>(url: string, body: T): Promise<T>;
-  put<T>(url: string, body: T): Promise<void>;
-  delete(url: string): Promise<void>;
+  get<T>(url: string, headers?: HeadersInit): Promise<T>;
+  post<T, TOut = T>(url: string, body: T, headers?: HeadersInit): Promise<TOut>;
+  put<T>(url: string, body: T, headers?: HeadersInit): Promise<void>;
+  delete(url: string, headers?: HeadersInit): Promise<void>;
 };
 
 function handleResponse<T>(response: Response) {
@@ -20,38 +20,49 @@ function handleResponse<T>(response: Response) {
   });
 }
 
-function get<T>(url: string, init?: RequestInit): Promise<T> {
+function get<T>(url: string, headers?: HeadersInit): Promise<T> {
   const requestOptions = {
     method: 'GET',
-    ...init,
+    headers,
   };
   return fetch(url, requestOptions).then((response) =>
     handleResponse<T>(response),
   );
 }
 
-function post<T>(url: string, body: T): Promise<T> {
+function post<T, TOut = T>(
+  url: string,
+  body: T,
+  headers?: HeadersInit,
+): Promise<TOut> {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+      ...headers,
+    },
+    body: JSON.stringify(body) as BodyInit,
   };
 
-  return fetch(url, requestOptions).then<T>(handleResponse);
+  return fetch(url, requestOptions).then<TOut>(handleResponse);
 }
 
-function put<T>(url: string, body: T): Promise<void> {
+function put<T>(url: string, body: T, headers?: HeadersInit): Promise<void> {
   const requestOptions = {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...headers,
+    },
     body: JSON.stringify(body),
   };
   return fetch(url, requestOptions).then<void>(handleResponse);
 }
 
-function remove(url: string): Promise<void> {
+function remove(url: string, headers?: HeadersInit): Promise<void> {
   const requestOptions = {
     method: 'DELETE',
+    headers,
   };
   return fetch(url, requestOptions).then<void>(handleResponse);
 }
