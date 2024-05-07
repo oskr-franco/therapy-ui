@@ -15,7 +15,9 @@ export async function middleware(request: NextRequest) {
   );
 
   if (!isProtectedRoute) return NextResponse.next();
-  if (!tokens) return NextResponse.redirect(Paths.Login);
+  if (!tokens) {
+    return NextResponse.redirect(new URL(Paths.Login, request.nextUrl));
+  }
 
   if (tokenManagement.shouldRefreshToken(tokens.expiresAt)) {
     try {
@@ -25,7 +27,7 @@ export async function middleware(request: NextRequest) {
       );
       return setTokenMiddleware(NextResponse.next(), newToken);
     } catch (err) {
-      return NextResponse.redirect(Paths.Login);
+      return NextResponse.redirect(new URL(Paths.Login, request.nextUrl));
     }
   }
 }
