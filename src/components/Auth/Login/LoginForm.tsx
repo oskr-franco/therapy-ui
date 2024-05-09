@@ -21,7 +21,7 @@ function LoginForm({ alert }: WithAlertType) {
   const submitText = 'Iniciar sesión';
   const signupText = `¿No tienes una cuenta?`;
   const signupLinkText = 'Crear cuenta';
-  const loginError = 'User not found. Please try again.';
+  const loginError = 'Usuario no encontrado, verifica tus credenciales.';
 
   const {
     register,
