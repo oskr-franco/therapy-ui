@@ -21,7 +21,7 @@ function LoginForm({ alert }: WithAlertType) {
   const submitText = 'Iniciar sesión';
   const signupText = `¿No tienes una cuenta?`;
   const signupLinkText = 'Crear cuenta';
-  const loginError = 'Error al iniciar sesión';
+  const loginError = 'User not found. Please try again.';
 
   const {
     register,
@@ -33,8 +33,7 @@ function LoginForm({ alert }: WithAlertType) {
     setIsLoading(true);
     try {
       await login(data as LoginType);
-    } catch (error) {
-      console.error(error);
+    } catch {
       alert.error(loginError);
     } finally {
       setIsLoading(false);

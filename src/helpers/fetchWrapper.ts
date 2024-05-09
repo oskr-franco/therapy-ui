@@ -7,13 +7,31 @@ export type FetchWrapperType = {
   delete(url: string, headers?: HeadersInit): Promise<void>;
 };
 
+function getFirstError(errors: FetchError['errors']) {
+  for (const field in errors) {
+    if (
+      errors.hasOwnProperty(field) &&
+      Array.isArray(errors[field]) &&
+      errors[field].length > 0
+    ) {
+      return errors[field][0];
+    }
+  }
+  return null;
+}
+
 function handleResponse<T>(response: Response) {
   return response.text().then((text) => {
     const data: T = text && JSON.parse(text);
 
     if (!response.ok) {
       const errorData = data as FetchError;
-      const error = (errorData && errorData.message) || response.statusText;
+      let error = response.statusText;
+      if (errorData) {
+        const { errors, message } = errorData;
+        const firstmsg = getFirstError(errors);
+        error = message || firstmsg || error;
+      }
       return Promise.reject(error);
     }
     return data;
