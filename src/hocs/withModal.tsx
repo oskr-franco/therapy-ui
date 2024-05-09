@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import useModal from '../hooks/useModal';
 
-import WithModalType, { ModalActions } from './withOpenModal.types';
+import WithModalType, { ModalActions } from './withModal.types';
 
 const withOpenModal = <T extends WithModalType = WithModalType>(
   WrappedComponent: React.FunctionComponent<T>,

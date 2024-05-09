@@ -9,7 +9,7 @@ import { FaListUl, FaLink, FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 import { updateExercise, createExercise } from '@/actions/exercises/actions';
 import getUrlType from '@/utils/getUrlType';
 import withAlerts from '@/hocs/withAlerts';
-import withOpenModal from '@/hocs/withOpenModal';
+import withModal from '@/hocs/withModal';
 
 import { TextInput, TextArea, Error } from '../../FormFields';
 import { LoadingButton, IconButton } from '../../Button';
@@ -248,4 +248,4 @@ function ExerciseForm({ initialData = {}, alert, modal }: ExerciseFormProps) {
   );
 }
 
-export default withAlerts(withOpenModal(ExerciseForm));
+export default withAlerts(withModal(ExerciseForm));

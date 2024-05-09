@@ -8,7 +8,7 @@ import withAlerts from '@/hocs/withAlerts';
 import CardActions from '@/components/CardActions';
 
 import styles from './CardActionsExercise.module.scss';
-import withOpenModal from '@/hocs/withOpenModal';
+import withModal from '@/hocs/withModal';
 import CardActionsExerciseProps from './CardActionsExercise.types';
 
 function CardActionsExercise({
@@ -48,4 +48,4 @@ function CardActionsExercise({
   );
 }
 
-export default withAlerts(withOpenModal(CardActionsExercise));
+export default withAlerts(withModal(CardActionsExercise));

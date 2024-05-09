@@ -1,4 +1,4 @@
-import WithModalType from '@/hocs/withOpenModal.types';
+import WithModalType from '@/hocs/withModal.types';
 
 type BaseCardType = {
   text: string;
