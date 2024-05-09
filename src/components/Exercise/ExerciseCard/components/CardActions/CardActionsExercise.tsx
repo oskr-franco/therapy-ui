@@ -18,14 +18,14 @@ function CardActionsExercise({
   description,
   media,
   instructions,
-  openModal,
+  modal,
   alert,
 }: CardActionsExerciseProps) {
   const exerciseDeleted = 'Ejercicio eliminado';
   const exercisePath = Paths.Exercise(slug);
 
   const handleEdit = () => {
-    openModal({
+    modal.open({
       component: ExerciseForm,
       componentProps: {
         initialData: { id, name, description, media, instructions },

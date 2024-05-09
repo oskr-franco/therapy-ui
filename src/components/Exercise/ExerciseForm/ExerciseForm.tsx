@@ -19,11 +19,7 @@ import ExerciseFormProps from './ExerciseForm.types';
 import styles from './ExerciseForm.module.scss';
 import { Exercise } from '@/types';
 
-function ExerciseForm({
-  initialData = {},
-  alert,
-  closeModal,
-}: ExerciseFormProps) {
+function ExerciseForm({ initialData = {}, alert, modal }: ExerciseFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const isEditing = !!initialData.id;
   const titleText = 'Agregar Ejercicio';
@@ -98,12 +94,12 @@ function ExerciseForm({
       // We have an ID, so we're updating an existing item
       // await fetchWrapper.put(`/api/exercise/${data.id}`, data);
       updateExercise(exercise);
-      closeModal();
+      modal.close();
       alert.success(exerciseUpdated);
     } else {
       // No ID, so we're creating a new item;
       createExercise(exercise);
-      closeModal();
+      modal.close();
       alert.success(exerciseCreated);
     }
 

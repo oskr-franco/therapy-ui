@@ -12,13 +12,13 @@ import styles from '../CreateCard.module.scss';
 function CreateCardModal({
   className,
   text,
-  openModal,
+  modal,
   component,
   iconSize = 'large',
 }: CreateCardType) {
   const onCreateExerciseHandler = useCallback(() => {
-    openModal({ component });
-  }, [openModal, component]);
+    modal.open({ component });
+  }, [modal, component]);
 
   return (
     <button
