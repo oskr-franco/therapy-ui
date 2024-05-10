@@ -46,15 +46,17 @@ $z-index-menu-container: $z-index-menu+10;
 }
 
 .text {
-  font-size: 1rem;
   color: #333;
-  overflow: hidden; // To hide the overflow when the text is translated
-  width: 0; // Initial width
-  opacity: 0;
-  transform: translateX(-50%);
-  visibility: hidden;
-  transition: all 0.4s ease-in-out;
+  font-size: 1rem;
   margin-left: 10px;
+  opacity: 0;
+  overflow: hidden; // To hide the overflow when the text is translated
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  transform: translateX(-50%);
+  transition: all 0.4s ease-in-out;
+  visibility: hidden;
+  width: 0; // Initial width
 }
 
 /* Hide the actual checkbox */

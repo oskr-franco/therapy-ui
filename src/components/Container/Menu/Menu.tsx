@@ -22,6 +22,7 @@ const MENU_ITEMS = [
 ];
 
 function Menu() {
+  const logoutText = 'Cerrar sesión';
   return (
     <>
       <input type="checkbox" id="menuToggle" className={styles.menuToggle} />
@@ -46,7 +47,7 @@ function Menu() {
             ))}
           </div>
           <Logout className={styles.menuItem}>
-            <span className={styles.text}>Logout</span>
+            <span className={styles.text}>{logoutText}</span>
           </Logout>
         </div>
       </div>
