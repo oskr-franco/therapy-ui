@@ -3,7 +3,7 @@ import BaseService from './baseService';
 import { refresh } from '@/actions/auth/actions';
 import { PaginationFilter, PaginationResponse } from '@/types';
 
-class AuthService<T, TFilter = {}> extends BaseService<T, TFilter> {
+class AuthService<T> extends BaseService<T> {
   async secureFetch<T1>(
     callback: (headers?: HeadersInit) => Promise<T1>,
   ): Promise<T1> {
@@ -22,13 +22,10 @@ class AuthService<T, TFilter = {}> extends BaseService<T, TFilter> {
     return callback(headers);
   }
 
-  async getAll(
-    filter?: TFilter | PaginationFilter,
-  ): Promise<PaginationResponse<T>> {
-    const response = await this.secureFetch<PaginationResponse<T>>(
-      (headers?: HeadersInit) => super.getAll(filter, headers),
+  async getAll(filter?: PaginationFilter): Promise<PaginationResponse<T>> {
+    return this.secureFetch<PaginationResponse<T>>((headers?: HeadersInit) =>
+      super.getAll(filter, headers),
     );
-    return response;
   }
 
   async getById(id: number): Promise<T> {

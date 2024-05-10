@@ -2,7 +2,7 @@ import fetchWrapper, { FetchWrapperType } from '@/helpers/fetchWrapper';
 import { PaginationFilter, PaginationResponse } from '@/types';
 import toQueryString from '@/utils/toQueryString';
 
-class BaseService<T, TFilter = {}> {
+class BaseService<T> {
   url: string;
 
   public fetchWrapper: FetchWrapperType;
@@ -12,11 +12,15 @@ class BaseService<T, TFilter = {}> {
     this.fetchWrapper = fetchWrapper;
   }
 
+  getQueryString(filter?: PaginationFilter) {
+    return filter ? toQueryString(filter) : '';
+  }
+
   async getAll(
-    filter?: TFilter | PaginationFilter,
+    filter?: PaginationFilter,
     headers?: HeadersInit,
   ): Promise<PaginationResponse<T>> {
-    const queryString = filter ? toQueryString(filter) : '';
+    const queryString = this.getQueryString(filter);
     return fetchWrapper.get<PaginationResponse<T>>(
       this.url + queryString,
       headers,

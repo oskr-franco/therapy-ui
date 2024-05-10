@@ -12,7 +12,7 @@ export async function getExercises(
   filter?: PaginationFilter,
 ): Promise<PaginationResponse<Exercise>> {
   const newFilter: PaginationFilter = { pageSize: PAGE_SIZE, ...filter };
-  const exercisesResponse = await exercisesService.getAll(newFilter);
+  const exercisesResponse = await exercisesService.getByUser(newFilter);
   return exercisesResponse;
 }
 

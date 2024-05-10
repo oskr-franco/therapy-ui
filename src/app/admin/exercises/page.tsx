@@ -7,7 +7,7 @@ import exercisesService from '../../../services/exerciseService';
 export const revalidate = 0;
 
 async function ExercisesPage() {
-  const response = await exercisesService.getAll();
+  const response = await exercisesService.getByUser();
 
   if (!response) {
     return null;

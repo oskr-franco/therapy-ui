@@ -33,14 +33,14 @@ function WorkoutCard({
   workoutExercises,
 }: WorkoutCardProps) {
   const seeMore = 'Ver más';
-  const FirstThreeExercises = workoutExercises.slice(0, 3);
+  const firstThreeExercises = workoutExercises.slice(0, 3);
   const workoutPath = Paths.Workout(slug);
   return (
     <div className={cx(styles.card, className)}>
       <CardActionsWorkout id={id} slug={slug} />
       <h3>{name}</h3>
       <div className={styles.exercises}>
-        {FirstThreeExercises.map((exercise) => (
+        {firstThreeExercises.map((exercise) => (
           <ExerciseInfo key={exercise.exerciseId} {...exercise} />
         ))}
         {workoutExercises.length >= 3 && (
