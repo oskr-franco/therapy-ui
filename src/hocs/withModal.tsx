@@ -4,6 +4,8 @@ import useModal from '../hooks/useModal';
 
 import WithModalType, { ModalActions } from './withModal.types';
 
+export type { WithModalType };
+
 const withOpenModal = <T extends WithModalType = WithModalType>(
   WrappedComponent: React.FunctionComponent<T>,
 ) => {

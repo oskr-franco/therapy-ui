@@ -2,6 +2,7 @@ export type Modal<T> = {
   isOpen: boolean;
   component: (input: T) => JSX.Element;
   componentProps?: T;
+  onAccept?: () => void;
 };
 
 export type ModalStoreProps<T> = Omit<Modal<T>, 'component'> & {

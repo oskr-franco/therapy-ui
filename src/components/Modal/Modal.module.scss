@@ -32,6 +32,14 @@
   }
 }
 
+.actions {
+  @include margin(top);
+  @include padding(top);
+  border-top: 1px solid $black-light-color;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 button.closeBtn {
   margin: auto 0 10px auto;
 }

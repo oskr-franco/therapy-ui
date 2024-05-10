@@ -89,7 +89,10 @@ function ExerciseForm({ initialData = {}, alert, modal }: ExerciseFormProps) {
 
   const onSubmit = async (data: Partial<Exercise>) => {
     setIsLoading(true);
-    const exercise = data as Exercise;
+    const exercise: Exercise = {
+      ...data,
+      media: data?.media?.filter((item) => item.id !== -1) || [],
+    } as Exercise;
     if (data.id) {
       // We have an ID, so we're updating an existing item
       // await fetchWrapper.put(`/api/exercise/${data.id}`, data);

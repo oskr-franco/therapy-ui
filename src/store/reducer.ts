@@ -11,12 +11,11 @@ import AlertType from '@/components/Alerts/Alert/types';
 
 const openModal = (
   state: StoreState,
-  { component, componentProps }: ModalProps<unknown>,
+  { ...props }: ModalProps<unknown>,
 ): StoreState => {
   const modal = {
     isOpen: true,
-    component,
-    componentProps,
+    ...props,
   };
   return {
     ...state,

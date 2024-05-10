@@ -50,28 +50,28 @@
 .red {
   &:hover:not(:disabled) {
     .iconContainer{
-      background-color: $red-color;
+      background-color: $error-dark-color;
       color: $white-color;
     }
   }
 
   .iconContainer{
     background-color: $white-color;
-    color: $red-color;
+    color: $error-dark-color;
   }
 }
 
 .green {
   &:hover:not(:disabled) {
     .iconContainer{
-      background-color: $green-color;
+      background-color: $success-dark-color;
       color: $white-color;
     }
   }
 
   .iconContainer{
     background-color: $white-color;
-    color: $green-color;
+    color: $success-dark-color;
   }
 }
 

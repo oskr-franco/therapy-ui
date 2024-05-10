@@ -25,19 +25,59 @@
   }
 }
 
-@mixin padding() {
-  padding: $spacing;
+@mixin padding($direction: all) {
+  @if $direction == all {
+    padding: $spacing;
+  } @else if $direction == top {
+    padding-top: $spacing;
+  } @else if $direction == right {
+    padding-right: $spacing;
+  } @else if $direction == bottom {
+    padding-bottom: $spacing;
+  } @else if $direction == left {
+    padding-left: $spacing;
+  }
 
   @include viewport(tablet) {
-    padding: $desktop-spacing;
+    @if $direction == all {
+      padding: $desktop-spacing;
+    } @else if $direction == top {
+      padding-top: $desktop-spacing;
+    } @else if $direction == right {
+      padding-right: $desktop-spacing;
+    } @else if $direction == bottom {
+      padding-bottom: $desktop-spacing;
+    } @else if $direction == left {
+      padding-left: $desktop-spacing;
+    }
   }
 }
 
-@mixin margin() {
-  margin: $spacing;
+@mixin margin($direction: all) {
+  @if $direction == all {
+    margin: $spacing;
+  } @else if $direction == top {
+    margin-top: $spacing;
+  } @else if $direction == right {
+    margin-right: $spacing;
+  } @else if $direction == bottom {
+    margin-bottom: $spacing;
+  } @else if $direction == left {
+    margin-left: $spacing;
+  }
 
   @include viewport(tablet) {
-    margin: $desktop-spacing;
+    @if $direction == all {
+      margin: $desktop-spacing;
+    } @else if $direction == top {
+      margin-top: $desktop-spacing;
+    } @else if $direction == right {
+      margin-right: $desktop-spacing;
+    } @else if $direction == bottom {
+      margin-bottom: $desktop-spacing;
+    } @else if $direction == left {
+      margin-left: $desktop-spacing;
+    }
   }
 }
 
