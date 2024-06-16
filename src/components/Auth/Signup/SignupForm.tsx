@@ -1,8 +1,10 @@
 'use client';
 import React, { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { BsEnvelopeAt, BsPerson, BsPersonFill } from 'react-icons/bs';
 
+import PATHS from '@/constants/paths';
 import { LoadingButton } from '@/components/Button';
 import { RegisterType } from '@/types';
 import { signup } from '@/actions/auth/actions';
@@ -14,6 +16,7 @@ import WithAlertType from '@/hocs/withAlerts.types';
 import styles from './SignupForm.module.scss';
 
 const SignupForm = ({ alert }: WithAlertType) => {
+  const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const firstNamePlaceholder = 'Nombre';
   const lastNamePlaceholder = 'Apellido';
@@ -105,7 +108,8 @@ const SignupForm = ({ alert }: WithAlertType) => {
           {signupText}
         </LoadingButton>
         <p className={styles.loginLink}>
-          {loginText} <a href="/login">{loginLinkText}</a>
+          {loginText}{' '}
+          <a href={`${PATHS.Login()}?${searchParams}`}>{loginLinkText}</a>
         </p>
       </div>
     </form>

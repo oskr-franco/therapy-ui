@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { MdSportsGymnastics, MdKeyboardArrowRight } from 'react-icons/md';
 import { CgGym } from 'react-icons/cg';
 
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 import Item from './Item/Item';
 import styles from './Menu.module.scss';
 import Logout from './Logout/Logout';
@@ -11,12 +11,12 @@ import Logout from './Logout/Logout';
 const MENU_ITEMS = [
   {
     icon: MdSportsGymnastics,
-    href: Paths.Exercises,
+    href: PATHS.Exercises,
     text: 'Ejercicios',
   },
   {
     icon: CgGym,
-    href: Paths.Workouts,
+    href: PATHS.Workouts,
     text: 'Rutina',
   },
 ];

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { ClipboardButton } from '@/components/Button';
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 
 type WorkoutActionsProps = {
   slug: string;
@@ -14,7 +14,7 @@ type WorkoutActionsProps = {
 function WorkoutActions({ slug, className }: WorkoutActionsProps) {
   const pathname = usePathname();
   const [domain, setDomain] = useState('');
-  const previewSlug = Paths.WorkoutPreview(slug);
+  const previewSlug = PATHS.WorkoutPreview(slug);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

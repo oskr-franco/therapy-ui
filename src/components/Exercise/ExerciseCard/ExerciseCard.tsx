@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
 
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 
 import CardActions from './components/CardActions/CardActionsExercise';
 import Media from '../../Media';
@@ -20,7 +20,7 @@ function ExerciseCard({
   slug,
 }: ExerciseCardType) {
   const [mediaItem] = media;
-  const exercisePath = Paths.Exercise(slug);
+  const exercisePath = PATHS.Exercise(slug);
 
   return (
     <div className={cx(className, styles.card)}>

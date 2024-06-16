@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import tokenManagement from './helpers/TokenManagement';
-import Paths from './constants/paths';
+import PATHS, { PathsEnum } from './constants/paths';
 import accountService from './services/accountService';
 
-const protectedRoutes = ['/admin'];
+const protectedRoutes = [PathsEnum.Dashboard];
 
 export async function middleware(request: NextRequest) {
   const { setTokenMiddleware, getTokenMiddleware } = tokenManagement;
@@ -16,7 +16,8 @@ export async function middleware(request: NextRequest) {
 
   if (!isProtectedRoute) return NextResponse.next();
   if (!tokens) {
-    return NextResponse.redirect(new URL(Paths.Login, request.nextUrl));
+    const url = new URL(PATHS.Login(request.nextUrl.pathname), request.nextUrl);
+    return NextResponse.redirect(url);
   }
 
   if (tokenManagement.shouldRefreshToken(tokens.expiresAt)) {
@@ -27,7 +28,11 @@ export async function middleware(request: NextRequest) {
       );
       return setTokenMiddleware(NextResponse.next(), newToken);
     } catch (err) {
-      return NextResponse.redirect(new URL(Paths.Login, request.nextUrl));
+      const url = new URL(
+        PATHS.Login(request.nextUrl.pathname),
+        request.nextUrl,
+      );
+      return NextResponse.redirect(url);
     }
   }
 

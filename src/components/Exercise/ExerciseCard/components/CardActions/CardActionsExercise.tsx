@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { deleteExercise } from '@/actions/exercises/actions';
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 import ExerciseForm from '@/components/Exercise/ExerciseForm';
 import withAlerts from '@/hocs/withAlerts';
 import CardActions from '@/components/CardActions';
@@ -22,7 +22,7 @@ function CardActionsExercise({
   alert,
 }: CardActionsExerciseProps) {
   const exerciseDeleted = 'Ejercicio eliminado';
-  const exercisePath = Paths.Exercise(slug);
+  const exercisePath = PATHS.Exercise(slug);
 
   const handleEdit = () => {
     modal.open({

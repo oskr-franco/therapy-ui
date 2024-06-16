@@ -5,7 +5,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { SiWheniwork } from 'react-icons/si';
 import { useRouter } from 'next/navigation';
 
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 import ExercisePicker from '@/components/Exercise/ExercisePicker';
 import { TextInput, Error } from '@/components/FormFields';
 import { LoadingButton } from '../../Button';
@@ -98,12 +98,12 @@ function WorkoutForm({
     const workout = data as Workout;
     if (data.id) {
       await updateWorkout(workout);
-      router.push(Paths.Workouts);
+      router.push(PATHS.Workouts);
       alert.success(workoutUpdatedSuccesfully);
     } else {
       const result = await createWorkout(workout);
       if (!!result.id) {
-        router.push(Paths.Workouts);
+        router.push(PATHS.Workouts);
         alert.success(workoutCreatedSuccesfully);
       }
     }

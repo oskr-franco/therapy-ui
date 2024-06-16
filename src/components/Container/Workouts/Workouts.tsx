@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 import { CreateCardLink } from '@/components/CreateCard';
 import WorkoutCard from '@/components/Workout/WorkoutCard';
 
@@ -20,7 +20,7 @@ function Workouts({ data }: WorkoutsType) {
       <CreateCardLink
         className={styles.card}
         text={addWorkout}
-        href={Paths.CreateWorkout}
+        href={PATHS.CreateWorkout}
       />
       {workouts.map((workout) => (
         <WorkoutCard className={styles.card} key={workout.id} {...workout} />

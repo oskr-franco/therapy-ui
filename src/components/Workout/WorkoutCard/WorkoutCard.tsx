@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { BsChevronRight } from 'react-icons/bs';
 
 import { IconButton } from '@/components/Button';
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 
 import { Workout, WorkoutExercise } from '@/types';
 import CardActionsWorkout from './components/CardActionsWorkout';
@@ -34,7 +34,7 @@ function WorkoutCard({
 }: WorkoutCardProps) {
   const seeMore = 'Ver más';
   const firstThreeExercises = workoutExercises.slice(0, 3);
-  const workoutPath = Paths.Workout(slug);
+  const workoutPath = PATHS.Workout(slug);
   return (
     <div className={cx(styles.card, className)}>
       <CardActionsWorkout id={id} slug={slug} />

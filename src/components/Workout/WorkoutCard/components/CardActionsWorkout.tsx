@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 import withAlerts from '@/hocs/withAlerts';
 import CardActions from '@/components/CardActions';
 import WithAlertType from '@/hocs/withAlerts.types';
@@ -18,8 +18,8 @@ type CardActionsWorkoutProps = {
 function CardActionsWorkout({ id, slug, alert }: CardActionsWorkoutProps) {
   const router = useRouter();
   const exerciseDeleted = 'Rutina eliminada';
-  const workoutPath = Paths.Workout(slug);
-  const editWorkoutPath = Paths.EditWorkout(slug);
+  const workoutPath = PATHS.Workout(slug);
+  const editWorkoutPath = PATHS.EditWorkout(slug);
 
   const handleEdit = () => {
     router.push(editWorkoutPath);

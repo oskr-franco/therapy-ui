@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 import exercisesService from '@/services/exerciseService';
 import { Exercise, PaginationFilter, PaginationResponse } from '@/types';
 
@@ -18,7 +18,7 @@ export async function getExercises(
 
 export async function createExercise(exercise: Exercise): Promise<Exercise> {
   const createdExercise = await exercisesService.create(exercise);
-  revalidatePath(Paths.Exercises);
+  revalidatePath(PATHS.Exercises);
   // revalidatePath(Paths.Workouts, 'page');
   revalidatePath('/admin/workouts/[slug]', 'page');
   return createdExercise;
@@ -26,14 +26,14 @@ export async function createExercise(exercise: Exercise): Promise<Exercise> {
 
 export async function updateExercise(exercise: Exercise): Promise<void> {
   await exercisesService.update(exercise.id, exercise);
-  revalidatePath(Paths.Exercises);
-  revalidatePath(Paths.Exercise(exercise.slug));
+  revalidatePath(PATHS.Exercises);
+  revalidatePath(PATHS.Exercise(exercise.slug));
   return;
 }
 
 export async function deleteExercise(id: number, slug: string): Promise<void> {
   await exercisesService.delete(id);
-  revalidatePath(Paths.Exercises);
-  revalidatePath(Paths.Exercise(slug));
+  revalidatePath(PATHS.Exercises);
+  revalidatePath(PATHS.Exercise(slug));
   return;
 }

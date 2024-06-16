@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { BsEnvelopeAt } from 'react-icons/bs';
 
@@ -8,13 +9,14 @@ import { login } from '@/actions/auth/actions';
 import { LoginType } from '@/types';
 import { LoginValidation as Validations } from '@/constants/validations';
 import { TextInput, PasswordInput, Error } from '@/components/FormFields';
-import Paths from '@/constants/paths';
+import PATHS from '@/constants/paths';
 import withAlerts from '@/hocs/withAlerts';
 import WithAlertType from '@/hocs/withAlerts.types';
 
 import styles from './LoginForm.module.scss';
 
 function LoginForm({ alert }: WithAlertType) {
+  const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const emailPlaceholder = 'Correo electrónico';
   const passwordPlaceholder = 'Contraseña';
@@ -71,7 +73,8 @@ function LoginForm({ alert }: WithAlertType) {
         </LoadingButton>
 
         <p className={styles.signupLink}>
-          {signupText} <a href={Paths.Signup}>{signupLinkText}</a>
+          {signupText}{' '}
+          <a href={`${PATHS.Signup}?${searchParams}`}>{signupLinkText}</a>
         </p>
       </div>
     </form>
