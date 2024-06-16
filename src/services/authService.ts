@@ -2,6 +2,7 @@ import tokenManagement from '@/helpers/TokenManagement';
 import BaseService from './baseService';
 import { refresh } from '@/actions/auth/actions';
 import { PaginationFilter, PaginationResponse } from '@/types';
+import isSSR from '@/utils/isSSR';
 
 class AuthService<T> extends BaseService<T> {
   async secureFetch<T1>(
@@ -12,6 +13,11 @@ class AuthService<T> extends BaseService<T> {
     if (!tokens) return callback();
 
     if (tokenManagement.shouldRefreshToken(tokens.expiresAt)) {
+      if (isSSR()) {
+        // TODO: Implement refresh token on server side
+        // This shouldn't be executed because we should refresh token on middleware
+        return callback();
+      }
       await refresh(tokens.refreshToken, tokens.accessToken);
     }
 

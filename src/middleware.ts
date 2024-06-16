@@ -7,8 +7,7 @@ import accountService from './services/accountService';
 const protectedRoutes = [PathsEnum.Dashboard];
 
 export async function middleware(request: NextRequest) {
-  const { setTokenMiddleware, getTokenMiddleware } = tokenManagement;
-  const tokens = getTokenMiddleware(request);
+  const tokens = tokenManagement.getTokenMiddleware(request);
   const pathname = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.find((route) =>
     pathname.startsWith(route),
@@ -26,7 +25,7 @@ export async function middleware(request: NextRequest) {
         tokens.refreshToken,
         tokens.accessToken,
       );
-      return setTokenMiddleware(NextResponse.next(), newToken);
+      return tokenManagement.setTokenMiddleware(NextResponse.next(), newToken);
     } catch (err) {
       const url = new URL(
         PATHS.Login(request.nextUrl.pathname),
