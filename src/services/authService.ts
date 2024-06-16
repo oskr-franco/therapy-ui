@@ -14,8 +14,13 @@ class AuthService<T> extends BaseService<T> {
 
     if (tokenManagement.shouldRefreshToken(tokens.expiresAt)) {
       if (isSSR()) {
-        // TODO: Implement refresh token on server side
-        // This shouldn't be executed because we should refresh token on middleware
+        /*
+          Cookies can only be modified in a Server Action, Route Handler or middleware.
+          if we call a server action from a server component it becomes a normal function
+
+          Note: This condition should not be met because the refresh should be happening in the middleware
+          https://www.propelauth.com/post/cookies-in-next-js#cookies-in-server-components
+        */
         return callback();
       }
       await refresh(tokens.refreshToken, tokens.accessToken);
